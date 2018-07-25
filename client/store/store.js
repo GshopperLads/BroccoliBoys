@@ -56,10 +56,10 @@ const clearCart = () => ({
   type: CLEAR_CART
 })
 
-const getUser = (user) => ({
-  type: GET_USER,
-  user
-})
+// const getUser = (user) => ({
+//   type: GET_USER,
+//   user
+// })
 
 const getUsers = (users) => ({
   type: GET_USERS,
@@ -107,12 +107,15 @@ export const fetchCart = (userId) => {
 }
 
 export const SHOP = (productId, update) => {
-  try {
-    const { data } = await axios.update(`api/products/${productId}`, update)
-    dispatch(addToCart(data))
-  } catch (err) {
-    console.error(err)
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.update(`api/products/${productId}`, update)
+      dispatch(addToCart(data))
+    } catch (err) {
+      console.error(err)
+    }
   }
+
 }
 
 export const removeFromCart = (newProduct, newCart, productId, cartId) => {
@@ -140,6 +143,7 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
+
 const getUser = user => ({ type: GET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
 
