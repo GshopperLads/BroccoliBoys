@@ -3,12 +3,12 @@ const { Product } = require('../db/models')
 module.exports = router
 
 //get all products
-router.get('/', async(req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const products = await Product.findAll()
         res.status(200).json(products);
 
-    } catch (error) {next(error)}
+    } catch (error) { next(error) }
 
 })
 
@@ -17,12 +17,12 @@ router.get('/:id', async (req, res, next) => {
     try {
         const product = await Product.findById(req.params.id)
         res.status(200).json(product)
-    } catch (error) {next(error)}
+    } catch (error) { next(error) }
 })
 
 //post a product
 router.post('/', async (req, res, next) => {
-    try{
+    try {
         const product = await Product.create(req.body)
         res.status(204).json(product)
     } catch (err) {
@@ -32,9 +32,9 @@ router.post('/', async (req, res, next) => {
 
 //update a product 
 
-router.put('/:id', async(req, res, next) => {
-    try{
-        await Product.update(req.body, {where:{id: req.params.id}})
+router.put('/:id', async (req, res, next) => {
+    try {
+        await Product.update(req.body, { where: { id: req.params.id } })
         res.status(200)
     } catch (err) {
         next(err)
@@ -42,11 +42,11 @@ router.put('/:id', async(req, res, next) => {
 })
 
 //delete a product
-router.delete('/:id', async(req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
     try {
-        await Product.destroy({where:{id: req.params.id}})
+        await Product.destroy({ where: { id: req.params.id } })
         res.status(200)
-    } catch(err) {
+    } catch (err) {
         next(err)
     }
 })
