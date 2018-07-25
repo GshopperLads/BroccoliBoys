@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const { User } = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res, next) => {
     })
     res.status(200).json(user)
 
-  } catch (err){
+  } catch (err) {
     next(err)
   }
 })
