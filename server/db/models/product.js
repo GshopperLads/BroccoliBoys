@@ -21,7 +21,6 @@ const Product = db.define('product', {
         allowNull: false,
         validate: {
             isNumeric: true,
-            notEmpty: true
         }
     },
     description: {
@@ -30,11 +29,10 @@ const Product = db.define('product', {
 
     },
     quantity: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         allowNull: false, 
         validate: {
-            isNumeric: true,
-            notEmpty: true
+            isNumeric: true
         }
     }
 
