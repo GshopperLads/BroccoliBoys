@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { userReducer, productReducer, cartReducer } from './store'
 
 const reducer = combineReducers({
-  users: userReducer,
+  user: userReducer,
   products: productReducer,
   cart: cartReducer
 })
@@ -15,4 +15,4 @@ const middleware = composeWithDevTools(
 const store = createStore(reducer, middleware)
 
 export default store
-export * from './user'
+export * from './store'
