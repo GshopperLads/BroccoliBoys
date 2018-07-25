@@ -1,17 +1,18 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {fetchProducts} from '../store/store'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchProducts } from '../store/store'
 
 class AllProducts extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchProducts()
   }
 
   render() {
+    const products = this.props.products
     return (
       <div>
         <ul>
-          {this.props.products.map(product => {
+          {products.map(product => {
             return (
               <li key={product.id}>
                 {' '}
@@ -27,7 +28,7 @@ class AllProducts extends Component {
 }
 
 const mapStateToProps = state => {
-  return {products: state}
+  return { products: state.products }
 }
 
 const mapDispatchToState = dispatch => {
