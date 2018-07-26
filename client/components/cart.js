@@ -9,10 +9,19 @@ class Cart extends React.Component {
         super(props)
     }
 
+    componentWillMount(){
+        if(this.props.user ){
+            this.props.fetchCartFromDb(user.id)
+
+        }
+    }
+
     render(){
-        //console.log(this.props.products)
+       let user = this.props.user
+        console.log(this.props)
         return (
             <div className="cartContainer" >
+            { user && 
                 <div className="itemsInCart">
                     <Card.Group>
                         <Card>
@@ -41,6 +50,7 @@ class Cart extends React.Component {
                         </Card>
                     </Card.Group>
                 </div>
+            }
                 <div>
                     <Header as='h2' icon>
                         <Icon name='cart' />
@@ -83,13 +93,15 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        products: state.products
+        products: state.products,
+        user: state.user,
+        cart: state.cart
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchCartFromDb: (userId) => dispatch(fetchCart()),
+        fetchCartFromDb: (userId) => dispatch(fetchCart(userId)),
         removeCartFromDb: (newProduct, newCart, productId, cartId) => dispatch(removeFromCart(newProduct, newCart, productId, cartId))
     }
 }
