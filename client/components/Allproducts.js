@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchProducts } from '../store/store'
-import ProductCreator from "./ProductCreator"
+import ProductCreator from './ProductCreator'
+import { CardExampleCardProps } from "./Card"
+import { Card, Icon } from 'semantic-ui-react'
+
+
 
 class AllProducts extends Component {
   componentWillMount() {
@@ -11,25 +15,17 @@ class AllProducts extends Component {
   render() {
     const products = this.props.products
     return (
-      <div>
-        <ProductCreator products={products} />
-      </div>
+      <Card.Group itemsPerRow={4}>
+        {products.map(product => <CardExampleCardProps name={product.name} image={product.imageUrl} price={product.price} quantity={product.quantity} description={product.description} />)}        )
+      </Card.Group>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return { products: state.products }
-}
+const mapStateToProps = state => ({ products: state.products })
 
-const mapDispatchToState = dispatch => {
-  return {
-    fetchProducts: () => dispatch(fetchProducts())
-  }
-}
+const mapDispatchToState = dispatch => ({ fetchProducts: () => dispatch(fetchProducts()) })
 
-const connectedAllProducts = connect(mapStateToProps, mapDispatchToState)(
-  AllProducts
-)
+const ConnectedAllProducts = connect(mapStateToProps, mapDispatchToState)(AllProducts)
 
-export default connectedAllProducts
+export default ConnectedAllProducts
