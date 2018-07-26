@@ -1,19 +1,47 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { logout } from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <nav className="navbar navbar-light bg-light">
-    <Link className="navbar-brand" to="/">
-      <img src="logo.jpg" width="30" height="30" className="d-inline-block align-top" alt="" />
-      Broccoli
-  </Link>
-    <Link className="navbar-brand" to="/products">
-      Products
-  </Link>
-  </nav>
+const Navbar = ({ handleClick, isLoggedIn }) => (
+  <React.Fragment>
+    <div className="ui pointing menu">
+      <Link to={"/"}>
+        <a className="item" >
+          Broccoli
+  </a>
+      </Link>
+      <Link to={"/products"}>
+        <a className="item">
+          Products
+      </a>
+      </Link>
+
+
+      <div className="right menu">
+        <div className="ui pointing menu">
+          <Link to={"/cart"}>
+            <a className="item" >
+              Cart
+  </a>
+          </Link>
+        </div>
+        <div className="item">
+
+          <div className="ui transparent icon input">
+            <input type="text" placeholder="Search..." />
+            <i className="search link icon"></i>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div className="ui segment">
+      <p></p>
+    </div>
+  </React.Fragment>
+
 )
 
 /**
