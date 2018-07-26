@@ -10,8 +10,8 @@ class Cart extends React.Component {
     }
 
     componentWillMount(){
-        if(this.props.user ){
-            this.props.fetchCartFromDb(user.id)
+        if(this.props.user){
+            this.props.fetchCartFromDb(this.props.user.id)
 
         }
     }
@@ -51,6 +51,9 @@ class Cart extends React.Component {
                     </Card.Group>
                 </div>
             }
+                <Header as='h2' >
+                    Your cart is empty!
+                </Header> 
                 <div>
                     <Header as='h2' icon>
                         <Icon name='cart' />
