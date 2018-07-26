@@ -2,10 +2,6 @@ const router = require('express').Router()
 const User = require('../db/models/user')
 module.exports = router
 
-router.get('/', (req, res, next) => {
-  res.send('auth main!..')
-})
-
 router.post('/login', async (req, res, next) => {
   console.log('post start...')
   try {
