@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchProducts } from '../store/store'
-import ProductCreator from './ProductCreator'
+import ProductCreator from "./ProductCreator"
+
+
 
 class AllProducts extends Component {
   componentWillMount() {
@@ -11,9 +13,7 @@ class AllProducts extends Component {
   render() {
     const products = this.props.products
     return (
-      <div>
-        <ProductCreator products={products} />
-      </div>
+      <ProductCreator products={products} />
     )
   }
 }
