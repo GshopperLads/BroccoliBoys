@@ -19,3 +19,13 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.cartContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.itemsInCart {
+  max-width: 70;
+}
