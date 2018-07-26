@@ -10,7 +10,12 @@ const User = db.define('user', {
       notEmpty: true
     }
   },
-  password: Sequelize.STRING,
+  password: {
+    type: Sequelize.STRING,
+    get() {
+      return () => this.getDataValue('password')
+    }
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
