@@ -9,9 +9,14 @@ export const CardExampleCardProps = (props) => (
         meta={`$${props.price}/head | (${props.quantity}) in stock.`}
         description={props.description}
         extra={(<div>
-            <button class="btn btn-primary btn-lg raised" onClick={() => console.log("#########################ADD CART FUNCTIONALITY HERE#########################")}>Add to Cart</button>
+            <div className="ui vertical animated button" tabIndex="0">
+                <div className="hidden content">Add</div>
+                <div className="visible content">
+                    <i className="shop icon"></i>
+                </div>
+            </div>
             <Link to={`/products/${props.product.id}`}>
-                <button class="btn btn-primary btn-lg raised" >See More</button>
+                <button className="ui button">See More</button>
             </Link>
             <Icon name='recycle' />
             Certified Organic
