@@ -1,13 +1,6 @@
 import React from 'react'
 import { Card, Icon } from 'semantic-ui-react'
-
-const extra = (
-    <div>
-        <button class="btn btn-primary btn-lg raised" onClick={() => console.log("#########################ADD CART FUNCTIONALITY HERE#########################")}>Add to Cart</button>
-        <Icon name='recycle' />
-        Certified Organic
-  </div>
-)
+import { Link } from "react-router-dom"
 
 export const CardExampleCardProps = (props) => (
     <Card
@@ -15,12 +8,18 @@ export const CardExampleCardProps = (props) => (
         header={props.name}
         meta={`$${props.price}/head | (${props.quantity}) in stock.`}
         description={props.description}
-        extra={extra}
+        extra={(<div>
+            <button class="btn btn-primary btn-lg raised" onClick={() => console.log("#########################ADD CART FUNCTIONALITY HERE#########################")}>Add to Cart</button>
+            <Link to={`/products/${props.product.id}`}>
+                <button class="btn btn-primary btn-lg raised" >See More</button>
+            </Link>
+            <Icon name='recycle' />
+            Certified Organic
+      </div>)}
     />
 )
 
 
 
-// Product.create({ name: "Broccoli", imageUrl: "broccoli.png", price: 9.0, description: "yummy yummy broccoli!", quantity: 1 })
 
 
