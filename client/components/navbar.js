@@ -8,23 +8,21 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   <React.Fragment>
     <div className="ui pointing menu">
       <Link to={"/"}>
-        <a className="item" >
+        <div className="item" >
           Broccoli
-  </a>
+  </div>
       </Link>
       <Link to={"/products"}>
-        <a className="item">
+        <div className="item">
           Products
-      </a>
+      </div>
       </Link>
-
-
       <div className="right menu">
         <div className="ui pointing menu">
           <Link to={"/cart"}>
-            <a className="item" >
-              Cart
-  </a>
+            <div className="item" >
+              <i className="shop icon"></i>
+            </div>
           </Link>
         </div>
         <div className="item">
