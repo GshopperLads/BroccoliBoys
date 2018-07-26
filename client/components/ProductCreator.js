@@ -10,7 +10,7 @@ const ProductCreator = (props) => {
     return (
         <Card.Group itemsPerRow={4}>
             {products.map(product =>
-                <Link to={`/products/${product.id}`} key={product.id}><CardExampleCardProps name={product.name} image={product.imageUrl} price={product.price} quantity={product.quantity} description={product.description} /></Link>)}
+                <CardExampleCardProps name={product.name} image={product.imageUrl} price={product.price} quantity={product.quantity} description={product.description} />)}
         </Card.Group>
     )
 }
