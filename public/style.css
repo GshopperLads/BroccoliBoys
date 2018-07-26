@@ -20,6 +20,15 @@ form div {
   display: inline-block;
 }
 
+.cartContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.itemsInCart {
+  max-width: 70;
+}
 .btn {
   display: inline-block;
   padding: 6px 12px;
