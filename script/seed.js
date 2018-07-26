@@ -28,7 +28,7 @@ async function seed() {
   //   Cart.create({ id: 1 })
   // ])
   const products = await Promise.all([
-    Product.create({ name: "Broccoli", imageUrl: "asdf", price: 9.0, description: "asdfasdfasdf", quantity: 1 })
+    Product.create({ name: "Broccoli", imageUrl: "broccoli.png", price: 9.0, description: "yummy yummy broccoli!", quantity: 1 })
   ])
 
 
