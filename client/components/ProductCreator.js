@@ -7,6 +7,7 @@ const ProductCreator = (props) => {
             {products.map(product =>
                 <li key={product.id}>{' '}{product.name}{product.imageUrl}{product.price}{' '}{product.quantity}{' '}</li>
             )}
+
         </ul>
     )
 }
