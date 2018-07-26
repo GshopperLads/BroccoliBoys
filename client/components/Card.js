@@ -23,6 +23,7 @@ export const CardExampleColored = () => (
 const extra = (
     <a>
         <Icon name='recycle' />
+        <button>Add to Cart</button>
         Certified Organic
   </a>
 )
