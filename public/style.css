@@ -186,12 +186,14 @@ Container {
 }
 
 .user-data-text {
-  padding-bottom: 10px;
+  padding-bottom: 13px;
+  color: rgb(122, 115, 115);
 }
 
 
 
 /* Slideshow */
+
 html, body, div, span, i, ul, li {
 	margin: 0;
 	padding: 0;
@@ -239,4 +241,4 @@ ul {
 					.bottomButton li {display: inline-block; margin: 0 5px; }
 					.bottomButton li i {color:#fff; font-size: 15px;}
 						.select {background-color: #fff; border-radius: 100%; opacity: 0.8;}
-	
+
