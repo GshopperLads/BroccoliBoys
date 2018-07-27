@@ -20,6 +20,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               Logout
             </a>
             <div className="ui pointing menu">
+              <Link to={'/account'}>
+                <a className="item">Account</a>
+              </Link>
               <Link to={'/cart'}>
                 <a className="item">Cart</a>
               </Link>

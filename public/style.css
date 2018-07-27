@@ -148,7 +148,7 @@ form div {
   font-size: 17px;
 }
 
-.btn-info  {
+.btn-info {
   width: 280px;
   height: 45px;
   margin-left: 13px;
@@ -159,4 +159,33 @@ form div {
   color: white;
   padding: 13px;
   text-align: center;
+}
+
+/* SingleUser */
+.user-info {
+  background: rgba(209, 231, 214, 0.9);
+  padding: 40px;
+  max-width: 390px;
+  margin: 40px auto;
+  border-radius: 4px;
+  box-shadow: 0 5px 10px 5px rgba(26, 145, 89, 0.3);
+}
+
+.user-info-text div {
+  margin: 30px;
+  font-size: 16px;
+  font-family: Comic Sans MS;
+  text-align: center;
+}
+.user-info-text h1 {
+  padding: 10px;
+}
+
+.btn-edit {
+  width: 66px;
+  height: 27px;
+}
+
+.user-data-text {
+  padding-bottom: 10px;
 }
