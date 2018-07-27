@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { logout } from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({ handleClick, isLoggedIn }) => (
+
   <React.Fragment>
+
 
     {isLoggedIn ? (
       <div>
@@ -30,48 +32,44 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             </div>
             <div className="item">
               <div className="ui transparent icon input">
-                <input type="text" placeholder="Search..." />
+                <input type="text" placeholder="Search..." id="searchBar1" />
                 <i className="search link icon" />
               </div>
             </div>
           </div>
         </div>
-        <div className="ui segment">
-          <p />
-        </div>
+
 
       </div>
     ) : (
-      <div>
-        <div className="ui pointing menu">
-          <Link to={'/'}>
-            <div className="item">Broccoli</div>
-          </Link>
-          <Link to={'/products'}>
-            <a className="item">Products</a>
-          </Link>
+        <div>
+          <div className="ui pointing menu">
+            <Link to={'/'}>
+              <div className="item">Broccoli</div>
+            </Link>
+            <Link to={'/products'}>
+              <a className="item">Products</a>
+            </Link>
 
-          <div className="right menu">
-            <Link to="/login"><a className="item">Login</a></Link>
-            <Link to="/signup"><a className="item">Sign Up</a></Link>
-            <div className="ui pointing menu">
-              <Link to={'/cart'}>
-                <a className="item">Cart</a>
-              </Link>
-            </div>
-            <div className="item">
-              <div className="ui transparent icon input">
-                <input type="text" placeholder="Search..." />
-                <i className="search link icon" />
+            <div className="right menu">
+              <Link to="/login"><a className="item">Login</a></Link>
+              <Link to="/signup"><a className="item">Sign Up</a></Link>
+              <div className="ui pointing menu">
+                <Link to={'/cart'}>
+                  <a className="item">Cart</a>
+                </Link>
+              </div>
+              <div className="item">
+                <div className="ui transparent icon input">
+                  <input type="text" placeholder="Search..." id="searchBar2" />
+                  <i className="search link icon" />
+                </div>
               </div>
             </div>
           </div>
+
         </div>
-        <div className="ui segment">
-          <p />
-        </div>
-      </div>
-    )}
+      )}
   </React.Fragment>
 )
 
