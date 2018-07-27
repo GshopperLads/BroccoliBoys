@@ -6,7 +6,7 @@ import Cartitems from './cartItems'
 
 
 class Cart extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
@@ -31,7 +31,7 @@ class Cart extends React.Component {
                 <div>
                     <Header as='h2' icon>
                         <Icon name='cart' />
-                    Cart
+                        Cart
                     </Header>
                 <List celled>
                     {this.props.products.map(product => 

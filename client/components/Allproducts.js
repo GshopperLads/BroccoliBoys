@@ -20,8 +20,7 @@ class AllProducts extends Component {
 
 const mapStateToProps = state => ({ products: state.products })
 
-const mapDispatchToState = dispatch => ({ fetchProducts: () => dispatch(fetchProducts()), 
-                                          Shop: (productId) => dispatch(Shop(productId))})
+const mapDispatchToState = dispatch => ({ fetchProducts: () => dispatch(fetchProducts(), get})
 
 const ConnectedAllProducts = connect(mapStateToProps, mapDispatchToState)(AllProducts)
 

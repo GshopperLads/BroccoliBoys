@@ -20,7 +20,8 @@ form div {
   display: inline-block;
 }
 
-.cartContainer {
+
+Container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -29,7 +30,7 @@ form div {
 .itemsInCart {
   max-width: 70;
 }
-.btn {
+/* .btn {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -69,7 +70,7 @@ form div {
   color: #fff;
   background-color: #3276b1;
   border-color: #285e8e;
-}
+} */
 
 /***********************
   RAISED BUTTONS
@@ -88,6 +89,78 @@ form div {
 /***********************
   CUSTON BTN VALUES
   ************************/
+/*   
+  .btn {
+    padding: 14px 15px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+  }
+  
+  .btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+  }
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+  }
+  .btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+  } */
+
+
+  
+  
+
+  html, body, #container, .carousel {
+    height:100%;
+    margin: 0;
+    width: 100%;
+  }
+    
+  .image-slide {
+    height: 100%;
+    width: 100%;
+    transition: background-image .3s ease-in-out;
+  }
+  
+  .slide-arrow {
+    /* color: #14B6D4; */
+    cursor: pointer;
+    font-size: 2rem;
+    position: fixed;
+    top: 50%;
+  }
+  
+  .slide-arrow.right {
+    right: 1rem;
+  }
+  
+  .slide-arrow.left {
+    left: 1rem;
+  }
+  
+
+  .container {
+    width: 300px;
+    height: 200px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+}
 
 .btn {
   padding: 14px 15px;
@@ -96,6 +169,7 @@ form div {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus {
@@ -188,4 +262,25 @@ form div {
 
 .user-data-text {
   padding-bottom: 10px;
+}
+
+
+
+/* Slideshow */
+
+#first .slidelist {
+  width: 100%;
+  height: 600px;
+}
+
+div {
+  margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+div {
+  display: block;
 }

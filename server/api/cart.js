@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Cart } = require('../db/models')
+const { Cart, CartItem } = require('../db/models')
 module.exports = router
 
 //Retrieve all carts, but there's only one 
@@ -22,10 +22,19 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
-// //ADD PRODUCT TO CART
-// router.put('/:productId', async (req, res, next) => {
-//     try {
-//         await Cart.update(req.params.productId)
-//     }
-// })
+//ADD PRODUCT TO CART
+router.put('/:productId', async (req, res, next) => {
+    try {
+        console.log(req.body)
+        const newCartItem = await CartItem.create({
+            where: {
+                cartId: req.body,
+                productId: req.params.productId
+            }
+        })
+        res.sendStatus(200)
+    } catch (err) {
+        next(err)
+    }
+})
 

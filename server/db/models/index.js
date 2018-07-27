@@ -15,7 +15,7 @@ const db = require("../db")
 User.hasOne(Cart)
 
 //adds cartId to cartitem
-Cart.hasMany(CartItem)
+Cart.hasMany(CartItem, {as: 'Items'})
 
 
 CartItem.belongsTo(Product)
@@ -28,5 +28,5 @@ Cart.belongsTo(User)
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User, Cart, db, Product
+  User, Cart, db, Product, CartItem
 }

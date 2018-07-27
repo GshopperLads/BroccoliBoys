@@ -8,6 +8,7 @@ import Cart from './components/cart'
 import AllProducts from "./components/Allproducts"
 import SingleUser from './components/SingleUser';
 import SingleProduct from "./components/SingleProduct"
+import Home from "./components/Home"
 
 /**
  * COMPONENT
@@ -23,7 +24,9 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path ="/cart/:userId" component={Cart} />
+        <Route exact path ="/cart/:userId" component={Cart} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />
@@ -36,8 +39,8 @@ class Routes extends Component {
             <Route path="/account" component={SingleUser} />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
-        {/* <Route component={Login} /> */}
+        {/* Displays our Login component as a fallback */} */}
+        <Route component={Login} /> */}
       </Switch>
     )
   }
