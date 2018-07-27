@@ -38,8 +38,8 @@ class Routes extends Component {
             <Route path="/account" component={SingleUser} />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
-        {/* <Route component={Login} /> */}
+        {/* Displays our Login component as a fallback */} */}
+        <Route component={Login} /> */}
       </Switch>
     )
   }
