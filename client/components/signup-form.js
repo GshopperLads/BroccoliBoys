@@ -6,16 +6,23 @@ import {auth} from '../store'
 /**
  * COMPONENT
  */
-const AuthForm = props => {
+const SignupForm = props => {
   const {name, displayName, handleSubmit, error} = props
   return (
     <div className="form">
+      <div className="form-title">Create Account</div>
       <form onSubmit={handleSubmit} name={name} className="form-wrapper" >
         <div>
           <label htmlFor="email" className="input-text">
             Email
           </label>
           <input name="email" type="text" className="input-box" />
+        </div>
+        <div>
+          <label htmlFor="name" className="input-text">
+            Name
+          </label>
+          <input name="name" type="text" className="input-box" />
         </div>
         <div>
           <label htmlFor="password" className="input-text">
@@ -40,10 +47,11 @@ const AuthForm = props => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-const mapLogin = state => {
+
+const mapSignup = state => {
   return {
-    name: 'login',
-    displayName: 'Login',
+    name: 'signup',
+    displayName: 'Sign Up',
     error: state.user.error
   }
 }
@@ -60,12 +68,12 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
+export const Signup = connect(mapSignup, mapDispatch)(SignupForm)
 
 /**
  * PROP TYPES
  */
-AuthForm.propTypes = {
+SignupForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
