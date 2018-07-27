@@ -22,6 +22,15 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
+router.post('/:userId', async (req, res, next) => {
+    try {
+        const cart = await Cart.create({userId: req.params.userId})
+        res.json(cart)
+    } catch (err) {
+        next(err)
+    }
+})
+
 //ADD PRODUCT TO CART
 router.put('/:productId', async (req, res, next) => {
     try {

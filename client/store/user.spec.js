@@ -2,7 +2,7 @@
 
 const { expect } = require('chai')
 // const { me, logout } = require("./user")
-const { db, User } = require("../../server/db/models/index")
+const { db, User } = require("../../server/db/models")
 
 // import { expect } from 'chai'
 // import { me, logout } from './user'
@@ -54,22 +54,25 @@ const { db, User } = require("../../server/db/models/index")
 // })
 
 /* eslint-env mocha, chai */
-describe('User model', () => {
+describe('UserStore', () => {
   beforeEach(() => db.sync({ force: true }))
 
   describe('column definitions and validations', () => {
     it('has a `name`, `password`, `email`', async () => {
+
       const user = await User.create({
         name: 'Cody',
         password: "thepassword",
         email: "alan@gmail.com",
       })
+      console.log('here')
 
       expect(user.name).to.equal('Cody')
       expect(user.password).to.equal("thepassword")
       expect(user.email).to.equal("alan@gmail.com")
     })
 
+    
     it('`name` is required', () => {
       const user = User.build()
       return user.validate()

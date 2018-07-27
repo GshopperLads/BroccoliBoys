@@ -110,7 +110,7 @@ export const Shop = (productId, cartId) => {
   return async (dispatch) => {
     try {
       await axios.put(`api/cart/${productId}`, cartId)
-      const cartItems = axios.get(`/api/cart/${cartId}`)
+      const cartItems = await axios.get(`/api/cart/${cartId}`)
       console.log('CART ITEMS IN THUNK', cartItems)
       dispatch(addToCart(cartItems))
     } catch (err) {
@@ -170,6 +170,9 @@ export const auth = (email, password, method) => async dispatch => {
   }
 
   try {
+    console.log(res.data)
+    const cart = await axios.get(`/api/cart/${res.data.id}`)
+    dispatch(getCart(cart.data))
     dispatch(getUser(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
@@ -186,6 +189,8 @@ export const authSignup = (email, name, password) => async dispatch => {
   }
 
   try {
+    const newCart = await axios.post(`/api/cart/${res.data.id}`);
+    dispatch(getCart(newCart.data))
     dispatch(getUser(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
