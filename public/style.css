@@ -89,7 +89,7 @@ Container {
 /***********************
   CUSTON BTN VALUES
   ************************/
-/*   
+/*
   .btn {
     padding: 14px 15px;
     border: 0 none;
@@ -100,7 +100,7 @@ Container {
   .btn:focus, .btn:active:focus, .btn.active:focus {
     outline: 0 none;
   }
-  
+
   .btn-primary {
     background: #0099cc;
     color: #ffffff;
@@ -114,21 +114,21 @@ Container {
   } */
 
 
-  
-  
+
+
 
   html, body, #container, .carousel {
     height:100%;
     margin: 0;
     width: 100%;
   }
-    
+
   .image-slide {
     height: 100%;
     width: 100%;
     transition: background-image .3s ease-in-out;
   }
-  
+
   .slide-arrow {
     /* color: #14B6D4; */
     cursor: pointer;
@@ -136,15 +136,15 @@ Container {
     position: fixed;
     top: 50%;
   }
-  
+
   .slide-arrow.right {
     right: 1rem;
   }
-  
+
   .slide-arrow.left {
     left: 1rem;
   }
-  
+
 
   .container {
     width: 300px;
@@ -261,7 +261,8 @@ Container {
 }
 
 .user-data-text {
-  padding-bottom: 10px;
+  padding-bottom: 13px;
+  color: rgb(122, 115, 115);
 }
 
 
