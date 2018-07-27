@@ -1,6 +1,7 @@
 const User = require('./user')
 const Product = require('./product')
 const Cart = require("./cart")
+const CartItem = require("./cartItem")
 const db = require("../db")
 
 /**
@@ -10,10 +11,14 @@ const db = require("../db")
  *    BlogPost.belongsTo(User)
  */
 
+ //put userId on cart
 User.hasOne(Cart)
-Cart.hasMany(Product)
 
-Product.belongsTo(Cart)
+//adds cartId to cartitem
+Cart.hasMany(CartItem)
+
+
+CartItem.belongsTo(Product)
 Cart.belongsTo(User)
 
 /**
