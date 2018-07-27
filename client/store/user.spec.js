@@ -65,7 +65,6 @@ describe('UserStore', () => {
         password: "thepassword",
         email: "alan@gmail.com",
       })
-      console.log('here')
 
       expect(user.name).to.equal('Cody')
       expect(user.password).to.equal("thepassword")

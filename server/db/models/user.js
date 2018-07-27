@@ -20,9 +20,9 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
-    // validate: {
-    //   isEmail: true
-    // }
+    validate: {
+      isEmail: true
+    }
   },
   salt: {
     type: Sequelize.STRING,
