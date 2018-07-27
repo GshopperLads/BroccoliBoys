@@ -23,7 +23,7 @@ form div {
 .cartContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .itemsInCart {
@@ -41,76 +41,122 @@ form div {
   vertical-align: middle;
   cursor: pointer;
   -webkit-user-select: none;
-     -moz-user-select: none;
-    -ms-user-select: none;
-      user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
   padding: 10px 16px;
-  }
-  
-  .btn-lg {
+}
+
+.btn-lg {
   font-size: 9px;
   line-height: 0.66;
   border-radius: 3px;
-  }
-  .btn-primary {
+}
+.btn-primary {
   color: #fff;
   background-color: #428bca;
   border-color: #357ebd;
-  }
-  
-  .btn-primary:hover,
-  .btn-primary:focus,
-  .btn-primary:active,
-  .btn-primary.active,
-  .open .dropdown-toggle.btn-primary {
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
   color: #fff;
   background-color: #3276b1;
   border-color: #285e8e;
-  }
-  
-  /***********************
+}
+
+/***********************
   RAISED BUTTONS
   ************************/
-  .btn-primary.raised {
-    box-shadow: 0 3px 0 0 #007299;
-  }
-  .btn-primary.raised:active, .btn-primary.raised.active {
-    background: #33a6cc;
-    box-shadow: none;
-    margin-bottom: -3px;
-    margin-top: 3px;
-  }
-  
-  /***********************
+.btn-primary.raised {
+  box-shadow: 0 3px 0 0 #007299;
+}
+.btn-primary.raised:active,
+.btn-primary.raised.active {
+  background: #33a6cc;
+  box-shadow: none;
+  margin-bottom: -3px;
+  margin-top: 3px;
+}
+
+/***********************
   CUSTON BTN VALUES
   ************************/
-  
-  .btn {
-    padding: 14px 15px;
-    border: 0 none;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .btn:focus, .btn:active:focus, .btn.active:focus {
-    outline: 0 none;
-  }
-  
-  .btn-primary {
-    background: #0099cc;
-    color: #ffffff;
-  }
-  .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-    background: #33a6cc;
-  }
-  .btn-primary:active, .btn-primary.active {
-    background: #007299;
-    box-shadow: none;
-  }
 
+.btn {
+  padding: 14px 15px;
+  border: 0 none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+  outline: 0 none;
+}
 
-  
-  
+.btn-primary {
+  background: #0099cc;
+  color: #ffffff;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background: #33a6cc;
+}
+.btn-primary:active,
+.btn-primary.active {
+  background: #007299;
+  box-shadow: none;
+}
+
+/* auth-form */
+.form {
+  background: rgba(26, 145, 89, 0.9);
+  padding: 40px;
+  max-width: 390px;
+  margin: 40px auto;
+  border-radius: 4px;
+  box-shadow: 0 5px 10px 5px rgba(26, 145, 89, 0.3);
+}
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.input-box {
+  width: 280px;
+  height: 45px;
+}
+.input-text {
+  font-size: 20px;
+  color: white;
+}
+.btn-login {
+  width: 280px;
+  height: 45px;
+  color: white;
+  background-color: rgba(14, 82, 50, 0.9);
+  font-size: 17px;
+}
+
+.btn-info  {
+  width: 280px;
+  height: 45px;
+  margin-left: 13px;
+  font-size: 14px;
+}
+.form-title {
+  font-size: 24px;
+  color: white;
+  padding: 13px;
+  text-align: center;
+}
