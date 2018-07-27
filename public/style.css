@@ -86,81 +86,6 @@ Container {
   margin-top: 3px;
 }
 
-/***********************
-  CUSTON BTN VALUES
-  ************************/
-/*   
-  .btn {
-    padding: 14px 15px;
-    border: 0 none;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .btn:focus, .btn:active:focus, .btn.active:focus {
-    outline: 0 none;
-  }
-  
-  .btn-primary {
-    background: #0099cc;
-    color: #ffffff;
-  }
-  .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-    background: #33a6cc;
-  }
-  .btn-primary:active, .btn-primary.active {
-    background: #007299;
-    box-shadow: none;
-  } */
-
-
-  
-  
-
-  html, body, #container, .carousel {
-    height:100%;
-    margin: 0;
-    width: 100%;
-  }
-    
-  .image-slide {
-    height: 100%;
-    width: 100%;
-    transition: background-image .3s ease-in-out;
-  }
-  
-  .slide-arrow {
-    /* color: #14B6D4; */
-    cursor: pointer;
-    font-size: 2rem;
-    position: fixed;
-    top: 50%;
-  }
-  
-  .slide-arrow.right {
-    right: 1rem;
-  }
-  
-  .slide-arrow.left {
-    left: 1rem;
-  }
-  
-
-  .container {
-    width: 300px;
-    height: 200px;
-    display: block;
-    position: relative;
-    overflow: hidden;
-}
-
-.container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-
-}
 
 .btn {
   padding: 14px 15px;
@@ -267,20 +192,51 @@ Container {
 
 
 /* Slideshow */
+html, body, div, span, i, ul, li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+body {
+	line-height: 1;
+}
+ul {
+	list-style: none;
+}
+					.slidelist .image1 {
+						background-image: url(1.jpg); width: 100%; height: 100%; position: absolute;
+						background-size: cover;
+					}
+					.slidelist .image2 {
+						background-image: url(2.jpg); width: 100%; height: 100%; position: absolute;
+						background-size: cover;
+					}
+					.slidelist .image3 { 
+						background-image: url(3.jpg); width: 100%; height: 100%; position: absolute;
+						background-size: cover;
+					}
+					.slidelist .image4 { 
+						background-image: url(4.png); width: 100%; height: 100%; position: absolute;
+						background-size: cover;
+					}
+					.slidelist .image5 { 
+						background-image: url(5.jpg); width: 100%; height: 100%; position: absolute;
+						background-size: cover;
+					}
 
-#first .slidelist {
-  width: 100%;
-  height: 600px;
-}
+					.slide {
+						display: none; width: 100%; height: 600px; position: absolute;
+					}
+					.open { 
+						display: block;
+					} 
 
-div {
-  margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-div {
-  display: block;
-}
+					.bottomButton {position: absolute; width: 100%; text-align: center; margin: 0 auto; top: 540px;}
+					.bottomButton li {display: inline-block; margin: 0 5px; }
+					.bottomButton li i {color:#fff; font-size: 15px;}
+						.select {background-color: #fff; border-radius: 100%; opacity: 0.8;}
+	
