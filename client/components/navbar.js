@@ -6,6 +6,7 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <React.Fragment>
+
     {isLoggedIn ? (
       <div>
         <div className="ui pointing menu">
@@ -38,6 +39,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <div className="ui segment">
           <p />
         </div>
+
       </div>
     ) : (
       <div>
