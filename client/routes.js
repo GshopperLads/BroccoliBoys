@@ -9,6 +9,7 @@ import AllProducts from "./components/Allproducts"
 import SingleUser from './components/SingleUser';
 import SingleProduct from "./components/SingleProduct"
 import Home from "./components/Home"
+import Payment from "./components/Payment"
 
 /**
  * COMPONENT
@@ -37,10 +38,13 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/account" component={SingleUser} />
+            <Route exact path="/payment" component={Payment} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */} */}
-        <Route component={Login} /> */}
+        {/* <Route component={Login} /> */}
+
+
       </Switch>
     )
   }

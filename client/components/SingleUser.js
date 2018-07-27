@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {me} from '../store'
 
 class SingleUser extends Component {
@@ -23,6 +24,9 @@ class SingleUser extends Component {
             <div>
               <input type="submit" value="Edit" className="btn-edit" />
             </div>
+            <Link to="payment">
+              <input type="submit" value="PaymentTest" className="btn-edit" />
+            </Link>
           </div>
 
         }
