@@ -12,3 +12,20 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+//Find cart by Id
+router.get('/:id', async (req, res, next) => {
+    try {
+        const cart = await Cart.findById(req.params.id)
+        res.json(cart)
+    } catch (err) {
+        next(err)
+    }
+})
+
+// //ADD PRODUCT TO CART
+// router.put('/:productId', async (req, res, next) => {
+//     try {
+//         await Cart.update(req.params.productId)
+//     }
+// })
+

@@ -106,10 +106,10 @@ export const fetchCart = (userId) => {
   }
 }
 
-export const SHOP = (productId, update) => {
+export const Shop = (productId, cartId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.update(`api/products/${productId}`, update)
+      const { data } = await axios.put(`api/products/${productId}`, cartId)
       dispatch(addToCart(data))
     } catch (err) {
       console.error(err)

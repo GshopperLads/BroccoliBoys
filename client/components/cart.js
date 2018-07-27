@@ -10,16 +10,16 @@ class Cart extends React.Component {
         super(props)
     }
 
-    componentWillMount(){
-        if(this.props.user){
-            this.props.fetchCartFromDb(this.props.user.id)
+    componentDidMount(){
+        if(this.props.user !== {}){
+            this.props.fetchCartFromDb(this.props.match.params.userId)
 
         }
     }
 
     render(){
        let user = this.props.user
-        console.log(this.props)
+        console.log(user)
         return (
             <div className="cartContainer" >
             { user && 
