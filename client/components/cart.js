@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {fetchCart, removeFromCart} from '../store/store'
 import {Button, Card, Image, Icon, List, Header } from 'semantic-ui-react'
+import Cartitems from './cartItems'
 
 
 class Cart extends React.Component {
@@ -22,34 +23,7 @@ class Cart extends React.Component {
         return (
             <div className="cartContainer" >
             { user && 
-                <div className="itemsInCart">
-                    <Card.Group>
-                        <Card>
-                            <Card.Content>
-                                <Image floated='right' size='mini' src='https://react.semantic-ui.com/images/avatar/large/steve.jpg' />
-                                <Card.Header>Steve Sanders</Card.Header>
-                                <Card.Meta>Friends of Elliot</Card.Meta>
-                                <Card.Description>
-                                    Steve wants to add you to the group <strong>best friends</strong>
-                                </Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                                <p>
-                                    <Icon name='cart' />
-                                    20 in cart
-                            </p>
-                                <div className='ui two buttons'>
-                                    <Button basic color='green'>
-                                        +
-                                </Button>
-                                    <Button basic color='red'>
-                                        -
-                                </Button>
-                                </div>
-                            </Card.Content>
-                        </Card>
-                    </Card.Group>
-                </div>
+                <Cartitems products={this.props.products} />
             }
                 <Header as='h2' >
                     Your cart is empty!
@@ -60,31 +34,20 @@ class Cart extends React.Component {
                     Cart
                     </Header>
                 <List celled>
-                        <List.Item>
-                            <Image avatar src='https://react.semantic-ui.com/images/avatar/small/helen.jpg' />
-                            <List.Content>
-                                <List.Header>Snickerdoodle</List.Header>
-                                An excellent companion
-                            </List.Content>
-                        </List.Item>
-                        <List.Item>
-                            <Image avatar src='https://react.semantic-ui.com/images/avatar/small/daniel.jpg' />
-                            <List.Content>
-                                <List.Header>Poodle</List.Header>
-                                A poodle, it's pretty basic
-                            </List.Content>
-                        </List.Item>
-                        <List.Item>
-                            <Image avatar src='https://react.semantic-ui.com/images/avatar/small/daniel.jpg' />
-                            <List.Content>
-                                <List.Header>Paulo</List.Header>
-                                He's also a dog
-                            </List.Content>
-                        </List.Item>
+                    {this.props.products.map(product => 
+                        <List.Item key={product.id}>
+                        <Image avatar src={product.imageUrl} />
+                        <List.Content>
+                            <List.Header>{product.name}</List.Header>
+                            {product.price}
+                        </List.Content>
+                    </List.Item>
+                    )}
+                        
                     </List>
                     <Header as='h2'>
                         <Icon name='dollar sign' />
-                        <Header.Content>Uptime Guarantee</Header.Content>
+                        <Header.Content>$20</Header.Content>
                     </Header>
                 </div>
 
