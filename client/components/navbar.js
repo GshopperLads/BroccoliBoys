@@ -26,18 +26,14 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           </Link>
         </div>
         <div className="item">
-
           <div className="ui transparent icon input">
             <input type="text" placeholder="Search..." />
             <i className="search link icon"></i>
           </div>
-
         </div>
       </div>
     </div>
-    <div className="ui segment">
-      <p></p>
-    </div>
+
   </React.Fragment>
 
 )
