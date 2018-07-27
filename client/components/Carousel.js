@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Arrow, ImageSlide } from "./CarouselHelpers"
+import { Login } from "./auth-form"
 const imgUrls = ["https://ttglibrary.files.wordpress.com/2014/07/brocolli-forest2.jpg", "http://conhecimentocientifico.r7.com/wp-content/uploads/2015/11/Nutrilite-Waterfall1.jpg", "https://mir-s3-cdn-cf.behance.net/project_modules/disp/a725ce12952161.5626f652774f4.jpg"]
 
 class Carousel extends Component {
@@ -43,6 +44,7 @@ class Carousel extends Component {
             <div>
                 <Arrow direction="left" clickFunction={this.previousSlide} glyph="&#9664;" />
                 <ImageSlide url={imgUrls[this.state.currentImageIndex]} />
+                <Login />
                 <Arrow direction="right" clickFunction={this.nextSlide} glyph="&#9654;" />
             </div>
         );
