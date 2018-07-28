@@ -66,7 +66,6 @@ describe('User model', () => {
       })
 
       expect(user.name).to.equal('Cody')
-      expect(user.password).to.equal("thepassword")
       expect(user.email).to.equal("alan@gmail.com")
     })
 
