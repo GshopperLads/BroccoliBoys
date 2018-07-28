@@ -28,8 +28,9 @@ class Payment extends Component {
   }
 
   render() {
+    // need to replace dummy data w/ real one
     console.log(this.props.dummyCartProduct)
-    console.log('hello')
+    const {stripeKey} = require('../../secrets.js')
     return (
       <div>
         <div className="payment-title">
@@ -51,7 +52,7 @@ class Payment extends Component {
         <div className="form-wrapper">
           <StripeCheckout
             token={this.onToken}
-            stripeKey="pk_live_3kpTOfuE3lqvyAuLYuAvUVT1"
+            stripeKey={stripeKey}
             image="https://www.vidhub.co/assets/logos/vidhub-icon-2e5c629f64ced5598a56387d4e3d0c7c.png"
             name="BroccoliBoys"
             description="Card Payment"
