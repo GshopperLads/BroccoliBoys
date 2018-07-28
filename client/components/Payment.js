@@ -49,7 +49,7 @@ class Payment extends Component {
           TAX [Estimated]: $0.00
           Total: $42.22
          */}
-        <div className="form-wrapper">
+        <div className="stripe-wrapper">
           <StripeCheckout
             token={this.onToken}
             stripeKey={stripeKey}
