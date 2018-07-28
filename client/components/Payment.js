@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/store'
+import {fetchProducts} from '../store'
 import CheckoutProductCards from './CheckoutProductCards'
 
 // import {Helmet} from 'react-helmet' // to use script tag in jsx
