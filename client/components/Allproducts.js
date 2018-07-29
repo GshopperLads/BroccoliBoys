@@ -5,7 +5,7 @@ import ProductCreator from "./ProductCreator"
 
 
 
-class AllProducts extends Component {
+export class AllProducts extends Component {
   constructor() {
     super()
     this.state = {
@@ -66,17 +66,5 @@ const mapStateToProps = state => ({ products: state.products })
 const mapDispatchToState = dispatch => ({ fetchProducts: () => dispatch(fetchProducts()) })
 
 const ConnectedAllProducts = connect(mapStateToProps, mapDispatchToState)(AllProducts)
-
 export default ConnectedAllProducts
 
-
-{/* {document.oninput = function (evt) {
-            let vals;
-            let keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
-            if (keyCode == 13) {
-              const products = this.state.products
-              vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
-              console.log("values: ", vals)
-              this.setState({ products: vals })
-            }
-          }.bind(this)} */}
