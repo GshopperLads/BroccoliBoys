@@ -13,7 +13,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       <div>
         <div className="ui pointing menu">
           <Link to={'/'}>
-            <a className="item">Broccoli</a>
+            <a className="item">Home</a>
           </Link>
           <Link to={'/products'}>
             <a className="item">Products</a>
@@ -45,7 +45,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         <div>
           <div className="ui pointing menu">
             <Link to={'/'}>
-              <div className="item">Broccoli</div>
+              <div className="item">Home</div>
             </Link>
             <Link to={'/products'}>
               <a className="item">Products</a>
@@ -54,11 +54,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             <div className="right menu">
               <Link to="/login"><a className="item">Login</a></Link>
               <Link to="/signup"><a className="item">Sign Up</a></Link>
-              <div className="ui pointing menu">
-                <Link to={'/cart'}>
-                  <a className="item">Cart</a>
-                </Link>
-              </div>
+              <Link to='/cart'>
+                <a className="item">Cart</a>
+              </Link>
               <div className="item">
                 <div className="ui transparent icon input">
                   <input type="text" placeholder="Search..." id="searchBar2" />
