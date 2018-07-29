@@ -24,7 +24,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         const product = await Product.create(req.body)
-        res.status(204).json(product)
+        res.status(201).json(product)
     } catch (err) {
         next(err)
     }
@@ -34,8 +34,8 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try {
-        await Product.update(req.body, { where: { id: req.params.id } })
-        res.status(200)
+        const product = await Product.update(req.body, { where: { id: req.params.id } })
+        res.status(200).json(product)
     } catch (err) {
         next(err)
     }
