@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchCart, removeFromCart } from '../store/store'
+import { fetchCart, removeFromCart } from '../store'
 import { Button, Card, Image, Icon, List, Header } from 'semantic-ui-react'
 
 
