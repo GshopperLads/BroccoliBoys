@@ -74,7 +74,6 @@ async function seed() {
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
   console.log(`seeded ${carts.length} cart`)
-  // console.log(`seeded ${reviews.length} cart`)
 
 
   console.log(`seeded successfully`)

@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Login,
@@ -17,7 +17,7 @@ import {
   Admin,
   Dashboard
 } from './components'
-import {me} from './store'
+import { me } from './store'
 
 /**
  * COMPONENT
@@ -28,38 +28,37 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
-    const {isAdmin} = this.props
-    console.log('isLoggedIn', isLoggedIn)
-    console.log(isAdmin)
+    const { isLoggedIn } = this.props
+    const { isAdmin } = this.props
+
     return isAdmin ? (
       <Switch>
         <Route path="/admin" component={Admin} />
 
       </Switch>
     ) : (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <Route exact path ="/cart/:userId" component={Cart} />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/cart" component={Cart} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/products" component={AllProducts} />
-        <Route exact path="/products/:id" component={SingleProduct} />
-        <Route path="/products/:id/newreview" component={NewReview} />
+        <Switch>
+          {/* Routes placed here are available to all visitors */}
+          <Route exact path="/cart/:userId" component={Cart} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/products" component={AllProducts} />
+          <Route exact path="/products/:id" component={SingleProduct} />
+          <Route path="/products/:id/newreview" component={NewReview} />
 
-        {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/account" component={SingleUser} />
-            <Route exact path="/payment" component={Payment} />
-            <Route exact path="/useredit" component={UserEdit} />
-          </Switch>
-        )}
-      </Switch>
-    )
+          {isLoggedIn && (
+            <Switch>
+              {/* Routes placed here are only available after logging in */}
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/account" component={SingleUser} />
+              <Route exact path="/payment" component={Payment} />
+              <Route exact path="/useredit" component={UserEdit} />
+            </Switch>
+          )}
+        </Switch>
+      )
   }
 }
 

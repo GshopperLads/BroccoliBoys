@@ -66,7 +66,6 @@ class AllProducts extends Component {
   }
 
   render() {
-    console.log("products: ", this.state.products)
     return (
       <React.Fragment>
         <ProductCreator products={this.state.products} />

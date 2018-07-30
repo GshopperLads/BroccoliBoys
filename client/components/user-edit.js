@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {modifyUser} from '../store'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { modifyUser } from '../store'
 
 class UserEdit extends Component {
   constructor() {
@@ -25,7 +25,6 @@ class UserEdit extends Component {
     const email = evt.target.email.value
     const name = evt.target.name.value
     const address = evt.target.address.value
-    console.log(email, name, address)
     const modifiedUser = {
       email,
       name,
@@ -35,7 +34,6 @@ class UserEdit extends Component {
   }
 
   render() {
-    console.log(this.props.user)
     const user = this.props.user
     return (
       <div className="user-info">
@@ -56,11 +54,11 @@ class UserEdit extends Component {
                 placeholder={user.email}
                 className="user-data-input"
                 onChange={this.handleChange} />
-                {!this.state.email && (
-                  <div className="checkValidation">
-                    (Email is required)
+              {!this.state.email && (
+                <div className="checkValidation">
+                  (Email is required)
                   </div>
-                )}
+              )}
             </div>
             <div>
               <big>Your Name</big>
@@ -75,10 +73,10 @@ class UserEdit extends Component {
                 onChange={this.handleChange}
               />
               {!this.state.name && (
-                  <div className="checkValidation">
-                    (Name is required)
+                <div className="checkValidation">
+                  (Name is required)
                   </div>
-                )}
+              )}
             </div>
             <div>
               <big>Shipping Address</big>

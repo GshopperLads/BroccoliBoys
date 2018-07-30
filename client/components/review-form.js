@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { createReview } from '../store'
 
@@ -16,7 +16,7 @@ class NewReview extends Component {
   }
 
   componentWillMount() {
-    $(function() {
+    $(function () {
       $('#newrating').barrating({
         theme: 'fontawesome-stars-o'
         //readonly: true,
@@ -25,7 +25,7 @@ class NewReview extends Component {
     })
   }
   componentDidMount() {
-    $(function() {
+    $(function () {
       $('#newrating').barrating({
         theme: 'fontawesome-stars-o'
         //readonly: true,
@@ -40,7 +40,6 @@ class NewReview extends Component {
     const rating = evt.target.rating.value
     const userId = this.props.userId
     const productId = this.props.match.params.id
-    console.log(content, rating, userId, productId)
     const newReview = {
       rating, content, productId, userId
     }
@@ -50,7 +49,6 @@ class NewReview extends Component {
 
   render() {
 
-    console.log(this.state)
     // const handleSubmit = this.props.handleSubmit
     const isLoggedIn = this.props.isLoggedIn
     return (
@@ -91,12 +89,12 @@ class NewReview extends Component {
             </form>
           </div>
         ) : (
-          <div className="login-alarm-wrapper">
-            <div className="login-alarm-msg">
-              Please login to write a revivew!
+            <div className="login-alarm-wrapper">
+              <div className="login-alarm-msg">
+                Please login to write a revivew!
             </div>
-          </div>
-        )}
+            </div>
+          )}
       </React.Fragment>
     )
   }

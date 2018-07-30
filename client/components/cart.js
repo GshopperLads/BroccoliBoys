@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {fetchCart, removeFromCart} from '../store/store'
-import {Button, Card, Image, Icon, List, Header } from 'semantic-ui-react'
+import { fetchCart, removeFromCart } from '../store/store'
+import { Button, Card, Image, Icon, List, Header } from 'semantic-ui-react'
 import Cartitems from './cartItems'
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
@@ -14,43 +14,41 @@ class Cart extends React.Component {
         }
     }
 
-    componentWillMount(){
-        console.log(this.props)
+    componentWillMount() {
         let productsToRenderKeys = Object.keys(this.props.cart.cartProducts)
-        console.log('RENDER KEYS', productsToRenderKeys)
         let productsToRender = this.props.products.filter(product => productsToRenderKeys.includes(product.id.toString()))
-        this.setState({productsToRender:productsToRender})
+        this.setState({ productsToRender: productsToRender })
     }
 
-    render(){
-       let user = this.props.user
+    render() {
+        let user = this.props.user
         let value = 0;
-        this.state.productsToRender.forEach(product => value+= product.price)
+        this.state.productsToRender.forEach(product => value += product.price)
         console.log('VAL', value)
         return (
             <div className="cartContainer" >
-            { user && 
-                <Cartitems products={this.state.productsToRender} />
-            }
+                {user &&
+                    <Cartitems products={this.state.productsToRender} />
+                }
                 <Header as='h2' >
                     Your cart is empty!
-                </Header> 
+                </Header>
                 <div>
                     <Header as='h2' icon>
                         <Icon name='cart' />
                         Cart
                     </Header>
-                <List celled>
-                    {this.state.productsToRender.map(product => 
-                        <List.Item key={product.id}>
-                        <Image avatar src={product.imageUrl} />
-                        <List.Content>
-                            <List.Header>{product.name}</List.Header>
-                            {product.price}
-                        </List.Content>
-                    </List.Item>
-                    )}
-                        
+                    <List celled>
+                        {this.state.productsToRender.map(product =>
+                            <List.Item key={product.id}>
+                                <Image avatar src={product.imageUrl} />
+                                <List.Content>
+                                    <List.Header>{product.name}</List.Header>
+                                    {product.price}
+                                </List.Content>
+                            </List.Item>
+                        )}
+
                     </List>
                     <Header as='h2'>
                         <Icon name='dollar sign' />

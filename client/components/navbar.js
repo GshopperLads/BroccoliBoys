@@ -14,7 +14,6 @@ class Navbar extends React.Component {
     await this.props.fetchMe()
     if (this.props.user.id) {
       this.props.fetchCart(this.props.user.id)
-      console.log("fetchCart triggered in Navbar")
 
 
     }
@@ -54,7 +53,9 @@ class Navbar extends React.Component {
                 </div>
               </div>
             </div>
-
+            <div className="ui segment">
+              <p />
+            </div>
 
           </div>
         ) : (
@@ -84,7 +85,6 @@ class Navbar extends React.Component {
               <div className="ui segment">
                 <p />
               </div>
-
             </div>
           )}
       </React.Fragment>

@@ -18,13 +18,14 @@ router.get('/:id', async (req, res, next) => {
         const cart = await Cart.findOne({
             where: {
                 id: req.params.id
-            // },
-            // include: [
-            //     {model: CartItem ,as:'Items', where: {
-            //         cartId: req.params.id
-            //     }}
-            // ]
-        }})
+                // },
+                // include: [
+                //     {model: CartItem ,as:'Items', where: {
+                //         cartId: req.params.id
+                //     }}
+                // ]
+            }
+        })
         res.json(cart)
     } catch (err) {
         next(err)
@@ -33,7 +34,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/:userId', async (req, res, next) => {
     try {
-        const cart = await Cart.create({userId: req.params.userId})
+        const cart = await Cart.create({ userId: req.params.userId })
         res.json(cart)
     } catch (err) {
         next(err)
@@ -42,15 +43,13 @@ router.post('/:userId', async (req, res, next) => {
 
 //ADD PRODUCT TO CART
 router.put('/:productId', async (req, res, next) => {
-    console.log('CART ID', req.body.cartId)
     try {
-        const {dataValues} = await CartItem.create({
-                cartId: req.body.cartId,
-                quantity: 1,
-                productId: req.params.productId
-            
+        const { dataValues } = await CartItem.create({
+            cartId: req.body.cartId,
+            quantity: 1,
+            productId: req.params.productId
+
         })
-        console.log('NEW CART ITEM', dataValues)
         res.send(dataValues)
     } catch (err) {
         next(err)
