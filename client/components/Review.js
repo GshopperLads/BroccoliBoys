@@ -26,6 +26,30 @@ class Review extends Component {
     }
   }
 
+  componentWillMount() {
+    $(function() {
+      $('#rating').barrating({
+        theme: 'fontawesome-stars-o'
+        //readonly: true,
+        // showSelectedRating:false
+      })
+    })
+    const reviewLen = this.props.reviews.filter(review => {
+      return review.productId === Number(this.props.productId)
+    }).length
+    let i = 0
+    while (i < reviewLen) {
+      $(function() {
+        $(`#rating${i}`).barrating({
+          theme: 'fontawesome-stars-o'
+          //readonly: true,
+          // showSelectedRating:false
+        })
+      })
+      i++
+    }
+  }
+
   render() {
     const productReviews = this.props.reviews.filter(review => {
       return review.productId === Number(this.props.productId)
