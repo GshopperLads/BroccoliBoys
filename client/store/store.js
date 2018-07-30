@@ -109,8 +109,7 @@ export const fetchCart = (userId) => {
 export const Shop = (productId, cartId) => {
   return async (dispatch) => {
     try {
-      const newCartItem = await axios.put(`api/cart/${productId}`, {cartId})
-      console.log(newCartItem)
+      const newCartItem = await axios.put(`api/cart/${productId}`, { cartId })
       dispatch(addToCart(newCartItem.data))
     } catch (err) {
       console.error(err)
@@ -170,6 +169,7 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     const cart = await axios.get(`/api/cart/${res.data.id}`)
+    console.log("auth getCart triggered")
     dispatch(getCart(cart.data))
     dispatch(getUser(res.data))
     history.push('/home')
@@ -188,6 +188,7 @@ export const authSignup = (email, name, password) => async dispatch => {
 
   try {
     const newCart = await axios.post(`/api/cart/${res.data.id}`);
+    console.log("auth signUp triggered")
     dispatch(getCart(newCart.data))
 
     dispatch(getUser(res.data))
