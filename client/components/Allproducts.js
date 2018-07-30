@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { fetchProducts } from '../store'
 import ProductCreator from "./ProductCreator"
 
-
-
 export class AllProducts extends Component {
   constructor() {
     super()
@@ -66,5 +64,7 @@ const mapStateToProps = state => ({ products: state.products })
 const mapDispatchToState = dispatch => ({ fetchProducts: () => dispatch(fetchProducts()) })
 
 const ConnectedAllProducts = connect(mapStateToProps, mapDispatchToState)(AllProducts)
+
 export default ConnectedAllProducts
+
 

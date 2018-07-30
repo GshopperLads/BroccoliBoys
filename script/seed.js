@@ -61,8 +61,8 @@ async function seed() {
     Review.create({ content: "No idea what small is, if they call this large.", rating: 4, productId: 5, userId: 9 }),
     Review.create({ content: "Arrived just barely ripe, which is perfect for me", rating: 5, productId: 9, userId: 3 }),
     Review.create({ content: "Rotten by day 3", rating: 3, productId: 10, userId: 3 }),
-    Review.create({ content: "great product!", rating: 5, productId: 1, userId: 5 }),
-    Review.create({ content: "I got was no where near “large” and was hard and barely had flavor", rating: 5, productId: 4, userId: 3 }),
+    Review.create({ content: "great product!", rating: 5, productId: 3, userId: 5 }),
+    Review.create({ content: "I got was no where near “large” and was hard and barely had flavor", rating: 5, productId: 4, userId: 4 }),
     Review.create({ content: "Very Nice!", rating: 3, productId: 10, userId: 7 }),
     Review.create({ content: "I was happy with the freshness and the quality.", rating: 5, productId: 3, userId: 8 }),
     Review.create({ content: "Great Prudcut!", rating: 3, productId: 2, userId: 8 }),
@@ -71,7 +71,6 @@ async function seed() {
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
-
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
   console.log(`seeded ${carts.length} cart`)

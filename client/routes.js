@@ -1,10 +1,23 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withRouter, Route, Switch } from 'react-router-dom'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, Cart, AllProducts, SingleUser, SingleProduct, Home, Payment, NewReview, UserEdit } from './components'
-import { me } from './store'
-
+import {
+  Login,
+  Signup,
+  UserHome,
+  Cart,
+  AllProducts,
+  SingleUser,
+  SingleProduct,
+  Home,
+  Payment,
+  NewReview,
+  UserEdit,
+  Admin,
+  Dashboard
+} from './components'
+import {me} from './store'
 
 /**
  * COMPONENT
@@ -15,9 +28,16 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props
+    const {isLoggedIn} = this.props
+    const {isAdmin} = this.props
+    console.log('isLoggedIn', isLoggedIn)
+    console.log(isAdmin)
+    return isAdmin ? (
+      <Switch>
+        <Route path="/admin" component={Admin} />
 
-    return (
+      </Switch>
+    ) : (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
@@ -31,16 +51,12 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-            <Route path="/account" component={SingleUser} />
+            <Route exact path="/home" component={UserHome} />
+            <Route exact path="/account" component={SingleUser} />
             <Route exact path="/payment" component={Payment} />
             <Route exact path="/useredit" component={UserEdit} />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */} */}
-        {/* <Route component={Login} /> */}
-
-
       </Switch>
     )
   }
@@ -53,7 +69,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!(state.user.id === 1)
   }
 }
 

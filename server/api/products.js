@@ -24,7 +24,6 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         const product = await Product.create(req.body)
-        res.status(201).json(product)
     } catch (err) {
         next(err)
     }
