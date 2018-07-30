@@ -189,6 +189,7 @@ export const authSignup = (email, name, password) => async dispatch => {
   try {
     const newCart = await axios.post(`/api/cart/${res.data.id}`);
     dispatch(getCart(newCart.data))
+
     dispatch(getUser(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
@@ -222,7 +223,6 @@ export const productReducer = (state = [], action) => {
       return state
   }
 }
-
 
 
 export const userReducer = (state = defaultUser, action) => {

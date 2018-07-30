@@ -6,7 +6,6 @@ import { logout, fetchCart, me } from '../store'
 
 
 class Navbar extends React.Component  {
-
     constructor(props){
       super(props)
     }
@@ -15,6 +14,7 @@ class Navbar extends React.Component  {
       await this.props.fetchMe()
       if(this.props.user.id){
         this.props.fetchCart(this.props.user.id)
+
 
     }
     }
