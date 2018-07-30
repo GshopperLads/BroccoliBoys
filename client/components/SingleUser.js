@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {me} from '../store'
+import { me } from "../store"
 
 class SingleUser extends Component {
+
   render() {
-    console.log(this.props.user)
     const user = this.props.user
     return (
       <div className="user-info">
@@ -41,7 +41,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  // me: () => dispatch(me())
+  me: () => dispatch(me())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleUser)

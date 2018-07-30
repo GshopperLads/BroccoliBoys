@@ -1,13 +1,13 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {authSignup} from '../store'
+import { authSignup } from '../store'
 
 /**
  * COMPONENT
  */
 const SignupForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+  const { name, displayName, handleSubmit, error } = props
   return (
     <div className="form">
       <div className="form-title">Create Account</div>
@@ -64,7 +64,6 @@ const mapDispatch = dispatch => {
       const email = evt.target.email.value
       const name = evt.target.name.value
       const password = evt.target.password.value
-      console.log(email, name, password, formName)
       dispatch(authSignup(email, name, password))
     }
   }

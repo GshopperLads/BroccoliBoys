@@ -39,7 +39,6 @@ const removeReview = review => ({
  */
 export const fetchReviews = () => async dispatch => {
   try {
-    console.log("thunk creator....")
     const { data } = await axios.get('/api/review')
 
     dispatch(getReviews(data))

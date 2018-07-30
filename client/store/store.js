@@ -169,7 +169,6 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     const cart = await axios.get(`/api/cart/${res.data.id}`)
-    console.log("auth getCart triggered")
     dispatch(getCart(cart.data))
     dispatch(getUser(res.data))
     history.push('/home')

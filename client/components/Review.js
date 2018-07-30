@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import {Helmet} from 'react-helmet'
+import React, { Component } from 'react'
+import { Helmet } from 'react-helmet'
 
 class Review extends Component {
   componentDidMount() {
-    $(function() {
+    $(function () {
       $('#rating').barrating({
         theme: 'fontawesome-stars-o'
         //readonly: true,
@@ -15,7 +15,7 @@ class Review extends Component {
     }).length
     let i = 0
     while (i < reviewLen) {
-      $(function() {
+      $(function () {
         $(`#rating${i}`).barrating({
           theme: 'fontawesome-stars-o'
           //readonly: true,
@@ -27,7 +27,7 @@ class Review extends Component {
   }
 
   componentWillMount() {
-    $(function() {
+    $(function () {
       $('#rating').barrating({
         theme: 'fontawesome-stars-o'
         //readonly: true,
@@ -39,7 +39,7 @@ class Review extends Component {
     }).length
     let i = 0
     while (i < reviewLen) {
-      $(function() {
+      $(function () {
         $(`#rating${i}`).barrating({
           theme: 'fontawesome-stars-o'
           //readonly: true,
@@ -60,10 +60,8 @@ class Review extends Component {
     })
     let averageRating = totalRating / productReviews.length
 
-    console.log(Math.floor(averageRating))
     const three = Math.floor(averageRating) === 3
     const five = Math.floor(averageRating) === 5
-    console.log(five)
     return (
       <React.Fragment>
         <div className="review-title">Customer Reviews</div>

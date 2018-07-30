@@ -26,7 +26,7 @@ router.post('/email', (req, res, next) => {
       to: req.body.email,
       from: 'feelpnw@gmail.com',
       subject: 'Welcome to BroccoliBoys!',
-      text:`Dear ${req.body.name},\r\n\r\nWelcome to BroccoliBoys!\r\n\r\nChoose Your Broccoli. We are ready to serve you\r\n\r\nYou can track your deliveries, and access all broccolies in the world.\r\n\r\nTell us your broccoli preferences. Enjoy.\r\n\r\nThank You!\r\n\r\n\r\n\r\nRegards,\r\n\r\n\r\n\r\n\r\n\r\n BroccoliBoys\r\n\r\n\r\n\r\nhttp://broccoliboys.herokuapp.com\r\n\r\ninfo@broccoliboys.com ` ,
+      text: `Dear ${req.body.name},\r\n\r\nWelcome to BroccoliBoys!\r\n\r\nChoose Your Broccoli. We are ready to serve you\r\n\r\nYou can track your deliveries, and access all broccolies in the world.\r\n\r\nTell us your broccoli preferences. Enjoy.\r\n\r\nThank You!\r\n\r\n\r\n\r\nRegards,\r\n\r\n\r\n\r\n\r\n\r\n BroccoliBoys\r\n\r\n\r\n\r\nhttp://broccoliboys.herokuapp.com\r\n\r\ninfo@broccoliboys.com `,
     };
     console.log(msg)
     sgMail.send(msg);
@@ -52,16 +52,15 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:userId', async (req, res, next) => {
   try {
-    console.log("user put working .updatedUser... ")
     const [updatedRowCount, updatedUser] = await User.update({
       name: req.body.name,
       address: req.body.address,
       email: req.body.email
     }, {
-      where: {
-        id: req.params.userId
-      }
-    })
+        where: {
+          id: req.params.userId
+        }
+      })
     res.status(200).json(updatedUser)
   } catch (err) {
     next(err)
