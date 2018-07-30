@@ -4,22 +4,17 @@ import { fetchProducts, Shop, fetchCart, } from '../store/store'
 import ProductCreator from "./ProductCreator"
 
 class AllProducts extends Component {
-
   constructor() {
     super()
     this.state = {
       products: []
     }
   }
+  async componentDidMount() {
+    await this.props.fetchProducts()
 
-
-  componentWillReceiveProps() {
     this.setState({ products: this.props.products })
-  }
 
-  componentDidMount() {
-    this.props.fetchProducts()
-    this.setState({ products: this.props.products })
     var el = document.getElementById('searchBar2');
     if (el) {
       el.addEventListener("input", function (evt) {

@@ -14,6 +14,7 @@ class UserEdit extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value
@@ -31,6 +32,7 @@ class UserEdit extends Component {
       address
     }
     await this.props.modifyUser(this.props.user.id, modifiedUser)
+    this.props.history.push('/account')
   }
 
   render() {

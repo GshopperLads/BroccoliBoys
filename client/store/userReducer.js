@@ -41,6 +41,17 @@ export const me = () => async dispatch => {
   }
 }
 
+export const modifyUser = (userId, modifiedUser) => async dispatch => {
+  try {
+    const res = await axios.put(`/api/users/${userId}`, modifiedUser)
+
+    const user = res.data
+    dispatch(changeUser(user))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const auth = (email, password, method) => async dispatch => {
   let res
   try {
@@ -88,17 +99,6 @@ export const logout = () => async dispatch => {
   }
 }
 
-export const modifyUser = (userId, modifiedUser) => async dispatch => {
-  try {
-    const res = await axios.put(`/api/users/${userId}`, modifiedUser)
-
-    const user = res.data
-    dispatch(changeUser(user))
-    history.push('/account')
-  } catch (err) {
-    console.error(err)
-  }
-}
 
 /**
  * Reducer
