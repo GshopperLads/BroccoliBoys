@@ -6,7 +6,7 @@ const Dashboard = (props) => {
   return (
     <div>
       <div><h2>Users</h2></div>
-      
+
     </div>
   )
 }
