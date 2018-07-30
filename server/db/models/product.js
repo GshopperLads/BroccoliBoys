@@ -26,7 +26,6 @@ const Product = db.define('product', {
     description: {
         type: Sequelize.TEXT,
         defaultValue: "broccoli is fresh",
-
     },
     quantity: {
         type: Sequelize.INTEGER,

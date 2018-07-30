@@ -7,6 +7,7 @@ import history from '../history'
 const GET_USER = 'GET_USER'
 const GET_USERS = 'GET_USERS'
 const REMOVE_USER = 'REMOVE_USER'
+const CHANGE_USER = "CHANGE_USER"
 
 /**
  * ACTION CREATORS
@@ -17,6 +18,10 @@ const getUsers = users => ({
 })
 const deleteUser = user => ({
   type: REMOVE_USER,
+  user
+})
+const changeUser = user => ({
+  type: CHANGE_USER,
   user
 })
 
@@ -78,12 +83,26 @@ export const logout = () => async dispatch => {
   }
 }
 
+export const modifyUser = (userId, modifiedUser) => async dispatch => {
+  try {
+    console.log("modify user working......")
+    const res = await axios.put(`/api/users/${userId}`, modifiedUser)
+    const user = res.data
+    dispatch(changeUser(user))
+    history.push('/account')
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * Reducer
  */
 export const userReducer = (state = defaultUser, action) => {
   switch (action.type) {
     case GET_USER:
+      return action.user
+    case CHANGE_USER:
       return action.user
     case REMOVE_USER:
       return defaultUser

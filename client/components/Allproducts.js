@@ -40,8 +40,15 @@ export class AllProducts extends Component {
         console.log("values: ", vals)
         this.setState({ products: vals })
       }.bind(this))
-
     }
+
+    $(function() {
+      $('#example').barrating({
+        theme: 'fontawesome-stars-o'
+        //readonly: true,
+        // showSelectedRating:false
+      })
+    })
   }
 
   render() {

@@ -24,6 +24,9 @@ const User = db.define('user', {
       isEmail: true
     }
   },
+  address: {
+    type: Sequelize.TEXT
+  },
   salt: {
     type: Sequelize.STRING,
     get() {
