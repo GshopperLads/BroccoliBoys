@@ -3,6 +3,7 @@ const Product = require('./product')
 const Cart = require("./cart")
 const Review = require("./review")
 const Order = require('./order')
+
 const db = require("../db")
 
 /**
@@ -25,7 +26,6 @@ Review.belongsTo(User)
 
 User.hasMany(Order)
 Order.belongsTo(User)
-
 
 Order.belongsTo(Product)
 

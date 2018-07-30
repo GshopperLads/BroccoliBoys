@@ -23,7 +23,6 @@ router.get('/:id', async (req, res, next) => {
       attributes: ['id', 'email']
     })
     res.status(200).json(user)
-
   } catch (err) {
     next(err)
   }
