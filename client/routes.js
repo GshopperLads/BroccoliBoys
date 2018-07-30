@@ -40,6 +40,7 @@ class Routes extends Component {
     ) : (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path ="/cart/:userId" component={Cart} />
         <Route exact path="/" component={Home} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/login" component={Login} />

@@ -1,86 +1,60 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchCart, removeFromCart } from '../store'
-import { Button, Card, Image, Icon, List, Header } from 'semantic-ui-react'
+import {fetchCart, removeFromCart} from '../store/store'
+import {Button, Card, Image, Icon, List, Header } from 'semantic-ui-react'
+import Cartitems from './cartItems'
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 
 class Cart extends React.Component {
     constructor(props) {
         super(props)
-    }
-
-    componentWillMount() {
-        if (this.props.user) {
-            this.props.fetchCartFromDb(user.id)
+        this.state = {
+            productsToRender: []
         }
     }
 
-    render() {
-        let user = this.props.user
+    componentWillMount(){
         console.log(this.props)
+        let productsToRenderKeys = Object.keys(this.props.cart.cartProducts)
+        console.log('RENDER KEYS', productsToRenderKeys)
+        let productsToRender = this.props.products.filter(product => productsToRenderKeys.includes(product.id.toString()))
+        this.setState({productsToRender:productsToRender})
+    }
+
+    render(){
+       let user = this.props.user
+        let value = 0;
+        this.state.productsToRender.forEach(product => value+= product.price)
+        console.log('VAL', value)
         return (
             <div className="cartContainer" >
-                {user &&
-                    <div className="itemsInCart">
-                        <Card.Group>
-                            <Card>
-                                <Card.Content>
-                                    <Image floated='right' size='mini' src='https://react.semantic-ui.com/images/avatar/large/steve.jpg' />
-                                    <Card.Header>Steve Sanders</Card.Header>
-                                    <Card.Meta>Friends of Elliot</Card.Meta>
-                                    <Card.Description>
-                                        Steve wants to add you to the group <strong>best friends</strong>
-                                    </Card.Description>
-                                </Card.Content>
-                                <Card.Content extra>
-                                    <p>
-                                        <Icon name='cart' />
-                                        20 in cart
-                            </p>
-                                    <div className='ui two buttons'>
-                                        <Button basic color='green'>
-                                            +
-                                </Button>
-                                        <Button basic color='red'>
-                                            -
-                                </Button>
-                                    </div>
-                                </Card.Content>
-                            </Card>
-                        </Card.Group>
-                    </div>
-                }
+            { user && 
+                <Cartitems products={this.state.productsToRender} />
+            }
+                <Header as='h2' >
+                    Your cart is empty!
+                </Header> 
                 <div>
                     <Header as='h2' icon>
                         <Icon name='cart' />
                         Cart
                     </Header>
-                    <List celled>
-                        <List.Item>
-                            <Image avatar src='https://react.semantic-ui.com/images/avatar/small/helen.jpg' />
-                            <List.Content>
-                                <List.Header>Snickerdoodle</List.Header>
-                                An excellent companion
-                            </List.Content>
-                        </List.Item>
-                        <List.Item>
-                            <Image avatar src='https://react.semantic-ui.com/images/avatar/small/daniel.jpg' />
-                            <List.Content>
-                                <List.Header>Poodle</List.Header>
-                                A poodle, it's pretty basic
-                            </List.Content>
-                        </List.Item>
-                        <List.Item>
-                            <Image avatar src='https://react.semantic-ui.com/images/avatar/small/daniel.jpg' />
-                            <List.Content>
-                                <List.Header>Paulo</List.Header>
-                                He's also a dog
-                            </List.Content>
-                        </List.Item>
+                <List celled>
+                    {this.state.productsToRender.map(product => 
+                        <List.Item key={product.id}>
+                        <Image avatar src={product.imageUrl} />
+                        <List.Content>
+                            <List.Header>{product.name}</List.Header>
+                            {product.price}
+                        </List.Content>
+                    </List.Item>
+                    )}
+                        
                     </List>
                     <Header as='h2'>
                         <Icon name='dollar sign' />
-                        <Header.Content>Uptime Guarantee</Header.Content>
+                        <Header.Content>{value}.00 </Header.Content>
                     </Header>
                 </div>
 

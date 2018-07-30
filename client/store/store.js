@@ -106,11 +106,12 @@ export const fetchCart = (userId) => {
   }
 }
 
-export const SHOP = (productId, update) => {
+export const Shop = (productId, cartId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.update(`api/products/${productId}`, update)
-      dispatch(addToCart(data))
+      const newCartItem = await axios.put(`api/cart/${productId}`, {cartId})
+      console.log(newCartItem)
+      dispatch(addToCart(newCartItem.data))
     } catch (err) {
       console.error(err)
     }
@@ -168,6 +169,8 @@ export const auth = (email, password, method) => async dispatch => {
   }
 
   try {
+    const cart = await axios.get(`/api/cart/${res.data.id}`)
+    dispatch(getCart(cart.data))
     dispatch(getUser(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
@@ -184,6 +187,9 @@ export const authSignup = (email, name, password) => async dispatch => {
   }
 
   try {
+    const newCart = await axios.post(`/api/cart/${res.data.id}`);
+    dispatch(getCart(newCart.data))
+
     dispatch(getUser(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
@@ -218,21 +224,6 @@ export const productReducer = (state = [], action) => {
   }
 }
 
-//CART REDUCER
-export const cartReducer = (state = [], action) => {
-  switch (action.type) {
-    case GET_CART:
-      return action.cart
-    case ADD_TO_CART:
-      return [...state, action.item]
-    case REMOVE_FROM_CART:
-      return state.filter((el) => { return el !== action.cart })
-    case CLEAR_CART:
-      return []
-    default:
-      return state
-  }
-}
 
 export const userReducer = (state = defaultUser, action) => {
   switch (action.type) {

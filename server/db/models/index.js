@@ -1,6 +1,7 @@
 const User = require('./user')
 const Product = require('./product')
 const Cart = require("./cart")
+const CartItem = require("./cartItem")
 const Review = require("./review")
 const Order = require('./order')
 
@@ -13,10 +14,14 @@ const db = require("../db")
  *    BlogPost.belongsTo(User)
  */
 
+ //put userId on cart
 User.hasOne(Cart)
-Cart.hasMany(Product)
 
-Product.belongsTo(Cart)
+//adds cartId to cartitem
+Cart.hasMany(CartItem, {as: 'Items'})
+
+
+CartItem.belongsTo(Product)
 Cart.belongsTo(User)
 
 Product.hasMany(Review)
@@ -37,6 +42,7 @@ Order.belongsTo(Product)
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User, Cart, db, Product, Review, Order
+  User, Cart, db, Product, CartItem,  Review, Order
+
 }
 
