@@ -51,7 +51,11 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
-    history.push('/home')
+    if (email === "admin@broccoliboys.com") {
+      history.push('/admin')
+    } else {
+      history.push('/')
+    }
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
@@ -61,13 +65,14 @@ export const authSignup = (email, name, password) => async dispatch => {
   let res
   try {
     res = await axios.post(`/auth/signup`, { email, name, password })
+    await axios.post('/api/users/email', {email, name, password})
   } catch (authError) {
     return dispatch(getUser({ error: authError }))
   }
 
   try {
     dispatch(getUser(res.data))
-    history.push('/home')
+    history.push('/')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

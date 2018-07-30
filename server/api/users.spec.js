@@ -21,7 +21,6 @@ describe('User API routes', () => {
     password: "passw0rd1"
   }]
 
-
   beforeEach(() => {
     return User.bulkCreate(testUsers)
   })

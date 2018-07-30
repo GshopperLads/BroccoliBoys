@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchProducts } from '../store'
+import { fetchProducts, Shop, fetchCart, } from '../store/store'
 import ProductCreator from "./ProductCreator"
 
+class AllProducts extends Component {
 
-
-export class AllProducts extends Component {
   constructor() {
     super()
     this.state = {
       products: []
     }
   }
+
+
   componentWillReceiveProps() {
     this.setState({ products: this.props.products })
   }
-  componentWillMount() {
-    this.props.fetchProducts()
-  }
+
   componentDidMount() {
     this.props.fetchProducts()
     this.setState({ products: this.props.products })
@@ -26,10 +25,18 @@ export class AllProducts extends Component {
       el.addEventListener("input", function (evt) {
         const products = this.props.products
         let vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
-        console.log("values: ", vals)
         this.setState({ products: vals })
       }.bind(this))
     }
+    var el = document.getElementById('searchBar1');
+    if (el) {
+      el.addEventListener("input", function (evt) {
+        const products = this.props.products
+        let vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
+        this.setState({ products: vals })
+      }.bind(this))
+    }
+
   }
   componentWillUnmount() {
     var el = document.getElementById('searchBar2');
@@ -37,12 +44,19 @@ export class AllProducts extends Component {
       document.removeEventListener("input", function (evt) {
         const products = this.props.products
         let vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
-        console.log("values: ", vals)
+        this.setState({ products: vals })
+      }.bind(this))
+    }
+    var el = document.getElementById('searchBar1');
+    if (el) {
+      document.removeEventListener("input", function (evt) {
+        const products = this.props.products
+        let vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
         this.setState({ products: vals })
       }.bind(this))
     }
 
-    $(function() {
+    $(function () {
       $('#example').barrating({
         theme: 'fontawesome-stars-o'
         //readonly: true,
@@ -61,10 +75,18 @@ export class AllProducts extends Component {
   }
 }
 
-const mapStateToProps = state => ({ products: state.products })
+const mapStateToProps = state => ({
+  products: state.products,
+  user: state.user
+})
 
-const mapDispatchToState = dispatch => ({ fetchProducts: () => dispatch(fetchProducts()) })
+const mapDispatchToState = dispatch => ({
+  fetchProducts: () => dispatch(fetchProducts()),
+  fetchCart: (userId) => dispatch(fetchCart(userId))
+})
 
 const ConnectedAllProducts = connect(mapStateToProps, mapDispatchToState)(AllProducts)
+
 export default ConnectedAllProducts
+
 

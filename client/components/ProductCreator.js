@@ -1,6 +1,6 @@
 import React from "react"
 import { Card } from 'semantic-ui-react'
-import { CardExampleCardProps } from "./Card"
+import  CardExampleCardProps  from "./Card"
 
 const ProductCreator = (props) => {
     const products = [...props.products]
