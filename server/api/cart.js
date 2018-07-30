@@ -44,13 +44,13 @@ router.post('/:userId', async (req, res, next) => {
 router.put('/:productId', async (req, res, next) => {
     console.log('CART ID', req.body.cartId)
     try {
-        const newCartItem = await CartItem.create({
+        const {dataValues} = await CartItem.create({
                 cartId: req.body.cartId,
                 productId: req.params.productId
             
         })
-        console.log('NEW CART ITEM', newCartItem)
-        res.sendStatus(200)
+        console.log('NEW CART ITEM', dataValues)
+        res.send(dataValues)
     } catch (err) {
         next(err)
     }

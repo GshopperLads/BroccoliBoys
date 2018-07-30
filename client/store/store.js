@@ -47,9 +47,9 @@ const deleteFromCart = (cart) => ({
   cart
 })
 
-const addToCart = (items) => ({
+const addToCart = (item) => ({
   type: ADD_TO_CART,
-  items
+  item
 })
 
 const clearCart = () => ({
@@ -107,13 +107,11 @@ export const fetchCart = (userId) => {
 }
 
 export const Shop = (productId, cartId) => {
-  console.log('PRODUCTID', productId)
   return async (dispatch) => {
     try {
-      await axios.put(`api/cart/${productId}`, {cartId})
-      //const cartItems = await axios.get(`/api/cart/${cartId}`)
-      //console.log('CART ITEMS IN THUNK', cartItems)
-      //dispatch(addToCart(cartItems))
+      const newCartItem = await axios.put(`api/cart/${productId}`, {cartId})
+      console.log(newCartItem)
+      dispatch(addToCart(newCartItem.data))
     } catch (err) {
       console.error(err)
     }
@@ -225,21 +223,7 @@ export const productReducer = (state = [], action) => {
   }
 }
 
-//CART REDUCER
-export const cartReducer = (state = [], action) => {
-  switch (action.type) {
-    case GET_CART:
-      return action.cart
-    case ADD_TO_CART:
-      return [...state, action.items]
-    case REMOVE_FROM_CART:
-      return state.filter((el) => { return el !== action.cart })
-    case CLEAR_CART:
-      return []
-    default:
-      return state
-  }
-}
+
 
 export const userReducer = (state = defaultUser, action) => {
   switch (action.type) {
