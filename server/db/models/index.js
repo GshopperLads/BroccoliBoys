@@ -19,10 +19,13 @@ User.hasOne(Cart)
 
 //adds cartId to cartitem
 Cart.hasMany(CartItem, {as: 'Items'})
+Cart.belongsTo(User)
 
 
 CartItem.belongsTo(Product)
-Cart.belongsTo(User)
+CartItem.belongsTo(User)
+
+
 
 Product.hasMany(Review)
 Review.belongsTo(Product)
