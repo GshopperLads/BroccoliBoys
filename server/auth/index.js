@@ -3,7 +3,6 @@ const User = require('../db/models/user')
 module.exports = router
 
 router.post('/login', async (req, res, next) => {
-  console.log('post start...')
   try {
     const user = await User.findOne({where: {email: req.body.email}})
     console.log('user.correctPassword: ', user.correctPassword)
@@ -23,7 +22,6 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   try {
-    console.log("singup .... ")
     const user = await User.create(req.body)
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {

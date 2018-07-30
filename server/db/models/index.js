@@ -25,8 +25,9 @@ Review.belongsTo(User)
 
 User.hasMany(Order)
 Order.belongsTo(User)
-Order.hasMany(Product)
-Product.belongsTo(Order)
+
+
+Order.belongsTo(Product)
 
 
 /**
@@ -38,3 +39,4 @@ Product.belongsTo(Order)
 module.exports = {
   User, Cart, db, Product, Review, Order
 }
+

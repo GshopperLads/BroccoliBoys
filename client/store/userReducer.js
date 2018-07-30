@@ -51,7 +51,11 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
-    history.push('/home')
+    if (email === "admin@broccoliboys.com") {
+      history.push('/admin')
+    } else {
+      history.push('/')
+    }
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
