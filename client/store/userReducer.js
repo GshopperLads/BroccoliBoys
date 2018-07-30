@@ -25,8 +25,8 @@ const changeUser = user => ({
   user
 })
 
-const getUser = user => ({ type: GET_USER, user })
-const removeUser = () => ({ type: REMOVE_USER })
+const getUser = user => ({type: GET_USER, user})
+const removeUser = () => ({type: REMOVE_USER})
 
 const defaultUser = {}
 /**
@@ -65,7 +65,7 @@ export const authSignup = (email, name, password) => async dispatch => {
   let res
   try {
     res = await axios.post(`/auth/signup`, { email, name, password })
-    await axios.post('/api/users/email', { email, name, password })
+    await axios.post('/api/users/email', {email, name, password})
   } catch (authError) {
     return dispatch(getUser({ error: authError }))
   }
@@ -90,8 +90,8 @@ export const logout = () => async dispatch => {
 
 export const modifyUser = (userId, modifiedUser) => async dispatch => {
   try {
+    console.log("modify user working......")
     const res = await axios.put(`/api/users/${userId}`, modifiedUser)
-
     const user = res.data
     dispatch(changeUser(user))
     history.push('/account')

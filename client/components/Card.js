@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Icon } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
-import {Shop} from '../store/store'
+import {Shop} from '../store'
 import {connect} from 'react-redux'
 
 class CardExampleCardProps extends React.Component {
@@ -39,7 +39,7 @@ const mapStateToprops = state => {
         products: state.products,
         cart: state.cart
     }
-    
+
 }
 
 const mapDispatchToProps = (dispatch) => {

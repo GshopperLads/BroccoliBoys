@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchProducts, Shop, fetchCart, } from '../store/store'
+import { fetchProducts, Shop, fetchCart, } from '../store'
 import ProductCreator from "./ProductCreator"
 
 class AllProducts extends Component {

@@ -31,6 +31,8 @@ const clearCart = () => ({
   type: CLEAR_CART
 })
 
+
+
 /**
  * THUNK CREATORS
  */
@@ -45,15 +47,16 @@ export const fetchCart = (userId) => {
   }
 }
 
-export const SHOP = (productId, update) => {
+export const Shop = (productId, cartId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.update(`api/products/${productId}`, update)
-      dispatch(addToCart(data))
+      const newCartItem = await axios.put(`api/cart/${productId}`, { cartId })
+      dispatch(addToCart(newCartItem.data))
     } catch (err) {
       console.error(err)
     }
   }
+
 }
 
 export const removeFromCart = (newProduct, newCart, productId, cartId) => {
@@ -69,6 +72,7 @@ export const removeFromCart = (newProduct, newCart, productId, cartId) => {
     }
   }
 }
+
 
 /**
  * Reducer
@@ -88,3 +92,6 @@ export const cartReducer = (state = {cart: {}, cartProducts: {} }, action) => {
       return state
   }
 }
+
+
+

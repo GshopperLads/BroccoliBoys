@@ -26,9 +26,6 @@ class SingleUser extends Component {
                 <input type="submit" value="Edit" className="btn-edit" />
               </div>
             </Link>
-            <Link to="/payment">
-              <input type="submit" value="PaymentTest" className="btn-edit" />
-            </Link>
           </div>
         }
       </div>
