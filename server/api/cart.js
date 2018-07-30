@@ -46,6 +46,7 @@ router.put('/:productId', async (req, res, next) => {
     try {
         const {dataValues} = await CartItem.create({
                 cartId: req.body.cartId,
+                quantity: 1,
                 productId: req.params.productId
             
         })

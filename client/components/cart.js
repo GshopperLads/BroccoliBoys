@@ -3,24 +3,34 @@ import { connect } from 'react-redux'
 import {fetchCart, removeFromCart} from '../store/store'
 import {Button, Card, Image, Icon, List, Header } from 'semantic-ui-react'
 import Cartitems from './cartItems'
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 
 class Cart extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            productsToRender: []
+        }
     }
 
-    componentDidMount(){
-        
+    componentWillMount(){
+        console.log(this.props)
+        let productsToRenderKeys = Object.keys(this.props.cart.cartProducts)
+        console.log('RENDER KEYS', productsToRenderKeys)
+        let productsToRender = this.props.products.filter(product => productsToRenderKeys.includes(product.id.toString()))
+        this.setState({productsToRender:productsToRender})
     }
 
     render(){
        let user = this.props.user
-        console.log(user)
+        let value = 0;
+        this.state.productsToRender.forEach(product => value+= product.price)
+        console.log('VAL', value)
         return (
             <div className="cartContainer" >
             { user && 
-                <Cartitems products={this.props.products} />
+                <Cartitems products={this.state.productsToRender} />
             }
                 <Header as='h2' >
                     Your cart is empty!
@@ -31,7 +41,7 @@ class Cart extends React.Component {
                         Cart
                     </Header>
                 <List celled>
-                    {this.props.products.map(product => 
+                    {this.state.productsToRender.map(product => 
                         <List.Item key={product.id}>
                         <Image avatar src={product.imageUrl} />
                         <List.Content>
@@ -44,7 +54,7 @@ class Cart extends React.Component {
                     </List>
                     <Header as='h2'>
                         <Icon name='dollar sign' />
-                        <Header.Content>$20</Header.Content>
+                        <Header.Content>{value}.00 </Header.Content>
                     </Header>
                 </div>
 
