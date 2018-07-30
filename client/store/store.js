@@ -107,12 +107,13 @@ export const fetchCart = (userId) => {
 }
 
 export const Shop = (productId, cartId) => {
+  console.log('PRODUCTID', productId)
   return async (dispatch) => {
     try {
-      await axios.put(`api/cart/${productId}`, cartId)
-      const cartItems = await axios.get(`/api/cart/${cartId}`)
-      console.log('CART ITEMS IN THUNK', cartItems)
-      dispatch(addToCart(cartItems))
+      await axios.put(`api/cart/${productId}`, {cartId})
+      //const cartItems = await axios.get(`/api/cart/${cartId}`)
+      //console.log('CART ITEMS IN THUNK', cartItems)
+      //dispatch(addToCart(cartItems))
     } catch (err) {
       console.error(err)
     }

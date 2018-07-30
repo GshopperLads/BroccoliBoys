@@ -11,10 +11,7 @@ class Cart extends React.Component {
     }
 
     componentDidMount(){
-        if(this.props.user !== {}){
-            this.props.fetchCartFromDb(this.props.match.params.userId)
-
-        }
+        
     }
 
     render(){

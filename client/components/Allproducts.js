@@ -27,11 +27,9 @@ class AllProducts extends Component {
       el.addEventListener("input", function (evt) {
         const products = this.props.products
         let vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
-        console.log("values: ", vals)
         this.setState({ products: vals })
       }.bind(this))
     }
-    this.props.fetchCart(this.props.user.id)
 
   }
   componentWillUnmount() {
@@ -40,11 +38,17 @@ class AllProducts extends Component {
       document.removeEventListener("input", function (evt) {
         const products = this.props.products
         let vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
-        console.log("values: ", vals)
         this.setState({ products: vals })
       }.bind(this))
-
     }
+
+    $(function() {
+      $('#example').barrating({
+        theme: 'fontawesome-stars-o'
+        //readonly: true,
+        // showSelectedRating:false
+      })
+    })
   }
 
   render() {
@@ -64,17 +68,5 @@ const mapDispatchToState = dispatch => ({ fetchProducts: () => dispatch(fetchPro
 fetchCart: (userId) => dispatch(fetchCart(userId))})
 
 const ConnectedAllProducts = connect(mapStateToProps, mapDispatchToState)(AllProducts)
-
 export default ConnectedAllProducts
 
-
-{/* {document.oninput = function (evt) {
-            let vals;
-            let keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
-            if (keyCode == 13) {
-              const products = this.state.products
-              vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
-              console.log("values: ", vals)
-              this.setState({ products: vals })
-            }
-          }.bind(this)} */}

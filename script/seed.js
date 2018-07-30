@@ -1,33 +1,38 @@
 'use strict'
 
 const db = require('../server/db')
-const { User, Cart, Product } = require('../server/db/models')
-
-/**
- * Welcome to the seed file! This seed file uses a newer language feature called...
- *
- *                  -=-= ASYNC...AWAIT -=-=
- *
- * Async-await is a joy to use! Read more about it in the MDN docs:
- *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
- *
- * Now that you've got the main idea, check it out in practice below!
- */
+const { User, Cart, Product, Review } = require('../server/db/models')
 
 async function seed() {
   await db.sync({ force: true })
   console.log('db synced!')
-  // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
-  // executed until that promise resolves!
   const users = await Promise.all([
-    User.create({ name: "cody", email: 'cody@email.com', password: '123' }),
-    User.create({ name: "murph", email: 'murphy@email.com', password: '123' })
+    User.create({ name: "Admin", email: 'admin@broccoliboys.com', password: '1234' }),
+    User.create({ name: "cody", email: 'cody@email.com', password: '123', address: "47 W 13th St, New York, NY 10011, USA" }),
+    User.create({ name: "murph", email: 'murphy@email.com', password: '123', address: "1 E 2nd St, New York, NY 10003, USA" }),
+    User.create({ name: "Ted", email: 'ted@email.com', password: '123', address: "47 W 13th St, New York, NY 10011, USA" }),
+    User.create({ name: "Darcy", email: 'Darcy@email.com', password: '123', address: "1 E 2nd St, New York, NY 10003, USA" }),
+    User.create({ name: "John", email: 'J123@email.com', password: '123', address: "Metrotech Center, Brooklyn, NY 11201, USA" }),
+    User.create({ name: "Liam", email: 'li111@email.com', password: '123', address: "838 Broadway, New York, NY 10003, USA" }),
+    User.create({ name: "Kate", email: '8665@email.com', password: '123', address: "47 W 13th St, New York, NY 10011, USA" }),
+    User.create({ name: "Luther", email: 'dreamw@email.com', password: '123', address: "33 3rd Ave, New York, NY 10003, USA" }),
+    User.create({ name: "Jeane", email: 'jqw@email.com', password: '123', address: "29 Washington Pl, New York, NY 10003, USA" }),
+    User.create({ name: "Paul", email: 'heit@email.com', password: '123', address: "1 E 2nd St, New York, NY 10003, USA" })
+
   ])
 
-  const cart = await Promise.all([
+  const carts = await Promise.all([
     Cart.create({ userId: 1 }),
-    Cart.create({ userId: 2 })
+    Cart.create({ userId: 2 }),
+    Cart.create({ userId: 3 }),
+    Cart.create({ userId: 4 }),
+    Cart.create({ userId: 5 }),
+    Cart.create({ userId: 6 }),
+    Cart.create({ userId: 7 }),
+    Cart.create({ userId: 8 }),
+    Cart.create({ userId: 9 }),
+    Cart.create({ userId: 10 }),
+    Cart.create({ userId: 11 })
   ])
 
   const products = await Promise.all([
@@ -45,12 +50,32 @@ async function seed() {
     Product.create({ name: "Broccoli Chia Pet", imageUrl: "https://s7d2.scene7.com/is/image/PetSmart/5275781?$pdp-placeholder-desktop$", price: 20.0, description: "Cha Cha Chia Pets, are back!", quantity: 1 })
   ])
 
+  const reviews = await Promise.all([
+    Review.create({ content: "it is amazing how under ripe it is", rating: 5, productId: 1, userId: 1 }),
+    Review.create({ content: "It couldn't be bitter", rating: 5, productId: 2, userId: 2 }),
+    Review.create({ content: "Awesome!", rating: 5, productId: 3, userId: 2 }),
+    Review.create({ content: "Hard and rotten", rating: 2, productId: 4, userId: 3 }),
+    Review.create({ content: "Thank you for great broccoli!", rating: 5, productId: 5, userId: 5 }),
+    Review.create({ content: "I'll buy it again.", rating: 5, productId: 6, userId: 6 }),
+    Review.create({ content: "This is the second time bought. Will buy again here", rating: 5, productId: 3, userId: 2 }),
+    Review.create({ content: "No idea what small is, if they call this large.", rating: 4, productId: 5, userId: 9 }),
+    Review.create({ content: "Arrived just barely ripe, which is perfect for me", rating: 5, productId: 9, userId: 3 }),
+    Review.create({ content: "Rotten by day 3", rating: 3, productId: 10, userId: 3 }),
+    Review.create({ content: "great product!", rating: 5, productId: 1, userId: 5 }),
+    Review.create({ content: "I got was no where near “large” and was hard and barely had flavor", rating: 5, productId: 4, userId: 3 }),
+    Review.create({ content: "Very Nice!", rating: 3, productId: 10, userId: 7 }),
+    Review.create({ content: "I was happy with the freshness and the quality.", rating: 5, productId: 3, userId: 8 }),
+    Review.create({ content: "Great Prudcut!", rating: 3, productId: 2, userId: 8 }),
+    Review.create({ content: "Awesome, BroccoliBoys!", rating: 5, productId: 1, userId: 4 })
+  ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
-  console.log(`seeded ${cart.length} cart`)
+  console.log(`seeded ${carts.length} cart`)
+  // console.log(`seeded ${reviews.length} cart`)
 
 
   console.log(`seeded successfully`)

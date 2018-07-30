@@ -1,33 +1,83 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-// import { fetchProducts } from '../store/store'
-import ProductCreator from "./ProductCreator"
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {fetchProducts} from '../store'
+import CheckoutProductCards from './CheckoutProductCards'
 
+// import {Helmet} from 'react-helmet' // to use script tag in jsx
+import StripeCheckout from 'react-stripe-checkout'
 
 class Payment extends Component {
+  componentDidMount() {
+    this.props.fetchProducts()
+
+    // const script = document.createElement("script");
+    // script.src = "https://checkout.stripe.com/checkout.js"
+    // script.async = true;
+    // document.body.appendChild(script)
+  }
+
+  onToken = token => {
+    fetch('/save-stripe-token', {
+      method: 'POST',
+      body: JSON.stringify(token)
+    }).then(response => {
+      response.json().then(data => {
+        alert(`We are in business, ${data.email}`)
+      })
+    })
+  }
+
   render() {
+    // need to replace dummy data w/ real one
     console.log(this.props.dummyCartProduct)
-    console.log("hello")
+    const {stripeKey} = require('../../secrets.js')
     return (
       <div>
-        <div><h1>Chechout</h1></div>
-        <ProductCreator products={this.props.dummyCartProduct} />
-
-        <div>Hello</div>
-        <div>Hello</div>
-        <div>Hello</div>
+        <div className="payment-title">
+          <h1>Checkout</h1>
+        </div>
+        <hr />
+        <div className="payment-sub-title">
+          <h3>Review Order</h3>
+        </div>
+        <div className="review-order">
+          <CheckoutProductCards products={this.props.dummyCartProduct} />
+        </div>
+        {/* Todo : aggregate price
+          Subtotal: $42.22
+          Shipping: FREE
+          TAX [Estimated]: $0.00
+          Total: $42.22
+         */}
+        <div className="stripe-wrapper">
+          <StripeCheckout
+            token={this.onToken}
+            stripeKey={stripeKey}
+            image="https://www.vidhub.co/assets/logos/vidhub-icon-2e5c629f64ced5598a56387d4e3d0c7c.png"
+            name="BroccoliBoys"
+            description="Card Payment"
+            panelLabel="Submit Order"
+            currency="USD"
+            // amount={10}
+            // email=""
+            shippingAddress
+            allowRememberMe
+            className="pay-btn"
+          />
+        </div>
+        <hr />
+        <hr />
       </div>
     )
   }
-
 }
 
-
-const mapState = (state) => ({
+const mapState = state => ({
   dummyCartProduct: state.products.filter(product => product.price >= 9)
 })
 
-const mapDispatch = (dispatch) => ({
+const mapDispatch = dispatch => ({
+  fetchProducts: () => dispatch(fetchProducts())
 })
 
 export default connect(mapState, mapDispatch)(Payment)
