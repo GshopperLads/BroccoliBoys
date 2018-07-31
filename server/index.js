@@ -117,14 +117,12 @@ const createApp = () => {
           text: `Dear Customer,\r\n\r\nYour purchase is approved.\r\n\r\n\r\n\r\nThank you for purchasing our products!\r\n\r\n\r\n\r\nYou can track your deliveries, and access all broccolies in the world.\r\n\r\nTell us your broccoli preferences. Enjoy.\r\n\r\nThank You!\r\n\r\n\r\n\r\nRegards,\r\n\r\n\r\n\r\n\r\n\r\n BroccoliBoys\r\n\r\n\r\n\r\nhttp://broccoliboys.herokuapp.com\r\n\r\ninfo@broccoliboys.com `,
         };
         sgMail.send(msg);
-
         CartItem.destroy({
           where: {
             userId: req.body.customer
           }
         })
-        console.log("delete everything... ")
-        res.send(charge)
+        res.send("Thank you for purchasing our product!")
       })
       .catch(err => {
         console.log("Error: ", err)
