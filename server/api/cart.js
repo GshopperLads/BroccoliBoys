@@ -93,3 +93,12 @@ router.put('/add', async (req, res, next) => {
     next(err)
   }
 })
+
+router.delete('/:id', async(req, res, next) => {
+  try {
+    await CartItem.destroy({where: {id: req.params.id}})
+    res.send(200)
+  } catch (err) {
+    next(err)
+  }
+})

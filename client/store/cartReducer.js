@@ -61,6 +61,7 @@ export const fetchCart = (userId) => {
       const res = await axios.get(`/api/cart/${userId}`)
       const carts = res.data
       dispatch(getCarts(carts))
+      return carts
     } catch (err) {
       console.error(err)
     }
@@ -72,7 +73,9 @@ export const Shop = (productId, userId) => {
     try {
       const res = await axios.put(`/api/cart/add`, { productId, userId })
       const newCartItem = res.data
-      dispatch(addToCart(newCartItem))
+      alert("Item has been added!")
+      dispatch(addToCart(newCartItem) )
+
     } catch (err) {
       console.error(err)
     }
@@ -88,6 +91,7 @@ export const modifyQuantity = (type, cartId, currentQuantity) => {
       const updatedCart = res.data
 
       dispatch(changeQuantity(updatedCart))
+      return updatedCart
     } catch (err) {
       console.error(err)
     }
@@ -97,14 +101,12 @@ export const modifyQuantity = (type, cartId, currentQuantity) => {
 
 
 
-export const removeFromCart = (newProduct, newCart, productId, cartId) => {
+export const removeFromCart = (cartId) => {
   return async (dispatch) => {
     try {
-      const newProductData = await axios.put(`/api/products/${productId}`, newProduct)
+      await axios.delete(`/api/cart/${cartId}`)
 
-      const newCartData = await axios.put(`/api/cart/${cartId}`, newCart)
-
-      dispatch(removeFromCart(newProductData.data, newCartData.data))
+      dispatch(deleteFromCart(cartId))
     } catch (err) {
       console.error(err)
     }
@@ -145,7 +147,7 @@ export const cartReducer = (state = [], action) => {
     //   return [...state, action.cart]
 
     case REMOVE_FROM_CART:
-      return state.filter((el) => { return el !== action.cart })
+      return state.filter((el) => { return el.id !== action.cart })
     case CLEAR_CART:
       return []
     default:
