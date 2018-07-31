@@ -12,11 +12,13 @@ class SingleUser extends Component {
   }
 
   async componentDidMount() {
+    console.log("component Did Mount triggered")
     await this.props.me()
     this.setState({ user: this.props.user })
   }
 
   render() {
+    console.log("render method triggered")
     const user = this.state.user
     return (
       <div className="user-info">

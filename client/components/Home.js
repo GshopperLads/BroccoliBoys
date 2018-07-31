@@ -69,16 +69,14 @@ class HomePage extends React.Component {
                         window.setInterval(function () {
                             var next = ($('.select').index() + 1) % $('.circle').length;
                             var prev = $('.select').index();
-
                             $('.select').removeClass('select');
                             $('.circle').eq(next).addClass('select');
-
-
                             $('.slide').eq(next).addClass('open').css('left', '100%');
                             $('.slide').eq(prev).animate({ 'left': '-100%' }, 700);
                             $('.slide').eq(next).animate({ 'left': '0%' }, 700);
                         }, 7000)})
             </script>
+                <div className="brand-name">Broccoli Boys - "Grown with the heart."</div>
                 <div className="slidelist">
                     <div className="slide open" style={{ left: "-100%" }}><span className="image1"></span></div>
                     <div className="slide open" style={{ left: "-100%" }}><span className="image2"></span></div>
@@ -96,7 +94,6 @@ class HomePage extends React.Component {
                         </ul>
                     </div>
                 </div>
-                <div className="brand-name">BroccoliBoys</div>
             </React.Fragment>
         )
     }
