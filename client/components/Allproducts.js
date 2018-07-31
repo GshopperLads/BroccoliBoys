@@ -1,6 +1,7 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {fetchProducts, Shop, fetchCart} from '../store'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchProducts, Shop, fetchCart } from '../store'
+
 import ProductCreator from './ProductCreator'
 
 class AllProducts extends Component {
@@ -10,24 +11,24 @@ class AllProducts extends Component {
       products: []
     }
   }
+  async componentDidMount() {
+    await this.props.fetchProducts()
 
-  componentWillReceiveProps() {
-    this.setState({products: this.props.products})
-  }
+    this.setState({ products: this.props.products })
 
-  componentDidMount() {
-    this.props.fetchProducts()
-    this.setState({products: this.props.products})
-    var el = document.getElementById('searchBar2')
+    var el = document.getElementById('searchBar2');
+
     if (el) {
       el.addEventListener(
         'input',
-        function(evt) {
+        function (evt) {
+
           const products = this.props.products
           let vals = products.filter(product =>
             product.name.toLowerCase().includes(evt.target.value.toLowerCase())
           )
-          this.setState({products: vals})
+          this.setState({ products: vals })
+
         }.bind(this)
       )
     }
@@ -35,12 +36,13 @@ class AllProducts extends Component {
     if (el) {
       el.addEventListener(
         'input',
-        function(evt) {
+        function (evt) {
           const products = this.props.products
           let vals = products.filter(product =>
             product.name.toLowerCase().includes(evt.target.value.toLowerCase())
           )
-          this.setState({products: vals})
+          this.setState({ products: vals })
+
         }.bind(this)
       )
     }
@@ -50,12 +52,14 @@ class AllProducts extends Component {
     if (el) {
       document.removeEventListener(
         'input',
-        function(evt) {
+        function (evt) {
+
           const products = this.props.products
           let vals = products.filter(product =>
             product.name.toLowerCase().includes(evt.target.value.toLowerCase())
           )
-          this.setState({products: vals})
+          this.setState({ products: vals })
+
         }.bind(this)
       )
     }
@@ -63,12 +67,14 @@ class AllProducts extends Component {
     if (el) {
       document.removeEventListener(
         'input',
-        function(evt) {
+        function (evt) {
+
           const products = this.props.products
           let vals = products.filter(product =>
             product.name.toLowerCase().includes(evt.target.value.toLowerCase())
           )
-          this.setState({products: vals})
+          this.setState({ products: vals })
+
         }.bind(this)
       )
     }

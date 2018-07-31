@@ -1,11 +1,11 @@
 import React from 'react'
-import {Card, Icon} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
-import {Shop} from '../store'
-import {connect} from 'react-redux'
-
+import { Card, Icon } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { Shop } from '../store'
+import { connect } from 'react-redux'
 class CardExampleCardProps extends React.Component {
-  componentDidMount() {}
+  componentDidMount() { }
+
   render() {
     console.log(this.props.match)
     return (
@@ -15,7 +15,8 @@ class CardExampleCardProps extends React.Component {
           header={this.props.name}
           meta={`$${this.props.price}/head | (${
             this.props.quantity
-          }) in stock.`}
+            }) in stock.`}
+
           description={this.props.description}
           extra={
             <div>
@@ -45,7 +46,6 @@ class CardExampleCardProps extends React.Component {
     )
   }
 }
-
 const mapStateToprops = state => {
   return {
     products: state.products,
