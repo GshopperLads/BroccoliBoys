@@ -71,7 +71,7 @@ class Navbar extends React.Component {
                 <div className="right menu">
                   <Link to="/login"><div className="item">Login</div></Link>
                   <Link to="/signup"><div className="item">Sign Up</div></Link>
-                  <Link to='/cart'>
+                  <Link to='/guestcart'>
                     <div className="item">Cart</div>
                   </Link>
                   <div className="item">
