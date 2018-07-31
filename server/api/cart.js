@@ -2,7 +2,7 @@ const router = require('express').Router()
 const { Cart, CartItem } = require('../db/models')
 module.exports = router
 
-//Retrieve all carts, but there's only one 
+//Retrieve all carts, but there's only one
 router.get('/', async (req, res, next) => {
     try {
         const cart = await Cart.findAll({})
@@ -41,18 +41,19 @@ router.post('/:userId', async (req, res, next) => {
     }
 })
 
-//ADD PRODUCT TO CART
-router.put('/:productId', async (req, res, next) => {
-    try {
-        const { dataValues } = await CartItem.create({
-            cartId: req.body.cartId,
-            quantity: 1,
-            productId: req.params.productId
+// //ADD PRODUCT TO CART
+// router.put('/:productId', async (req, res, next) => {
+//     try {
+//         const { dataValues } = await CartItem.create({
+//             cartId: req.body.cartId,
+//             quantity: 1,
+//             productId: req.params.productId
 
-        })
-        res.send(dataValues)
-    } catch (err) {
-        next(err)
-    }
-})
+//         })
+//         res.send(dataValues)
+//     } catch (err) {
+//         next(err)
+//     }
+// })
 
+router.put('/create')
