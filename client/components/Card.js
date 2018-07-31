@@ -3,7 +3,7 @@ import { Card, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { Shop } from '../store'
 import { connect } from 'react-redux'
-class CardExampleCardProps extends React.Component {
+export class CardExampleCardProps extends React.Component {
   componentDidMount() { }
 
   render() {

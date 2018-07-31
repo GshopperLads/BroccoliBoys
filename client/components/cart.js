@@ -1,12 +1,12 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {fetchCart, removeFromCart} from '../store'
-import {Button, Card, Image, Icon, List, Header} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { fetchCart, removeFromCart } from '../store'
+import { Button, Card, Image, Icon, List, Header } from 'semantic-ui-react'
 import Cartitems from './cartItems'
-import {SSL_OP_SSLEAY_080_CLIENT_DH_BUG} from 'constants'
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants'
 
-class Cart extends React.Component {
+export class CartCreator extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -32,8 +32,7 @@ class Cart extends React.Component {
       .map(userCart => userCart.product)
     let value = 0
     productsToRender.forEach(product => (value += product.price))
-    console.log('productsToRender', productsToRender)
-    console.log('VAL', value)
+
     return (
       <div>
         <div className="cartContainer">
@@ -89,4 +88,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(CartCreator)

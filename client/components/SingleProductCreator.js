@@ -1,10 +1,9 @@
 import React from 'react'
-import {Card} from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import CardExampleCardProps from './Card'
 
 const SingleProductCreator = props => {
   const products = [...props.products]
-  console.log(products)
   return (
     <Card.Group itemsPerRow={4}>
       {products.map(product => (
