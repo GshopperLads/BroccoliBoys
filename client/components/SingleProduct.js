@@ -6,19 +6,10 @@ import {Link} from 'react-router-dom'
 import Review from './Review'
 
 class SingleProduct extends Component {
-  constructor () {
-    super ()
-    this.state = {
-      onSingle: false
-    }
-  }
 
   componentDidMount() {
     this.props.fetchProducts()
     this.props.fetchReviews()
-    this.setState({
-      onSingle: true
-    })
   }
 
   render() {
@@ -27,7 +18,7 @@ class SingleProduct extends Component {
     )
     return (
       <div className="single-product-wrapper">
-        <SingleProductCreator products={product} onSingle={this.state.onSingle}/>
+        <SingleProductCreator products={product} />
         <div className="review-section">
           <div>
             <Link to={`/products/${this.props.match.params.id}/newreview`}>

@@ -12,7 +12,7 @@ class GuestCart extends React.Component {
   constructor(props) {
     super(props)
     this.state = sessionStorage
-   
+
   }
 
   componentWillMount(){
@@ -21,7 +21,7 @@ class GuestCart extends React.Component {
 
   render() {
     console.log('SSTORAGE', sessionStorage)
-    
+
     //define products
     const products = this.props.products
 
@@ -101,12 +101,11 @@ class GuestCart extends React.Component {
                     color="green"
                     onClick={() => {
                         let quantity = Number(sessionStorage.getItem([product.id]))+1
-                        
                         console.log('QUANT', quantity)
                         sessionStorage.setItem([product.id], quantity)
                         this.setState({[product.id]: quantity})
                     }
-                       
+
                     }
                   >
                     +
@@ -117,10 +116,14 @@ class GuestCart extends React.Component {
                     onClick={() =>
                         {
                         let quantity = Number(sessionStorage.getItem([product.id]))-1
-                        
-                        console.log('QUANT', quantity)
-                        sessionStorage.setItem([product.id], quantity)
-                        this.setState({[product.id]: quantity})
+                        if(quantity <= 0){
+                          sessionStorage.removeItem([product.id])
+                          this.setState({sessionStorage})
+                        } else {
+                          console.log('QUANT', quantity)
+                          sessionStorage.setItem([product.id], quantity)
+                          this.setState({[product.id]: quantity})
+                        }
                         }
                     }
                   >
