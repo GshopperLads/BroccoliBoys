@@ -5,6 +5,7 @@ import { Shop } from '../store'
 import { connect } from 'react-redux'
 class CardExampleCardProps extends React.Component {
   componentDidMount() { }
+
   render() {
     console.log(this.props.match)
     return (
@@ -15,6 +16,7 @@ class CardExampleCardProps extends React.Component {
           meta={`$${this.props.price}/head | (${
             this.props.quantity
             }) in stock.`}
+
           description={this.props.description}
           extra={
             <div>
@@ -51,11 +53,13 @@ const mapStateToprops = state => {
     cart: state.cart
   }
 }
+
 const mapDispatchToProps = dispatch => {
   return {
     Shop: (productId, userId) => dispatch(Shop(productId, userId))
   }
 }
+
 export default connect(mapStateToprops, mapDispatchToProps)(
   CardExampleCardProps
 )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchProducts, Shop, fetchCart } from '../store'
+
 import ProductCreator from './ProductCreator'
 
 class AllProducts extends Component {
@@ -21,11 +22,13 @@ class AllProducts extends Component {
       el.addEventListener(
         'input',
         function (evt) {
+
           const products = this.props.products
           let vals = products.filter(product =>
             product.name.toLowerCase().includes(evt.target.value.toLowerCase())
           )
           this.setState({ products: vals })
+
         }.bind(this)
       )
     }
@@ -39,6 +42,7 @@ class AllProducts extends Component {
             product.name.toLowerCase().includes(evt.target.value.toLowerCase())
           )
           this.setState({ products: vals })
+
         }.bind(this)
       )
     }
@@ -49,11 +53,13 @@ class AllProducts extends Component {
       document.removeEventListener(
         'input',
         function (evt) {
+
           const products = this.props.products
           let vals = products.filter(product =>
             product.name.toLowerCase().includes(evt.target.value.toLowerCase())
           )
           this.setState({ products: vals })
+
         }.bind(this)
       )
     }
@@ -62,16 +68,18 @@ class AllProducts extends Component {
       document.removeEventListener(
         'input',
         function (evt) {
+
           const products = this.props.products
           let vals = products.filter(product =>
             product.name.toLowerCase().includes(evt.target.value.toLowerCase())
           )
           this.setState({ products: vals })
+
         }.bind(this)
       )
     }
 
-    $(function () {
+    $(function() {
       $('#example').barrating({
         theme: 'fontawesome-stars-o'
         //readonly: true,
