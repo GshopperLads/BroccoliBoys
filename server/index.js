@@ -122,7 +122,7 @@ const createApp = () => {
             userId: req.body.customer
           }
         })
-        res.send("Thank you for purchasing our product!")
+        res.send("Thank for purchasing our product!")
       })
       .catch(err => {
         console.log("Error: ", err)
