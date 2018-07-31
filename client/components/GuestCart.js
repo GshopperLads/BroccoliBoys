@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchCart, removeFromCart} from '../store'
 import {Button, Card, Image, Icon, List, Header} from 'semantic-ui-react'
-import GuestCartItems from './GuestCartItems'
 import {SSL_OP_SSLEAY_080_CLIENT_DH_BUG} from 'constants'
 
 
