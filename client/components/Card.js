@@ -61,8 +61,11 @@ class CardExampleCardProps extends React.Component {
                     <div
                       className="ui vertical animated button"
                       tabIndex="0"
-                      onClick={() =>
+                      onClick={() => {
                         sessionStorage.setItem([this.props.product.id], 1)
+                        alert("Item has been added!")
+                      }
+
 
                       }
                     >
