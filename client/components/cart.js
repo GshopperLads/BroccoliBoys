@@ -160,4 +160,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartCreator)
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
