@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchProducts, Shop, fetchCart, } from '../store/store'
-import ProductCreator from "./ProductCreator"
+import { fetchProducts, Shop, fetchCart } from '../store'
+import ProductCreator from './ProductCreator'
 
 class AllProducts extends Component {
   constructor() {
@@ -16,39 +16,59 @@ class AllProducts extends Component {
     this.setState({ products: this.props.products })
 
     var el = document.getElementById('searchBar2');
-    if (el) {
-      el.addEventListener("input", function (evt) {
-        const products = this.props.products
-        let vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
-        this.setState({ products: vals })
-      }.bind(this))
-    }
-    var el = document.getElementById('searchBar1');
-    if (el) {
-      el.addEventListener("input", function (evt) {
-        const products = this.props.products
-        let vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
-        this.setState({ products: vals })
-      }.bind(this))
-    }
 
+    if (el) {
+      el.addEventListener(
+        'input',
+        function (evt) {
+          const products = this.props.products
+          let vals = products.filter(product =>
+            product.name.toLowerCase().includes(evt.target.value.toLowerCase())
+          )
+          this.setState({ products: vals })
+        }.bind(this)
+      )
+    }
+    var el = document.getElementById('searchBar1')
+    if (el) {
+      el.addEventListener(
+        'input',
+        function (evt) {
+          const products = this.props.products
+          let vals = products.filter(product =>
+            product.name.toLowerCase().includes(evt.target.value.toLowerCase())
+          )
+          this.setState({ products: vals })
+        }.bind(this)
+      )
+    }
   }
   componentWillUnmount() {
-    var el = document.getElementById('searchBar2');
+    var el = document.getElementById('searchBar2')
     if (el) {
-      document.removeEventListener("input", function (evt) {
-        const products = this.props.products
-        let vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
-        this.setState({ products: vals })
-      }.bind(this))
+      document.removeEventListener(
+        'input',
+        function (evt) {
+          const products = this.props.products
+          let vals = products.filter(product =>
+            product.name.toLowerCase().includes(evt.target.value.toLowerCase())
+          )
+          this.setState({ products: vals })
+        }.bind(this)
+      )
     }
-    var el = document.getElementById('searchBar1');
+    var el = document.getElementById('searchBar1')
     if (el) {
-      document.removeEventListener("input", function (evt) {
-        const products = this.props.products
-        let vals = products.filter(product => product.name.toLowerCase().includes(evt.target.value.toLowerCase()))
-        this.setState({ products: vals })
-      }.bind(this))
+      document.removeEventListener(
+        'input',
+        function (evt) {
+          const products = this.props.products
+          let vals = products.filter(product =>
+            product.name.toLowerCase().includes(evt.target.value.toLowerCase())
+          )
+          this.setState({ products: vals })
+        }.bind(this)
+      )
     }
 
     $(function () {
@@ -76,11 +96,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToState = dispatch => ({
   fetchProducts: () => dispatch(fetchProducts()),
-  fetchCart: (userId) => dispatch(fetchCart(userId))
+  fetchCart: userId => dispatch(fetchCart(userId))
 })
 
-const ConnectedAllProducts = connect(mapStateToProps, mapDispatchToState)(AllProducts)
+const ConnectedAllProducts = connect(mapStateToProps, mapDispatchToState)(
+  AllProducts
+)
 
 export default ConnectedAllProducts
-
-

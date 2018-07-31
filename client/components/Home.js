@@ -110,6 +110,7 @@ class HomePage extends React.Component {
                         </ul>
                     </div>
                 </div>
+                <div className="brand-name">BroccoliBoys</div>
             </React.Fragment>
         )
     }

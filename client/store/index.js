@@ -18,7 +18,7 @@ import { reviewReducer } from './reviewReducer'
 const reducer = combineReducers({
   user: userReducer,
   products: productReducer,
-  cart: cartReducer,
+  carts: cartReducer,
   reviews: reviewReducer
 })
 

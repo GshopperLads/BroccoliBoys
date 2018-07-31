@@ -29,7 +29,7 @@ class Payment extends Component {
 
   render() {
     // need to replace dummy data w/ real one
-    console.log(this.props.dummyCartProduct)
+    console.log(this.props)
     const {stripeKey} = require('../../secrets.js')
     return (
       <div>
