@@ -6,10 +6,12 @@ const session = require('express-session')
 const passport = require('passport')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./db')
-const sessionStore = new SequelizeStore({ db })
+const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+const sgMail = require('@sendgrid/mail');
+const {CartItem} = require('./db/models')
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -46,7 +48,7 @@ const createApp = () => {
 
   // body parsing middleware
   app.use(express.json())
-  app.use(express.urlencoded({ extended: true }))
+  app.use(express.urlencoded({extended: true}))
 
   // compression middleware
   app.use(compression())
@@ -65,10 +67,85 @@ const createApp = () => {
 
   // auth and api routes
   app.use('/auth', require('./auth'))
+  app.use('/checkout', require('./routes'))
   app.use('/api', require('./api'))
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
+
+
+  // client side : generate a token using publishable API key > forward the token to the server > combine token w/ secret API key to charge money via Strip API
+
+  const {stripeKey, stripeSKey} = require('../secrets.js')
+  // Set your secret key: remember to change this to your live secret key in production
+  // See your keys here: https://dashboard.stripe.com/account/apikeys
+  var stripe = require('stripe')(stripeSKey)
+
+  // Token is created using Checkout or Elements!
+  // Get the payment token ID submitted by the form:
+
+
+
+  const postStripeCharge = res => (stripeErr, stripeRes) => {
+    if (stripeErr) {
+      res.status(500).send({ error: stripeErr })
+    } else {
+      res.status(200).send({ success: stripeRes })
+    }
+  }
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  app.post('/save-stripe-token', (req, res, next) => {
+      console.log(req.body)
+      // stripe.charges.create(req.body, postStripeCharge(res))
+
+      stripe.customers.create({
+        email: req.body.email, // need to get data from somewhere
+        source: req.body.source,
+      })
+      .then(customer => stripe.charges.create({
+        amount: req.body.amount,
+        description: req.body.description,
+        currency: req.body.currency,
+        customer: customer.id
+      }))
+      .then(charge => {
+        console.log("charge: ", charge)
+        const msg = {
+          to: req.body.email,
+          from: 'info@broccoliboys.com',
+          subject: 'Payment is approved - BroccoliBoys!',
+          text: `Dear Customer,\r\n\r\nYour purchase is approved.\r\n\r\n\r\n\r\nThank you for purchasing our products!\r\n\r\n\r\n\r\nYou can track your deliveries, and access all broccolies in the world.\r\n\r\nTell us your broccoli preferences. Enjoy.\r\n\r\nThank You!\r\n\r\n\r\n\r\nRegards,\r\n\r\n\r\n\r\n\r\n\r\n BroccoliBoys\r\n\r\n\r\n\r\nhttp://broccoliboys.herokuapp.com\r\n\r\ninfo@broccoliboys.com `,
+        };
+        sgMail.send(msg);
+
+        CartItem.destroy({
+          where: {
+            userId: req.body.customer
+          }
+        })
+        console.log("delete everything... ")
+        res.send(charge)
+      })
+      .catch(err => {
+        console.log("Error: ", err)
+        res.status(500).send({error: "Purchased Failed"})
+      })
+  })
+
+
+  const checkingUser = () => {
+
+  }
+
+
+  // const charge = stripe.charges.create({
+  //   amount: 999,
+  //   currency: 'usd',
+  //   description: 'Example charge',
+  //   source: token,
+  // });
+
+  // stripe.charges.retrieve("ch_1Cu0yQAd7n2dX73XK184ks1t", { stripeKey });
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
   app.use((req, res, next) => {
