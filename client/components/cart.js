@@ -7,15 +7,20 @@ import Cartitems from './cartItems'
 import {SSL_OP_SSLEAY_080_CLIENT_DH_BUG} from 'constants'
 
 class Cart extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      productsToRender: []
-    }
-  }
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     productsToRender: []
+  //   }
+  // }
 
-  async componentWillMount() {
+  async componentDidMount() {
     await this.props.fetchCartFromDb()
+    this.setState({
+      productsToRender: this.props.carts
+      .filter(el => el.userId === userId)
+      .map(userCart => userCart.product)
+    })
     // let productsToRenderKeys = Object.keys(this.props.cart.cartProducts)
     // let productsToRender = this.props.products.filter(product =>
     //   productsToRenderKeys.includes(product.id.toString())
@@ -27,11 +32,12 @@ class Cart extends React.Component {
     const user = this.props.user
     let userId = user.id
     const cartToRender = this.props.carts.filter(el => el.userId === userId)
-    const productsToRender = this.props.carts
-      .filter(el => el.userId === userId)
-      .map(userCart => userCart.product)
+    // const productsToRender = this.props.carts
+    //   .filter(el => el.userId === userId)
+    //   .map(userCart => userCart.product)
+    let productsToRender=this.state.productsToRender
     let value = 0
-    productsToRender.forEach(product => (value += product.price))
+    this.state.productsToRender.forEach(product => (value += product.price))
     console.log('productsToRender', productsToRender)
     console.log('VAL', value)
     return (
