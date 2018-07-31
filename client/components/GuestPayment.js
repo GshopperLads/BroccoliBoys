@@ -13,7 +13,7 @@ import StripeCheckout from 'react-stripe-checkout'
   ( token generation happens under the hood with the official Stripe.js library)
 */
 
-class Payment extends Component {
+class GuestPayment extends Component {
   componentDidMount() {
     this.props.fetchProducts()
 
@@ -57,20 +57,26 @@ class Payment extends Component {
 
     // console.log(this.props)
     const {stripeKey} = require('../../secrets.js')
-    const user = this.props.user
-    const userId = user.id
-    const cartToRender = this.props.carts.filter(el => el.userId === userId)
-    const productsToRender = cartToRender.map(userCart => userCart.product)
       let value = 0
+
+    //define products
+    const products = this.props.products
+
+    //Get keys from session storage, to find products needed
+    let productsToRenderKeys = Object.keys(sessionStorage)
+    //Check to see what products are included in local storage
+    let productsToRender = [];
+    // console.log('ALL PRODUCTS', products)
+    for (let i=0; i<products.length; i++){
+      if(productsToRenderKeys.includes(products[i].id.toString())){
+        productsToRender.push(products[i])
+      }
+    }
 
       console.log("productsToRender", productsToRender)
       for (let i = 0; i < productsToRender.length; i++) {
-        for (let j = 0; j < cartToRender.length; j++) {
-          if (productsToRender[i].id === cartToRender[j].productId) {
-            value += Number(productsToRender[i].price) * Number(cartToRender[j].quantity)
+            value += Number(productsToRender[i].price) * Number(sessionStorage.getItem([productsToRender[i].id]))
           }
-        }
-      }
   
     return (
       <div>
@@ -97,13 +103,13 @@ class Payment extends Component {
               token={this.onToken(value)}
               stripeKey={stripeKey}
               // image="https://www.vidhub.co/assets/logos/vidhub-icon-2e5c629f64ced5598a56387d4e3d0c7c.png"
-              name={user.name}
+              name="guest"
               description="Card Payment"
               panelLabel="Submit Order"
               currency="USD"
               amount={value*100}
-              email={user.email}
-              customer={user.id}
+              email="guest"
+              customer="guest"
               // shippingAddress
               allowRememberMe
               className="pay-btn"
@@ -131,7 +137,7 @@ class Payment extends Component {
 }
 
 const mapState = state => ({
-  dummyCartProduct: state.products.filter(product => product.price >= 9),
+  products: state.products,
   carts: state.carts,
   user: state.user
 })
@@ -140,4 +146,4 @@ const mapDispatch = dispatch => ({
   fetchProducts: () => dispatch(fetchProducts())
 })
 
-export default connect(mapState, mapDispatch)(Payment)
+export default connect(mapState, mapDispatch)(GuestPayment)
