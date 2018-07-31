@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom'
 import { Shop, fetchCart } from '../store'
 import { connect } from 'react-redux'
 
+
 class CardExampleCardProps extends React.Component {
+
+
 
   render() {
     return (

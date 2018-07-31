@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {fetchProducts} from '../store'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchProducts } from '../store'
 import CheckoutProductCards from './CheckoutProductCards'
 
 // import {Helmet} from 'react-helmet' // to use script tag in jsx
@@ -29,8 +29,7 @@ class Payment extends Component {
 
   render() {
     // need to replace dummy data w/ real one
-    console.log(this.props)
-    const {stripeKey} = require('../../secrets.js')
+    const { stripeKey } = require('../../secrets.js')
     return (
       <div>
         <div className="payment-title">

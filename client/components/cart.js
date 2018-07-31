@@ -9,8 +9,7 @@ class Cart extends React.Component {
    constructor() {
      super ()
      this.state = {
-       carts: [],
-       total: []
+       carts: []
      }
      this.addClick = this.addClick.bind(this)
      this.minusClick=this.minusClick.bind(this)
@@ -53,6 +52,7 @@ class Cart extends React.Component {
     //GET relevant products
     const productsToRender = cartToRender.map(userCart => userCart.product)
     let value = 0
+
     console.log("productsToRender", productsToRender)
     for(let i=0; i<productsToRender.length; i++){
       for (let j=0; j<cartToRender.length; j++) {
@@ -61,6 +61,7 @@ class Cart extends React.Component {
         }
       }
     }
+
     return (
       <div>
       <div>
@@ -159,4 +160,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(CartCreator)

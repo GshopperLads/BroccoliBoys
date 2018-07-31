@@ -117,7 +117,6 @@ const mapDispatch = dispatch => ({
   //   // const productId =
   //   // const userID =
 
-  //   console.log(this.props.userId)
 
   //   // const newReview = {
   //   //   rating, content, productId, userId

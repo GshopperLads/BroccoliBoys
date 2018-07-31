@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Cart, CartItem, Product} = require('../db/models')
+const { Cart, CartItem, Product } = require('../db/models')
 module.exports = router
 
 //Retrieve all carts, but there's only one
@@ -20,7 +20,7 @@ router.get('/:userId', async (req, res, next) => {
     const cart = await CartItem.findAll({
       where: {
         userId: req.params.userId
-      }, include: [{model: Product}]
+      }, include: [{ model: Product }]
     })
     res.json(cart)
   } catch (err) {
@@ -33,14 +33,13 @@ router.post('/quantity', async (req, res, next) => {
   try {
     console.log("quantity post .... ")
     const newQuantity = Number(req.body.currentQuantity) + Number(req.body.variation)
-    console.log(newQuantity)
-    const [updateRowCount, updateCart ] = await CartItem.update({
+    const [updateRowCount, updateCart] = await CartItem.update({
       quantity: newQuantity
     }, {
-      where: {
-        id: req.body.cartId
-      }
-    })
+        where: {
+          id: req.body.cartId
+        }
+      })
     res.status(200).json(updateCart)
     // res.status(200).json("testing")
 
@@ -55,7 +54,7 @@ router.post('/quantity', async (req, res, next) => {
 
 router.post('/:userId', async (req, res, next) => {
   try {
-    const cart = await Cart.create({userId: req.params.userId})
+    const cart = await Cart.create({ userId: req.params.userId })
     res.json(cart)
   } catch (err) {
     next(err)

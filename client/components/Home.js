@@ -18,9 +18,6 @@ class HomePage extends React.Component {
             }.bind(this))
         }
 
-
-
-
         var el2 = document.getElementById('searchBar2');
         if (el2) {
             el2.addEventListener("keypress", function (evt) {
@@ -62,18 +59,7 @@ class HomePage extends React.Component {
                 // this.setState({ products: vals })
             }.bind(this))
         }
-
-        // $(function () {
-        //     $('#example').barrating({
-        //         theme: 'fontawesome-stars-o'
-        //         //readonly: true,
-        //         // showSelectedRating:false
-        //     })
-        // })
     }
-
-
-
 
     render() {
         return (
