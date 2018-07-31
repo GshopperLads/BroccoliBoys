@@ -20,10 +20,8 @@ class Cart extends React.Component {
   }
 
   async addClick(cart) {
-    console.log("CART", cart)
     await this.props.modifyQuantity('plus', cart.id, cart.quantity)
     const checkout = await this.props.fetchCartFromDb(this.props.user.id)
-    console.log("THIS IS CHECKOUT", checkout)
     this.setState({
       carts: checkout
     })
@@ -52,7 +50,6 @@ class Cart extends React.Component {
     const productsToRender = cartToRender.map(userCart => userCart.product)
     let value = 0
 
-    console.log("productsToRender", productsToRender)
     for (let i = 0; i < productsToRender.length; i++) {
       for (let j = 0; j < cartToRender.length; j++) {
         if (productsToRender[i].id === cartToRender[j].productId) {

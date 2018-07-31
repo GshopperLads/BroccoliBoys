@@ -59,14 +59,19 @@ class Payment extends Component {
     const {stripeKey} = require('../../secrets.js')
     const user = this.props.user
     const userId = user.id
-    const productsToRender = this.props.carts
-      .filter(el => el.userId === userId)
-      .map(userCart => userCart.product)
-    let value = 0
-    productsToRender.forEach(product => (value += product.price))
-    console.log(productsToRender)
-    console.log('VAL', value)
+    const cartToRender = this.props.carts.filter(el => el.userId === userId)
+    const productsToRender = cartToRender.map(userCart => userCart.product)
+      let value = 0
 
+      console.log("productsToRender", productsToRender)
+      for (let i = 0; i < productsToRender.length; i++) {
+        for (let j = 0; j < cartToRender.length; j++) {
+          if (productsToRender[i].id === cartToRender[j].productId) {
+            value += Number(productsToRender[i].price) * Number(cartToRender[j].quantity)
+          }
+        }
+      }
+  
     return (
       <div>
         <div className="payment-title">
@@ -96,7 +101,7 @@ class Payment extends Component {
               description="Card Payment"
               panelLabel="Submit Order"
               currency="USD"
-              amount={value*100}
+              amount={value}
               email={user.email}
               customer={user.id}
               // shippingAddress
