@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {fetchProducts} from '../store'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchProducts } from '../store'
 import CheckoutProductCards from './CheckoutProductCards'
 import {Button, Card, Image, Icon, List, Header} from 'semantic-ui-react'
 import axios from 'axios'
@@ -54,6 +54,7 @@ class Payment extends Component {
 
   render() {
     // need to replace dummy data w/ real one
+
     // console.log(this.props)
     const {stripeKey} = require('../../secrets.js')
     const user = this.props.user
@@ -65,6 +66,7 @@ class Payment extends Component {
     productsToRender.forEach(product => (value += product.price))
     console.log(productsToRender)
     console.log('VAL', value)
+
     return (
       <div>
         <div className="payment-title">

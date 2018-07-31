@@ -4,9 +4,22 @@ import { Link } from 'react-router-dom'
 import { me } from "../store"
 
 class SingleUser extends Component {
+  constructor() {
+    super()
+    this.state = {
+      user: {}
+    }
+  }
+
+  async componentDidMount() {
+    console.log("component Did Mount triggered")
+    await this.props.me()
+    this.setState({ user: this.props.user })
+  }
 
   render() {
-    const user = this.props.user
+    console.log("render method triggered")
+    const user = this.state.user
     return (
       <div className="user-info">
         {

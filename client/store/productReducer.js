@@ -4,18 +4,18 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_PRODUCTS = "GET_PRODUCTS"
-const GET_PRODUCT = "GET_PRODUCT"
+export const GET_PRODUCTS = "GET_PRODUCTS"
+export const GET_PRODUCT = "GET_PRODUCT"
 
 /**
  * ACTION CREATORS
  */
-const getProducts = (products) => ({
+export const getProducts = (products) => ({
   type: GET_PRODUCTS,
   products
 })
 
-const getProduct = (product) => ({
+export const getProduct = (product) => ({
   type: GET_PRODUCT,
   product
 })
