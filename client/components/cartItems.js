@@ -10,6 +10,7 @@ class cartItems extends Component {
 
   render() {
     const carts = [...this.props.carts]
+    console.log(carts)
     return (
       <div className="itemsInCart">
         <Card.Group>
