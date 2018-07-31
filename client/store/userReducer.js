@@ -35,6 +35,7 @@ const defaultUser = {}
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
+    console.log("##########", res.data)
     dispatch(getUser(res.data || defaultUser))
   } catch (err) {
     console.error(err)
@@ -82,7 +83,6 @@ export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
     dispatch(removeUser())
-    history.push('/login')
   } catch (err) {
     console.error(err)
   }
@@ -90,10 +90,13 @@ export const logout = () => async dispatch => {
 
 export const modifyUser = (userId, modifiedUser) => async dispatch => {
   try {
+    console.log("mfuser", modifiedUser, userId)
     const res = await axios.put(`/api/users/${userId}`, modifiedUser)
     const user = res.data
-    dispatch(changeUser(user))
-    history.push('/account')
+    console.log("user: ", user)
+    dispatch(getUser(user))
+
+    history.push("/account")
   } catch (err) {
     console.error(err)
   }

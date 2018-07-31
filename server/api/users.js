@@ -51,16 +51,19 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:userId', async (req, res, next) => {
   try {
-    const [updatedRowCount, updatedUser] = await User.update({
+    const result = await User.update({
       name: req.body.name,
       address: req.body.address,
       email: req.body.email
     }, {
+        returning: true,
         where: {
           id: req.params.userId
         }
       })
-    res.status(200).json(updatedUser)
+    // console.log("updatedUser", result[1)
+    // console.log("updatedRowCount", updatedRowCount)
+    res.status(200).json(result[1])
   } catch (err) {
     next(err)
   }

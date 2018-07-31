@@ -10,14 +10,14 @@ class Navbar extends React.Component {
     super(props)
   }
 
-  async componentDidMount() {
-    await this.props.fetchMe()
+  componentDidMount() {
+    this.props.fetchMe()
     if (this.props.user.id) {
       this.props.fetchCart(this.props.user.id)
-
-
     }
+
   }
+
 
   render() {
     return (
@@ -34,17 +34,9 @@ class Navbar extends React.Component {
                 <div className="item">Products</div>
               </Link>
               <div className="right menu">
-                <div href="#" onClick={this.props.handleClick} className="item">
-                  Logout
-                  </div>
-                <div className="ui pointing menu">
-                  <Link to={'/account'}>
-                    <div className="item">Account</div>
-                  </Link>
-                  <Link to={`/cart/${this.props.user.id}`}>
-                    <div className="item">Cart</div>
-                  </Link>
-                </div>
+                <Link to={'/'}><div onClick={this.props.handleClick} className="item">Logout</div></Link>
+                <Link to={'/account'}><div className="item">Account</div></Link>
+                <Link to={`/cart/${this.props.user.id}`}><div className="item">Cart</div></Link>
                 <div className="item">
                   <div className="ui transparent icon input">
                     <input type="text" placeholder="Search..." id="searchBar1" />
@@ -61,19 +53,12 @@ class Navbar extends React.Component {
         ) : (
             <div>
               <div className="ui pointing menu">
-                <Link to={'/'}>
-                  <div className="item">Home</div>
-                </Link>
-                <Link to={'/products'}>
-                  <div className="item">Products</div>
-                </Link>
-
+                <Link to={'/'}><div className="item">Home</div></Link>
+                <Link to={'/products'}><div className="item">Products</div></Link>
                 <div className="right menu">
                   <Link to="/login"><div className="item">Login</div></Link>
                   <Link to="/signup"><div className="item">Sign Up</div></Link>
-                  <Link to='/cart'>
-                    <div className="item">Cart</div>
-                  </Link>
+                  <Link to='/cart'><div className="item">Cart</div></Link>
                   <div className="item">
                     <div className="ui transparent icon input">
                       <input type="text" placeholder="Search..." id="searchBar2" />
