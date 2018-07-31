@@ -5,7 +5,7 @@ import CardExampleCardProps from './Card'
 const SingleProductCreator = props => {
   const products = [...props.products]
   return (
-    <Card.Group itemsPerRow={4}>
+    <Card.Group itemsPerRow={1}>
       {products.map(product => (
         <CardExampleCardProps
           key={product.id}

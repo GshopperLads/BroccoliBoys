@@ -32,7 +32,6 @@ class UserEdit extends Component {
       address
     }
     await this.props.modifyUser(this.props.user.id, modifiedUser)
-    this.props.history.push('/account')
   }
 
   render() {
