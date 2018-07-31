@@ -60,7 +60,7 @@ class GuestCart extends React.Component {
             </Header>
           </div>
           <div>
-            <Link to="/payment">
+            <Link to="/guestpayment">
               <input type="submit" value="Check Out" className="btn-payment" />
             </Link>
             <List celled>

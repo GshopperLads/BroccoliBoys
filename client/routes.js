@@ -16,7 +16,8 @@ import {
   UserEdit,
   Admin,
   Dashboard,
-  GuestCart
+  GuestCart,
+  GuestPayment
 } from './components'
 import { me } from './store'
 
@@ -47,6 +48,7 @@ class Routes extends Component {
           <Route exact path="/products" component={AllProducts} />
           <Route exact path="/products/:id" component={SingleProduct} />
           <Route path="/products/:id/newreview" component={NewReview} />
+          <Route exact path="/guestpayment" component={GuestPayment} />
 
           {isLoggedIn && (
             <Switch>

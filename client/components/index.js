@@ -19,3 +19,5 @@ export {default as UserEdit} from './user-edit'
 export {default as Admin} from './Admin'
 export {default as Dashboard} from './admin/Dashboard'
 export {default as GuestCart} from './GuestCart'
+export {default as GuestPayment} from './GuestPayment'
+
