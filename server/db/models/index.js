@@ -18,7 +18,7 @@ const db = require("../db")
 User.hasOne(Cart)
 
 //adds cartId to cartitem
-Cart.hasMany(CartItem, {as: 'Items'})
+// Cart.hasMany(CartItem, {as: 'Items'})
 Cart.belongsTo(User)
 
 

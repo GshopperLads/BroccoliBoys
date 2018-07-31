@@ -22,9 +22,9 @@ const deleteFromCart = (cart) => ({
   cart
 })
 
-const addToCart = (item) => ({
+const addToCart = (cart) => ({
   type: ADD_TO_CART,
-  item
+  cart
 })
 
 const clearCart = () => ({
@@ -39,8 +39,10 @@ const clearCart = () => ({
 export const fetchCart = (userId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/cart/${userId}`)
-      dispatch(getCart(data))
+      const res = await axios.get(`/api/cart/${userId}`)
+      const cart = res.data
+      console.log('fetching cart... ', cart)
+      dispatch(getCart(cart))
     } catch (err) {
       console.error(err)
     }
@@ -50,13 +52,13 @@ export const fetchCart = (userId) => {
 export const Shop = (productId, userId) => {
   return async (dispatch) => {
     try {
-      const newCartItem = await axios.put(`api/cart/${productId}`, {cartId })
-      dispatch(addToCart(newCartItem.data))
+      const res = await axios.put(`api/cart/add`, {productId, userId})
+      const newCartItem = res.data
+      dispatch(addToCart(newCartItem))
     } catch (err) {
       console.error(err)
     }
   }
-
 }
 
 export const removeFromCart = (newProduct, newCart, productId, cartId) => {
@@ -78,12 +80,27 @@ export const removeFromCart = (newProduct, newCart, productId, cartId) => {
  * Reducer
  */
 //CART REDUCER
-export const cartReducer = (state = {cart: {}, cartProducts: {} }, action) => {
+// export const cartReducer = (state = {cart: {}, cartProducts: {} }, action) => {
+//   switch (action.type) {
+//     case GET_CART:
+//       return {...state, cart: action.cart}
+//     case ADD_TO_CART:
+//       return {cart: state.cart,  cartProducts: {...state.cartProducts, [action.item.productId]: action.item.quantity}}
+//     case REMOVE_FROM_CART:
+//       return state.filter((el) => { return el !== action.cart })
+//     case CLEAR_CART:
+//       return {...state, cartProducts: []}
+//     default:
+//       return state
+//   }
+// }
+
+export const cartReducer = (state = [], action) => {
   switch (action.type) {
     case GET_CART:
-      return {...state, cart: action.cart}
+      return [...action.cart]
     case ADD_TO_CART:
-      return {cart: state.cart,  cartProducts: {...state.cartProducts, [action.item.productId]: action.item.quantity}}
+      return [...state, action.cart]
     case REMOVE_FROM_CART:
       return state.filter((el) => { return el !== action.cart })
     case CLEAR_CART:
@@ -92,6 +109,5 @@ export const cartReducer = (state = {cart: {}, cartProducts: {} }, action) => {
       return state
   }
 }
-
 
 

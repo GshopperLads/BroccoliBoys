@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 class CardExampleCardProps extends React.Component {
   componentDidMount() {}
   render() {
+    console.log(this.props.match)
     return (
       <div>
         <Card
@@ -30,9 +31,11 @@ class CardExampleCardProps extends React.Component {
                   <i className="shop icon" />
                 </div>
               </div>
-              <Link to={`/products/${this.props.product.id}`}>
-                <button className="ui button">See More</button>
-              </Link>
+              {!this.props.isSingle &&
+                <Link to={`/products/${this.props.product.id}`}>
+                  <button className="ui button">See More</button>
+                </Link>
+              }
               <Icon name="recycle" />
               Certified Organic
             </div>
