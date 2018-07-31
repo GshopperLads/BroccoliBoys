@@ -13,8 +13,8 @@ const socketio = require('socket.io')
 const sgMail = require('@sendgrid/mail');
 const {CartItem} = require('./db/models')
 
-const helmet = require('helmet')
-const csp = require('express-csp-header');
+// const helmet = require('helmet')
+// const csp = require('express-csp-header');
 
 module.exports = app
 
@@ -54,20 +54,20 @@ const createApp = () => {
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
 
-  const cspMiddleware = csp({
-    policies: {
-      'default-src': [csp.NONE],
-      'script-src': [csp.NONCE],
-      'style-src': [csp.NONCE],
-      'img-src': [csp.SELF],
-      'font-src': [csp.NONCE, 'fonts.gstatic.com'],
-      'object-src': [csp.NONE],
-      'block-all-mixed-content': true,
-      'frame-ancestors': [csp.NONE]
-    }
-  });
-  app.use(helmet())
-  app.use(cspMiddleware);
+  // const cspMiddleware = csp({
+  //   policies: {
+  //     'default-src': [csp.NONE],
+  //     'script-src': [csp.NONCE],
+  //     'style-src': [csp.NONCE],
+  //     'img-src': [csp.SELF],
+  //     'font-src': [csp.NONCE, 'fonts.gstatic.com'],
+  //     'object-src': [csp.NONE],
+  //     'block-all-mixed-content': true,
+  //     'frame-ancestors': [csp.NONE]
+  //   }
+  // });
+  // app.use(helmet())
+  // app.use(cspMiddleware);
   // app.use(helmet.contentSecurityPolicy({
   //   directives: {
   //     defaultSrc: ["'self'"],
@@ -165,12 +165,6 @@ const createApp = () => {
         res.status(500).send({error: "Purchased Failed"})
       })
   })
-
-
-  const checkingUser = () => {
-
-  }
-
 
   // const charge = stripe.charges.create({
   //   amount: 999,
