@@ -404,6 +404,19 @@ ul {
   justify-content: space-between;
 }
 
+
+.payment-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  margin-bottom: 30px;
+}
+
+.payment-total {
+  margin-left: 60px;
+  margin-top: 15px;
+  color: red;
+}
 .brand-name {
   margin: 30px;
   padding: 30px;
