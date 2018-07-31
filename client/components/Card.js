@@ -1,10 +1,10 @@
 import React from 'react'
 import { Card, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { Shop } from '../store'
+import { Shop, fetchCart } from '../store'
 import { connect } from 'react-redux'
+
 class CardExampleCardProps extends React.Component {
-  componentDidMount() { }
 
   render() {
     return (
@@ -24,8 +24,10 @@ class CardExampleCardProps extends React.Component {
               <div
                 className="ui vertical animated button"
                 tabIndex="0"
-                onClick={() =>
-                  this.props.Shop(this.props.product.id, this.props.userId)
+                onClick={async() =>{
+                  await this.props.Shop(this.props.product.id, this.props.userId)
+                  await this.props.fetchCartFromDb(this.props.userId)
+                }
                 }
               >
                 <div className="hidden content">Add</div>
@@ -61,7 +63,7 @@ class CardExampleCardProps extends React.Component {
                 tabIndex="0"
                 onClick={() =>
                   sessionStorage.setItem([this.props.product.id], 1)
-    
+
                 }
               >
                 <div className="hidden content">Add</div>
@@ -86,18 +88,21 @@ class CardExampleCardProps extends React.Component {
     )
   }
 }
+
 const mapStateToprops = state => {
   return {
     products: state.products,
     userId: state.user.id,
     cart: state.cart,
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    carts: state.carts
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    Shop: (productId, userId) => dispatch(Shop(productId, userId))
+    Shop: (productId, userId) => dispatch(Shop(productId, userId)),
+    fetchCartFromDb: userId => dispatch(fetchCart(userId))
   }
 }
 
