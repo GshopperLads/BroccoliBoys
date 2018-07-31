@@ -12,7 +12,9 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//Find cart by Id
+
+
+// using
 router.get('/:userId', async (req, res, next) => {
   try {
     const cart = await CartItem.findAll({
@@ -26,6 +28,31 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
+// using
+router.post('/quantity', async (req, res, next) => {
+  try {
+    console.log("quantity post .... ")
+    const newQuantity = Number(req.body.currentQuantity) + Number(req.body.variation)
+    console.log(newQuantity)
+    const [updateRowCount, updateCart ] = await CartItem.update({
+      quantity: newQuantity
+    }, {
+      where: {
+        id: req.body.cartId
+      }
+    })
+    res.status(200).json(updateCart)
+    // res.status(200).json("testing")
+
+  } catch (err) {
+    next(err)
+  }
+})
+
+
+
+
+
 router.post('/:userId', async (req, res, next) => {
   try {
     const cart = await Cart.create({userId: req.params.userId})
@@ -34,6 +61,8 @@ router.post('/:userId', async (req, res, next) => {
     next(err)
   }
 })
+
+
 
 // //ADD PRODUCT TO CART
 // router.put('/:productId', async (req, res, next) => {
@@ -50,6 +79,7 @@ router.post('/:userId', async (req, res, next) => {
 //     }
 // })
 
+// using
 router.put('/add', async (req, res, next) => {
   try {
     const [cart, oldCart] = await CartItem.findOrCreate({

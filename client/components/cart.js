@@ -26,8 +26,8 @@ class Cart extends React.Component {
   render() {
     const user = this.props.user
     let userId = user.id
-    const cartToRender = this.props.cart.filter(el => el.userId === userId)
-    const productsToRender = this.props.cart
+    const cartToRender = this.props.carts.filter(el => el.userId === userId)
+    const productsToRender = this.props.carts
       .filter(el => el.userId === userId)
       .map(userCart => userCart.product)
     let value = 0
@@ -77,7 +77,7 @@ const mapStateToProps = state => {
   return {
     products: state.products,
     user: state.user,
-    cart: state.cart
+    carts: state.carts
   }
 }
 

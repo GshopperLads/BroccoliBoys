@@ -4,16 +4,39 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_CART = "GET_CART"
+const GET_CARTS = "GET_CARTS"
 const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 const CLEAR_CART = "CLEAR_CART"
 const ADD_TO_CART = "ADD_TO_CART"
 
+// const INCREASE_QUANTITY = "INCREASE_QUANTITY"
+// const DECREASE_QUANTITY = "DECREASE_QUANTITY"
+const CHANGE_QUANTITY = "CHANGE_QUANTITY"
+
 /**
  * ACTION CREATORS
  */
-const getCart = (cart) => ({
-  type: GET_CART,
+const getCarts = (carts) => ({
+  type: GET_CARTS,
+  carts
+})
+
+const addToCart = (cart) => ({
+  type: ADD_TO_CART,
+  cart
+})
+
+// const increaseQuantity = (cart) => ({
+//   type: INCREASE_QUANTITY,
+//   cart
+// })
+
+// const decreaseQuantity = (cart) => ({
+//   type: DECREASE_QUANTITY,
+//   cart
+// })
+const changeQuantity = cart => ({
+  type: CHANGE_QUANTITY,
   cart
 })
 
@@ -22,10 +45,6 @@ const deleteFromCart = (cart) => ({
   cart
 })
 
-const addToCart = (cart) => ({
-  type: ADD_TO_CART,
-  cart
-})
 
 const clearCart = () => ({
   type: CLEAR_CART
@@ -40,9 +59,8 @@ export const fetchCart = (userId) => {
   return async (dispatch) => {
     try {
       const res = await axios.get(`/api/cart/${userId}`)
-      const cart = res.data
-      console.log('fetching cart... ', cart)
-      dispatch(getCart(cart))
+      const carts = res.data
+      dispatch(getCarts(carts))
     } catch (err) {
       console.error(err)
     }
@@ -52,7 +70,7 @@ export const fetchCart = (userId) => {
 export const Shop = (productId, userId) => {
   return async (dispatch) => {
     try {
-      const res = await axios.put(`api/cart/add`, {productId, userId})
+      const res = await axios.put(`/api/cart/add`, {productId, userId})
       const newCartItem = res.data
       dispatch(addToCart(newCartItem))
     } catch (err) {
@@ -60,6 +78,26 @@ export const Shop = (productId, userId) => {
     }
   }
 }
+
+export const modifyQuantity = (type, cartId, currentQuantity) => {
+  return async dispatch => {
+    try {
+      let variation = 1
+      if (type === 'minus') variation = -1
+      console.log("start modify thunk....")
+      const res = await axios.post('/api/cart/quantity', {cartId, currentQuantity, variation})
+      const updatedCart = res.data
+      console.log(updatedCart)
+      console.log("now dispatching.... ")
+      dispatch(changeQuantity(updatedCart))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
+
+
 
 export const removeFromCart = (newProduct, newCart, productId, cartId) => {
   return async (dispatch) => {
@@ -97,14 +135,21 @@ export const removeFromCart = (newProduct, newCart, productId, cartId) => {
 
 export const cartReducer = (state = [], action) => {
   switch (action.type) {
-    case GET_CART:
-      return [...action.cart]
+    case GET_CARTS:
+      return [...action.carts]
     case ADD_TO_CART:
       return [...state, action.cart]
+    case CHANGE_QUANTITY:
+      return [...state, action.cart]
+    // case INCREASE_QUANTITY:
+    //   return [...state, action.cart]
+    // case DECREASE_QUANTITY:
+    //   return [...state, action.cart]
+
     case REMOVE_FROM_CART:
       return state.filter((el) => { return el !== action.cart })
     case CLEAR_CART:
-      return {...state, cartProducts: []}
+      return []
     default:
       return state
   }
