@@ -5,7 +5,7 @@ const app = require('../index')
 const Product = db.model('product')
 
 
-describe('Product API routes', () => {
+describe('PRODUCT API ROUTES', () => {
     let storedProducts;
     const productData = [
         {
@@ -31,7 +31,7 @@ describe('Product API routes', () => {
         storedProducts = createdProducts.map(product => product.dataValues);
     })
 
-    describe('GET /api/products route functionality', () => {
+    describe('Retrieve all products route functionality', () => {
         it('retrieves all products', async () => {
             const response = await request(app)
                 .get('/api/products')
@@ -41,7 +41,7 @@ describe('Product API routes', () => {
         });
     });
 
-    describe('GET /api/products/:id route functionality', () => {
+    describe('Retrieve single product route functionality', () => {
         it('retrieves a single product by id', async () => {
             const response = await request(app)
                 .get('/api/products/2')
@@ -49,7 +49,7 @@ describe('Product API routes', () => {
             expect(response.body.name).to.equal('Broccoli');
         });
     });
-    describe('POST /api/products route functionality', () => {
+    describe('Add single product route functionality', () => {
         it('adds a new product', async () => {
             const response = await request(app)
                 .post('/api/products')
@@ -66,7 +66,7 @@ describe('Product API routes', () => {
             expect(response.body.id).to.equal(3);
         });
     });
-    describe('PUT /api/products/:id route functionality', () => {
+    describe('Update single product route functionality', () => {
         it('updates an existing product', async () => {
             await request(app)
                 .put('/api/products/1')
@@ -85,7 +85,7 @@ describe('Product API routes', () => {
             expect(response.body.name).to.equal('Cauliflower');
         });
     });
-    describe('DELETE /api/products/:id route functionality', () => {
+    describe('Remove single product route functionality', () => {
         it('deletes an existing product', async () => {
             request(app)
                 .delete('/api/products/1')

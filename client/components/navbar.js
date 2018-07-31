@@ -28,21 +28,21 @@ class Navbar extends React.Component {
           <div>
             <div className="ui pointing menu">
               <Link to={'/'}>
-                <a className="item">Home</a>
+                <div className="item">Home</div>
               </Link>
               <Link to={'/products'}>
-                <a className="item">Products</a>
+                <div className="item">Products</div>
               </Link>
               <div className="right menu">
-                <a href="#" onClick={this.props.handleClick} className="item">
+                <div href="#" onClick={this.props.handleClick} className="item">
                   Logout
-              </a>
+                  </div>
                 <div className="ui pointing menu">
                   <Link to={'/account'}>
-                    <a className="item">Account</a>
+                    <div className="item">Account</div>
                   </Link>
                   <Link to={`/cart/${this.props.user.id}`}>
-                    <a className="item">Cart</a>
+                    <div className="item">Cart</div>
                   </Link>
                 </div>
                 <div className="item">
@@ -65,14 +65,14 @@ class Navbar extends React.Component {
                   <div className="item">Home</div>
                 </Link>
                 <Link to={'/products'}>
-                  <a className="item">Products</a>
+                  <div className="item">Products</div>
                 </Link>
 
                 <div className="right menu">
-                  <Link to="/login"><a className="item">Login</a></Link>
-                  <Link to="/signup"><a className="item">Sign Up</a></Link>
+                  <Link to="/login"><div className="item">Login</div></Link>
+                  <Link to="/signup"><div className="item">Sign Up</div></Link>
                   <Link to='/cart'>
-                    <a className="item">Cart</a>
+                    <div className="item">Cart</div>
                   </Link>
                   <div className="item">
                     <div className="ui transparent icon input">

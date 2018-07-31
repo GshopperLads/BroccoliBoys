@@ -28,7 +28,6 @@ router.post('/email', (req, res, next) => {
       subject: 'Welcome to BroccoliBoys!',
       text: `Dear ${req.body.name},\r\n\r\nWelcome to BroccoliBoys!\r\n\r\nChoose Your Broccoli. We are ready to serve you\r\n\r\nYou can track your deliveries, and access all broccolies in the world.\r\n\r\nTell us your broccoli preferences. Enjoy.\r\n\r\nThank You!\r\n\r\n\r\n\r\nRegards,\r\n\r\n\r\n\r\n\r\n\r\n BroccoliBoys\r\n\r\n\r\n\r\nhttp://broccoliboys.herokuapp.com\r\n\r\ninfo@broccoliboys.com `,
     };
-    console.log(msg)
     sgMail.send(msg);
 
     res.send("email page.... ")

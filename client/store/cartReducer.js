@@ -70,7 +70,7 @@ export const fetchCart = (userId) => {
 export const Shop = (productId, userId) => {
   return async (dispatch) => {
     try {
-      const res = await axios.put(`/api/cart/add`, {productId, userId})
+      const res = await axios.put(`/api/cart/add`, { productId, userId })
       const newCartItem = res.data
       dispatch(addToCart(newCartItem))
     } catch (err) {
@@ -84,11 +84,9 @@ export const modifyQuantity = (type, cartId, currentQuantity) => {
     try {
       let variation = 1
       if (type === 'minus') variation = -1
-      console.log("start modify thunk....")
-      const res = await axios.post('/api/cart/quantity', {cartId, currentQuantity, variation})
+      const res = await axios.post('/api/cart/quantity', { cartId, currentQuantity, variation })
       const updatedCart = res.data
-      console.log(updatedCart)
-      console.log("now dispatching.... ")
+
       dispatch(changeQuantity(updatedCart))
     } catch (err) {
       console.error(err)

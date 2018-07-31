@@ -12,11 +12,8 @@ class SingleUser extends Component {
   }
 
   async componentDidMount() {
-    console.log("componentDidMount on singleUser called")
     await this.props.me()
-    console.log("user: ", this.props.user)
     this.setState({ user: this.props.user })
-    console.log("state, ", this.state.user)
   }
 
   render() {
