@@ -1,41 +1,69 @@
-import React from "react"
-import { Card, Icon, Button, Image } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import {Card, Icon, Button, Image} from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import {modifyQuantity} from '../store'
 
+class cartItems extends Component {
+  componentDidUpdate() {
 
-const cartItems = (props) => {
-    const products = [...props.products]
+  }
+
+  render() {
+    const carts = [...this.props.carts]
     return (
-        <div className="itemsInCart">
+      <div className="itemsInCart">
         <Card.Group>
-            {products.map(product =>
-            <Card key={product.id}>
-                <Card.Content>
-                    <Image floated='right' size='mini' src={product.imageUrl} />
-                    <Card.Header>{product.name}</Card.Header>
-                    <Card.Meta>${product.price}</Card.Meta>
-                    <Card.Description>
-                        {product.description}
-                    </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                    <p>
-                        <Icon name='cart' />
-                        20 in cart
+          {carts.map(cart => (
+            <Card key={cart.product.id}>
+              <Card.Content>
+                <Image
+                  floated="right"
+                  size="mini"
+                  src={cart.product.imageUrl}
+                />
+                <Card.Header>{cart.product.name}</Card.Header>
+                <Card.Meta>${cart.product.price}</Card.Meta>
+                <Card.Description>{cart.product.description}</Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <p>
+                  <Icon name="cart" />
+                  {cart.quantity} in cart
                 </p>
-                    <div className='ui two buttons'>
-                        <Button basic color='green'>
-                            +
-                    </Button>
-                        <Button basic color='red'>
-                            -
-                    </Button>
-                    </div>
-                </Card.Content>
+                <div className="ui two buttons">
+                  <Button
+                    basic
+                    color="green"
+                    onClick={() =>
+                      this.props.modifyQuantity('plus', cart.id, cart.quantity)
+                    }
+                  >
+                    +
+                  </Button>
+                  <Button
+                    basic
+                    color="red"
+                    onClick={() =>
+                      this.props.modifyQuantity('minus', cart.id, cart.quantity)
+                    }
+                  >
+                    -
+                  </Button>
+                </div>
+              </Card.Content>
             </Card>
-            )}
+          ))}
         </Card.Group>
-    </div>
+      </div>
     )
+  }
 }
 
-export default cartItems
+const mapState = state => ({
+  // carts: state.carts
+})
+const mapDispatch = dispatch => ({
+  modifyQuantity: (type, cartId, currentQuanity) =>
+    dispatch(modifyQuantity(type, cartId, currentQuanity))
+})
+export default connect(mapState, mapDispatch)(cartItems)

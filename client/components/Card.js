@@ -10,7 +10,6 @@ class CardExampleCardProps extends React.Component {
   }
 
   render() {
-    if(!this.props.onSingle){
     return (
       <div>
         <Card
@@ -34,9 +33,11 @@ class CardExampleCardProps extends React.Component {
                   <i className="shop icon" />
                 </div>
               </div>
-              <Link to={`/products/${this.props.product.id}`}>
-                <button className="ui button">See More</button>
-              </Link>
+              {!this.props.isSingle &&
+                <Link to={`/products/${this.props.product.id}`}>
+                  <button className="ui button">See More</button>
+                </Link>
+              }
               <Icon name="recycle" />
               Certified Organic
             </div>
