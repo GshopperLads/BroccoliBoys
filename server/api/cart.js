@@ -1,11 +1,11 @@
 const router = require('express').Router()
-const { Cart, CartItem, Product } = require('../db/models')
+const { CartItem, Product } = require('../db/models')
 module.exports = router
 
 //Retrieve all carts, but there's only one
 router.get('/', async (req, res, next) => {
   try {
-    const cart = await Cart.findAll({})
+    const cart = await CartItem.findAll({})
     res.json(cart[0])
   } catch (err) {
     next(err)
@@ -94,9 +94,9 @@ router.put('/add', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async(req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
-    await CartItem.destroy({where: {id: req.params.id}})
+    await CartItem.destroy({ where: { id: req.params.id } })
     res.send(200)
   } catch (err) {
     next(err)

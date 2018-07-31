@@ -65,7 +65,7 @@ class HomePage extends React.Component {
         return (
             <React.Fragment>
                 <script type="text/javascript">
-                    $(document).ready(function(){
+                    $(document).ready(function() {
                         window.setInterval(function () {
                             var next = ($('.select').index() + 1) % $('.circle').length;
                             var prev = $('.select').index();

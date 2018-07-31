@@ -9,7 +9,7 @@ chai.use(chaiThings);
 //Product Model
 const { db } = require("../../server/db/models")
 const Product = db.model("product")
-const Cart = db.model("cart")
+const CartItem = db.model("cartitem")
 const User = db.model("user")
 
 // AllProducts component
@@ -19,7 +19,7 @@ import { AllProducts } from "../components/Allproducts"
 import ProductCreator from "./ProductCreator"
 import CardExampleCardProps from './Card'
 import { CartCreator } from "./cart"
-import Cartitems from './cartItems'
+
 
 
 
@@ -56,27 +56,25 @@ describe('Front-End', () => {
             expect(wrapper.find(CardExampleCardProps)).to.have.length(products.length);
         })
     })
+
     // describe('<Cart /> component', () => {
     //     it('does not render a cartItems component if user is not defined ', async () => {
-    //         const carts = [
-    //             { userId: 1 },
-    //             { userId: 2 },
-    //             { userId: 3 },
-    //             { userId: 4 },
-    //             { userId: 5 },
-    //             { userId: 6 },
-    //             { userId: 7 },
-    //             { userId: 8 },
-    //             { userId: 9 },
-    //             { userId: 10 },
-    //             { userId: 11 }
+    //         const cartItems = [
+    //             { quantity: 1 },
+    //             { quantity: 1 },
+    //             { quantity: 2 },
+    //             { quantity: 1 },
+    //             { quantity: 2 },
+    //             { quantity: 1 },
     //         ]
+    //         beforeEach(async () => {
+    //             return db.sync({ force: true })
+    //         });
     //         const user = { name: "Admin", email: 'admin@broccoliboys.com', password: '1234' }
-
-    //         const generatedCarts = await Cart.bulkCreate(carts)
+    //         const generatedCartItems = await CartItem.bulkCreate(cartItems)
     //         const generatedUser = await User.create(user)
-    //         const wrapper = shallow(<CartCreator user={generatedUser} carts={generatedCarts} />);
-    //         expect(wrapper.find(cartItems)).to.have.length(0);
+    //         const wrapper = shallow(<CartCreator user={null} carts={generatedCartItems} />);
+    //         expect(wrapper.find(generatedCartItems)).to.have.length(0);
     //     })
     // })
 

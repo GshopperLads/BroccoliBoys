@@ -5,7 +5,7 @@ import { fetchCart, removeFromCart, modifyQuantity } from '../store'
 import { Button, Card, Image, Icon, List, Header } from 'semantic-ui-react'
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants'
 
-class Cart extends React.Component {
+export class CartCreator extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -159,4 +159,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(CartCreator)

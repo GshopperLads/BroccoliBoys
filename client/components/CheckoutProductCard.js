@@ -1,6 +1,6 @@
 import React from 'react'
-import {Card, Icon} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
+import { Card, Icon } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 export const CheckoutProductCard = props => (
   <Card
