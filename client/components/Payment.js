@@ -71,7 +71,7 @@ class Payment extends Component {
           }
         }
       }
-  
+
     return (
       <div>
         <div className="payment-title">
