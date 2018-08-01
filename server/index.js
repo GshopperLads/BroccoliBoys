@@ -10,8 +10,8 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
-const sgMail = require('@sendgrid/mail');
-const {CartItem} = require('./db/models')
+const sgMail = require('@sendgrid/mail')
+const {CartItem, Order} = require('./db/models')
 
 // const helmet = require('helmet')
 // const csp = require('express-csp-header');
@@ -68,6 +68,7 @@ const createApp = () => {
   // });
   // app.use(helmet())
   // app.use(cspMiddleware);
+
   // app.use(helmet.contentSecurityPolicy({
   //   directives: {
   //     defaultSrc: ["'self'"],
@@ -109,7 +110,6 @@ const createApp = () => {
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
 
-
   // client side : generate a token using publishable API key > forward the token to the server > combine token w/ secret API key to charge money via Strip API
 
   const {stripeKey, stripeSKey} = require('../secrets.js')
@@ -120,60 +120,73 @@ const createApp = () => {
   // Token is created using Checkout or Elements!
   // Get the payment token ID submitted by the form:
 
-
-
-  const postStripeCharge = res => (stripeErr, stripeRes) => {
-    if (stripeErr) {
-      res.status(500).send({ error: stripeErr })
-    } else {
-      res.status(200).send({ success: stripeRes })
-    }
-  }
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
   app.post('/save-stripe-token', (req, res, next) => {
-      console.log(req.body)
-      // stripe.charges.create(req.body, postStripeCharge(res))
-
-      stripe.customers.create({
-        email: req.body.email, // need to get data from somewhere
-        source: req.body.source,
+    console.log(req.body.customer)
+    CartItem.findAll({
+      where: {
+        userId: req.body.customer
+      }
+    })
+      .then(response => {
+        console.log("first element", response[0])
+        response.map(el => {
+          console.log(el)
+          let actualEl = el.dataValues
+          console.log(actualEl)
+          Order.create({
+            userId: actualEl.userId,
+            productId: actualEl.productId,
+            quantity: actualEl.quantity
+          })
+        })
       })
-      .then(customer => stripe.charges.create({
-        amount: req.body.amount,
-        description: req.body.description,
-        currency: req.body.currency,
-        customer: customer.id
-      }))
+      .catch(err => {
+        console.log('Error: ', err)
+        res.status(500).send({error: 'Purchased Failed'})
+      })
+
+    stripe.customers
+      .create({
+        email: req.body.email, // need to get data from somewhere
+        source: req.body.source
+      })
+      .then(customer =>
+        stripe.charges.create({
+          amount: req.body.amount,
+          description: req.body.description,
+          currency: req.body.currency,
+          customer: customer.id
+        })
+      )
       .then(charge => {
-        console.log("charge: ", charge)
+        console.log('charge: ', charge)
         const msg = {
           to: req.body.email,
           from: 'info@broccoliboys.com',
           subject: 'Payment is approved - BroccoliBoys!',
-          text: `Dear Customer,\r\n\r\nYour purchase is approved.\r\n\r\n\r\n\r\nThank you for purchasing our products!\r\n\r\n\r\n\r\nYou can track your deliveries, and access all broccolies in the world.\r\n\r\nTell us your broccoli preferences. Enjoy.\r\n\r\nThank You!\r\n\r\n\r\n\r\nRegards,\r\n\r\n\r\n\r\n\r\n\r\n BroccoliBoys\r\n\r\n\r\n\r\nhttp://broccoliboys.herokuapp.com\r\n\r\ninfo@broccoliboys.com `,
-        };
-        sgMail.send(msg);
+          text: `Dear Customer,\r\n\r\nYour purchase is approved.\r\n\r\n\r\n\r\nThank you for purchasing our products!\r\n\r\n\r\n\r\nYou can track your deliveries, and access all broccolies in the world.\r\n\r\nTell us your broccoli preferences. Enjoy.\r\n\r\nThank You!\r\n\r\n\r\n\r\nRegards,\r\n\r\n\r\n\r\n\r\n\r\n BroccoliBoys\r\n\r\n\r\n\r\nhttp://broccoliboys.herokuapp.com\r\n\r\ninfo@broccoliboys.com `
+        }
+        sgMail.send(msg)
+
         CartItem.destroy({
           where: {
             userId: req.body.customer
           }
         })
-        res.send("Thank for purchasing our product!")
+
+        /*
+        productId,
+        userId: req.body.customer
+        quantity:
+        */
+        res.send('Thank for purchasing our product!')
       })
       .catch(err => {
-        console.log("Error: ", err)
-        res.status(500).send({error: "Purchased Failed"})
+        console.log('Error: ', err)
+        res.status(500).send({error: 'Purchased Failed'})
       })
   })
-
-  // const charge = stripe.charges.create({
-  //   amount: 999,
-  //   currency: 'usd',
-  //   description: 'Example charge',
-  //   source: token,
-  // });
-
-  // stripe.charges.retrieve("ch_1Cu0yQAd7n2dX73XK184ks1t", { stripeKey });
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
   app.use((req, res, next) => {
