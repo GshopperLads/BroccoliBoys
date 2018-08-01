@@ -18,6 +18,8 @@ export class AllProducts extends Component {
 
     this.setState({ products: this.props.products })
 
+    if (typeof document !== 'undefined') {
+
     var el = document.getElementById('searchBar2');
 
     if (el) {
@@ -49,7 +51,10 @@ export class AllProducts extends Component {
       )
     }
   }
+  }
   componentWillUnmount() {
+    if (typeof document !== 'undefined') {
+
     var el = document.getElementById('searchBar2')
     if (el) {
       document.removeEventListener(
@@ -80,6 +85,7 @@ export class AllProducts extends Component {
         }.bind(this)
       )
     }
+  }
 
     $(function () {
       $('#example').barrating({
