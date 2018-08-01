@@ -18,36 +18,36 @@ export class AllProducts extends Component {
 
     this.setState({ products: this.props.products })
 
-    // var el = document.getElementById('searchBar2');
+    var el = document.getElementById('searchBar2');
 
-    // if (el) {
-    //   el.addEventListener(
-    //     'input',
-    //     function (evt) {
+    if (el) {
+      el.addEventListener(
+        'input',
+        function (evt) {
 
-    //       const products = this.props.products
-    //       let vals = products.filter(product =>
-    //         product.name.toLowerCase().includes(evt.target.value.toLowerCase())
-    //       )
-    //       this.setState({ products: vals })
+          const products = this.props.products
+          let vals = products.filter(product =>
+            product.name.toLowerCase().includes(evt.target.value.toLowerCase())
+          )
+          this.setState({ products: vals })
 
-    //     }.bind(this)
-    //   )
-    // }
-    // var el = document.getElementById('searchBar1')
-    // if (el) {
-    //   el.addEventListener(
-    //     'input',
-    //     function (evt) {
-    //       const products = this.props.products
-    //       let vals = products.filter(product =>
-    //         product.name.toLowerCase().includes(evt.target.value.toLowerCase())
-    //       )
-    //       this.setState({ products: vals })
+        }.bind(this)
+      )
+    }
+    var el = document.getElementById('searchBar1')
+    if (el) {
+      el.addEventListener(
+        'input',
+        function (evt) {
+          const products = this.props.products
+          let vals = products.filter(product =>
+            product.name.toLowerCase().includes(evt.target.value.toLowerCase())
+          )
+          this.setState({ products: vals })
 
-    //     }.bind(this)
-    //   )
-    // }
+        }.bind(this)
+      )
+    }
   }
   componentWillUnmount() {
     var el = document.getElementById('searchBar2')
