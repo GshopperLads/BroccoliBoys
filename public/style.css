@@ -125,6 +125,15 @@ Container {
   box-shadow: 0 5px 10px 5px rgba(26, 145, 89, 0.3);
 }
 
+.user-info2 {
+  background: rgba(200, 230, 207, 0.9);
+  padding: 25px;
+  max-width: 430px;
+  margin: 40px auto;
+  border-radius: 4px;
+  box-shadow: 0 5px 10px 5px rgba(26, 145, 89, 0.3);
+}
+
 .user-info-title {
   text-align: center;
 }
@@ -426,12 +435,4 @@ ul {
   text-align: justify;
   letter-spacing: 4px;
   text-align: center;
-}
-
-.home-partition {
-  background-color: grey;
-}
-
-.hp {
-  background-color: grey;
 }

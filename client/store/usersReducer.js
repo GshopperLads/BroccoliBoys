@@ -11,7 +11,7 @@ const getUsers = users => ({
 export const fetchUsers = (users) => {
   return async dispatch => {
     try {
-      const res = await axios.get('/api/users')
+      const res = await axios.put('/api/users', {"security": true})
       const users = res.data
       dispatch(getUsers(users))
       return users

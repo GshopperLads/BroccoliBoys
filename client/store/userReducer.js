@@ -5,17 +5,12 @@ import history from '../history'
  * ACTION TYPES
  */
 const GET_USER = 'GET_USER'
-const GET_USERS = 'GET_USERS'
 const REMOVE_USER = 'REMOVE_USER'
 const CHANGE_USER = "CHANGE_USER"
 
 /**
  * ACTION CREATORS
  */
-const getUsers = users => ({
-  type: GET_USERS,
-  users
-})
 const deleteUser = user => ({
   type: REMOVE_USER,
   user
@@ -91,7 +86,7 @@ export const logout = () => async dispatch => {
 export const modifyUser = (userId, modifiedUser) => async dispatch => {
   try {
     console.log("mfuser", modifiedUser, userId)
-    const res = await axios.put(`/api/users/${userId}`, modifiedUser)
+    const res = await axios.put(`/api/users/${userId}`, modifiedUser, {"security": true})
     const user = res.data
     console.log("user: ", user)
     dispatch(getUser(user))

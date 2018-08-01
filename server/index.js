@@ -12,8 +12,8 @@ const app = express()
 const socketio = require('socket.io')
 const sgMail = require('@sendgrid/mail')
 const {CartItem, Order} = require('./db/models')
+const helmet = require('helmet')
 
-// const helmet = require('helmet')
 // const csp = require('express-csp-header');
 
 module.exports = app
@@ -53,6 +53,7 @@ const createApp = () => {
   // body parsing middleware
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
+  app.use(helmet())
 
   // const cspMiddleware = csp({
   //   policies: {
@@ -66,7 +67,6 @@ const createApp = () => {
   //     'frame-ancestors': [csp.NONE]
   //   }
   // });
-  // app.use(helmet())
   // app.use(cspMiddleware);
 
   // app.use(helmet.contentSecurityPolicy({
