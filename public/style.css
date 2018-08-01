@@ -436,3 +436,30 @@ ul {
   letter-spacing: 4px;
   text-align: center;
 }
+
+
+
+.admin-event-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.admin-event-btn {
+  width: 200px;
+  height: 50px;
+  margin: 30px;
+  background-color: rgb(85, 85, 85);
+  box-shadow: 0 2px 4px 2px rgba(173, 100, 17, 0.1);
+  border-radius: 10px;
+}
+
+.admin-title {
+  margin: 70px;
+}
+
+.amdin-order-btn {
+  margin-left: 10px;
+}

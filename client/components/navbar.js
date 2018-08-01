@@ -23,7 +23,6 @@ class Navbar extends React.Component {
     return (
       <React.Fragment>
 
-
         {this.props.isLoggedIn ? (
           <div>
             <div className="ui pointing menu">
