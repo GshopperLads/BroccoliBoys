@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {me, fetchOrders} from '../store'
+import {Image} from 'semantic-ui-react'
 
 class SingleUser extends Component {
   constructor() {
@@ -51,8 +52,16 @@ class SingleUser extends Component {
             <div className="user-data-text">
               {userOrders.map(order => (
                 <div key={order.id}>
-                  <div>{order.product.name} (quantity: {order.quantity}) - Total: ${order.product.price*order.quantity} ({order.createdAt.slice(0,10)})</div>
-
+                  <Link to={`/products/${order.product.id}`}>
+                    <div>
+                      <Image avatar src={order.product.imageUrl} />
+                      {order.product.name} (quantity: {order.quantity}) - Total:
+                      ${order.product.price * order.quantity} ({order.createdAt.slice(
+                        0,
+                        10
+                      )})
+                    </div>
+                  </Link>
                 </div>
               ))}
             </div>
