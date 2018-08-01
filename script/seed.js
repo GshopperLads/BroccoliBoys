@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const { User, Cart, Product, Review } = require('../server/db/models')
+const { User, Cart, Product, Review, Order } = require('../server/db/models')
 
 async function seed() {
   await db.sync({ force: true })
@@ -69,12 +69,40 @@ async function seed() {
     Review.create({ content: "Awesome, BroccoliBoys!", rating: 5, productId: 1, userId: 4 })
   ])
 
+  const orders = await Promise.all([
+    Order.create({ userId: 2, productId: 5, quantity: 3}),
+    Order.create({ userId: 2, productId: 2, quantity: 2}),
+    Order.create({ userId: 3, productId: 4, quantity: 1}),
+    Order.create({ userId: 5, productId: 2, quantity: 3}),
+    Order.create({ userId: 4, productId: 6, quantity: 4}),
+    Order.create({ userId: 2, productId: 8, quantity: 3}),
+    Order.create({ userId: 3, productId: 4, quantity: 2}),
+    Order.create({ userId: 2, productId: 2, quantity: 3}),
+    Order.create({ userId: 4, productId: 1, quantity: 4}),
+    Order.create({ userId: 2, productId: 2, quantity: 3}),
+    Order.create({ userId: 5, productId: 3, quantity: 1}),
+    Order.create({ userId: 2, productId: 5, quantity: 3}),
+    Order.create({ userId: 6, productId: 2, quantity: 2}),
+    Order.create({ userId: 2, productId: 7, quantity: 3}),
+    Order.create({ userId: 4, productId: 2, quantity: 2}),
+    Order.create({ userId: 2, productId: 4, quantity: 3}),
+    Order.create({ userId: 3, productId: 3, quantity: 1}),
+    Order.create({ userId: 2, productId: 2, quantity: 1}),
+    Order.create({ userId: 3, productId: 5, quantity: 1}),
+    Order.create({ userId: 5, productId: 3, quantity: 3}),
+    Order.create({ userId: 4, productId: 2, quantity: 1}),
+    Order.create({ userId: 7, productId: 1, quantity: 1}),
+    Order.create({ userId: 6, productId: 2, quantity: 3}),
+    Order.create({ userId: 4, productId: 7, quantity: 1}),
+    Order.create({ userId: 3, productId: 9, quantity: 1})
+  ])
+
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
   console.log(`seeded ${carts.length} cart`)
-
+  console.log(`seeded ${orders.length} cart`)
 
   console.log(`seeded successfully`)
 }

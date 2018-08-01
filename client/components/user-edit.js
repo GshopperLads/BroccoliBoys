@@ -29,7 +29,8 @@ class UserEdit extends Component {
     const modifiedUser = {
       email,
       name,
-      address
+      address,
+      "security": true
     }
     await this.props.modifyUser(this.props.user.id, modifiedUser)
   }
@@ -37,7 +38,7 @@ class UserEdit extends Component {
   render() {
     const user = this.props.user
     return (
-      <div className="user-info">
+      <div className="user-info2">
         <div>
           <form onSubmit={this.handleSubmit}>
             <div className="user-info-title">

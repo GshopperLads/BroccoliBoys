@@ -7,6 +7,8 @@ import { userReducer } from './userReducer'
 import { productReducer } from './productReducer'
 import { cartReducer } from './cartReducer'
 import { reviewReducer } from './reviewReducer'
+import { orderReducer } from './orderReducer'
+import { usersReducer } from './usersReducer'
 
 /*
   INITIAL STATE TYPE OF EACH REDUCER
@@ -19,7 +21,9 @@ const reducer = combineReducers({
   user: userReducer,
   products: productReducer,
   carts: cartReducer,
-  reviews: reviewReducer
+  reviews: reviewReducer,
+  orders: orderReducer,
+  users: usersReducer
 })
 
 const middleware = composeWithDevTools(
@@ -33,3 +37,5 @@ export * from './userReducer'
 export * from './productReducer'
 export * from './cartReducer'
 export * from './reviewReducer'
+export * from './orderReducer'
+export * from './usersReducer'
