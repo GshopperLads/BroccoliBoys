@@ -19,7 +19,6 @@ import { AllProducts } from "../components/Allproducts"
 import ProductCreator from "./ProductCreator"
 import CardExampleCardProps from './Card'
 import { CartCreator } from "./cart"
-import Cartitems from './cartItems'
 
 
 
