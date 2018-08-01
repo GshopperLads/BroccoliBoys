@@ -6,10 +6,7 @@ import history from '../history'
  */
 const GET_REVIEWS = 'GET_REVIEWS'
 const GET_REVIEW = 'GET_REVIEW'
-
 const ADD_REVIEW = 'ADD_REVIEW'
-// const REMOVE_REVIEW = 'REMOVE_REVIEW'
-
 
 /**
  * ACTION CREATORS
@@ -39,7 +36,7 @@ const removeReview = review => ({
  */
 export const fetchReviews = () => async dispatch => {
   try {
-    const { data } = await axios.get('/api/review')
+    const {data} = await axios.get('/api/review')
 
     dispatch(getReviews(data))
   } catch (err) {
@@ -47,16 +44,16 @@ export const fetchReviews = () => async dispatch => {
   }
 }
 
-export const fetchReview = (reviewId) => async dispatch => {
+export const fetchReview = reviewId => async dispatch => {
   try {
-    const { data } = await axios.get(`/api/review/${reviewId}`)
+    const {data} = await axios.get(`/api/review/${reviewId}`)
     dispatch(getReview(data))
   } catch (err) {
     console.error(err)
   }
 }
 
-export const createReview = (newReview) => async dispatch => {
+export const createReview = newReview => async dispatch => {
   try {
     const res = await axios.post('/api/review', newReview)
     const review = res.data

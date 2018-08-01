@@ -1,9 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { fetchCart, removeFromCart, modifyQuantity } from '../store'
-import { Button, Card, Image, Icon, List, Header } from 'semantic-ui-react'
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {fetchCart, removeFromCart, modifyQuantity} from '../store'
+import {Button, Card, Image, Icon, List, Header} from 'semantic-ui-react'
 
 class Cart extends React.Component {
   constructor() {
@@ -28,9 +27,15 @@ class Cart extends React.Component {
   }
 
   async minusClick(cart) {
-    const quant = await this.props.modifyQuantity('minus', cart.id, cart.quantity)
+    const quant = await this.props.modifyQuantity(
+      'minus',
+      cart.id,
+      cart.quantity
+    )
     const checkout = await this.props.fetchCartFromDb(this.props.user.id)
-    const updated = checkout.find((el) => { return el.id === cart.id })
+    const updated = checkout.find(el => {
+      return el.id === cart.id
+    })
     if (updated.quantity <= 0) {
       await this.props.removeCartFromDb(cart.id)
     }
@@ -43,17 +48,18 @@ class Cart extends React.Component {
     const user = this.props.user
     let userId = user.id
 
-    //find USER CART
+    // find USER CART
     const cartToRender = this.props.carts.filter(el => el.userId === userId)
 
-    //GET relevant products
+    // GET relevant products
     const productsToRender = cartToRender.map(userCart => userCart.product)
     let value = 0
 
     for (let i = 0; i < productsToRender.length; i++) {
       for (let j = 0; j < cartToRender.length; j++) {
         if (productsToRender[i].id === cartToRender[j].productId) {
-          value += Number(productsToRender[i].price) * Number(cartToRender[j].quantity)
+          value +=
+            Number(productsToRender[i].price) * Number(cartToRender[j].quantity)
         }
       }
     }
@@ -69,7 +75,7 @@ class Cart extends React.Component {
               <Header as="h2" icon>
                 <Icon name="cart" />
                 Cart
-            </Header>
+              </Header>
               <Header as="h2">
                 <Icon name="dollar sign" />
                 <Header.Content>{value}.00 </Header.Content>
@@ -77,7 +83,11 @@ class Cart extends React.Component {
             </div>
             <div>
               <Link to="/payment">
-                <input type="submit" value="Check Out" className="btn-payment" />
+                <input
+                  type="submit"
+                  value="Check Out"
+                  className="btn-payment"
+                />
               </Link>
               <List celled>
                 {productsToRender.map(product => (
@@ -105,13 +115,15 @@ class Cart extends React.Component {
                   />
                   <Card.Header>{cart.product.name}</Card.Header>
                   <Card.Meta>${cart.product.price}</Card.Meta>
-                  <Card.Description>{cart.product.description}</Card.Description>
+                  <Card.Description>
+                    {cart.product.description}
+                  </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
                   <p>
                     <Icon name="cart" />
                     {cart.quantity} in cart
-                </p>
+                  </p>
                   <div className="ui two buttons">
                     <Button
                       basic
@@ -119,14 +131,14 @@ class Cart extends React.Component {
                       onClick={() => this.addClick(cart)}
                     >
                       +
-                  </Button>
+                    </Button>
                     <Button
                       basic
                       color="red"
                       onClick={() => this.minusClick(cart)}
                     >
                       -
-                  </Button>
+                    </Button>
                   </div>
                 </Card.Content>
               </Card>
@@ -149,8 +161,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCartFromDb: userId => dispatch(fetchCart(userId)),
-    removeCartFromDb: (cartid) =>
-      dispatch(removeFromCart(cartid)),
+    removeCartFromDb: cartid => dispatch(removeFromCart(cartid)),
     modifyQuantity: (type, cartId, currentQuanity) =>
       dispatch(modifyQuantity(type, cartId, currentQuanity))
   }

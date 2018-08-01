@@ -54,11 +54,12 @@ class Dashboard extends Component {
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-              {orders.map(order => (
+                {orders.map(order => (
                   <Table.Row key={order.id}>
                     <Table.Cell>{order.createdAt.slice(0, 10)}</Table.Cell>
-                    <Table.Cell>${order
-                    .product.price * order.quantity}</Table.Cell>
+                    <Table.Cell>
+                      ${order.product.price * order.quantity}
+                    </Table.Cell>
                     <Table.Cell>{order.product.name}</Table.Cell>
                     <Table.Cell>{order.quantity}</Table.Cell>
                     <Table.Cell>{order.userId}</Table.Cell>
@@ -88,7 +89,10 @@ class Dashboard extends Component {
                     </Table.Cell>
                     <Table.Cell>{product.name}</Table.Cell>
                     <Table.Cell>{product.price}</Table.Cell>
-                    <Table.Cell>{product.quantity} <button className="amdin-order-btn">order</button></Table.Cell>
+                    <Table.Cell>
+                      {product.quantity}{' '}
+                      <button className="amdin-order-btn">order</button>
+                    </Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>
@@ -113,4 +117,3 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(Dashboard)
-// export default Dashboard

@@ -1,17 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { authSignup } from '../store'
+import {authSignup} from '../store'
 
-/**
- * COMPONENT
- */
 const SignupForm = props => {
-  const { name, displayName, handleSubmit, error } = props
+  const {name, displayName, handleSubmit, error} = props
   return (
     <div className="form">
       <div className="form-title">Create Account</div>
-      <form onSubmit={handleSubmit} name={name} className="form-wrapper" >
+      <form onSubmit={handleSubmit} name={name} className="form-wrapper">
         <div>
           <label htmlFor="email" className="input-text">
             Email
@@ -31,22 +28,20 @@ const SignupForm = props => {
           <input name="password" type="password" className="input-box" />
         </div>
         <div>
-          <button type="submit" className="btn-login">{displayName}</button>
+          <button type="submit" className="btn-login">
+            {displayName}
+          </button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <div><a href="/auth/google" className="btn btn-info">{displayName} with Google</a></div>
+      <div>
+        <a href="/auth/google" className="btn btn-info">
+          {displayName} with Google
+        </a>
+      </div>
     </div>
   )
 }
-
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
 
 const mapSignup = state => {
   return {
@@ -60,7 +55,6 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
-      const formName = evt.target.name
       const email = evt.target.email.value
       const name = evt.target.name.value
       const password = evt.target.password.value
@@ -71,9 +65,6 @@ const mapDispatch = dispatch => {
 
 export const Signup = connect(mapSignup, mapDispatch)(SignupForm)
 
-/**
- * PROP TYPES
- */
 SignupForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,

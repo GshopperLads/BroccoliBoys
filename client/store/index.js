@@ -1,21 +1,14 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import {createStore, combineReducers, applyMiddleware} from 'redux'
 import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import {composeWithDevTools} from 'redux-devtools-extension'
 
-import { userReducer } from './userReducer'
-import { productReducer } from './productReducer'
-import { cartReducer } from './cartReducer'
-import { reviewReducer } from './reviewReducer'
-import { orderReducer } from './orderReducer'
-import { usersReducer } from './usersReducer'
-
-/*
-  INITIAL STATE TYPE OF EACH REDUCER
-  productReducer: [],
-  userReducer: {},
-  cartReducer: []
- */
+import {userReducer} from './userReducer'
+import {productReducer} from './productReducer'
+import {cartReducer} from './cartReducer'
+import {reviewReducer} from './reviewReducer'
+import {orderReducer} from './orderReducer'
+import {usersReducer} from './usersReducer'
 
 const reducer = combineReducers({
   user: userReducer,
@@ -27,7 +20,7 @@ const reducer = combineReducers({
 })
 
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+  applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
 
 const store = createStore(reducer, middleware)

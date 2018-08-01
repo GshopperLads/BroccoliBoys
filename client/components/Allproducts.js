@@ -90,8 +90,6 @@ export class AllProducts extends Component {
     $(function () {
       $('#example').barrating({
         theme: 'fontawesome-stars-o'
-        //readonly: true,
-        // showSelectedRating:false
       })
     })
   }

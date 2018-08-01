@@ -6,12 +6,8 @@ module.exports = router
 
 router.put('/', async (req, res, next) => {
   try {
-    // console.log(req.body.security)
     if (req.body.security === true) {
       const users = await User.findAll({
-        // explicitly select only the id and email fields - even though
-        // users' passwords are encrypted, it won't help if we just
-        // send everything to anyone who asks!
         attributes: ['id', 'email', 'address', 'name']
       })
       res.json(users)
@@ -41,7 +37,6 @@ router.post('/email', (req, res, next) => {
   }
 })
 
-//get single user
 router.get('/:id', async (req, res, next) => {
   try {
     if (req.body.security === true) {
@@ -73,8 +68,6 @@ router.put('/:userId', async (req, res, next) => {
           }
         }
       )
-      // console.log("updatedUser", result[1)
-      // console.log("updatedRowCount", updatedRowCount)
       res.status(200).json(result[1])
     } else {
       res.send('No Access')

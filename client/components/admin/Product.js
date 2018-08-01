@@ -91,12 +91,13 @@ class AdminProduct extends Component {
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-              {orders.sort(this.dynamicSort('productId')).map(order => (
+                {orders.sort(this.dynamicSort('productId')).map(order => (
                   <Table.Row key={order.id}>
                     <Table.Cell>{order.product.name}</Table.Cell>
                     <Table.Cell>{order.product.quantity}</Table.Cell>
-                    <Table.Cell>${order
-                    .product.price * order.quantity}</Table.Cell>
+                    <Table.Cell>
+                      ${order.product.price * order.quantity}
+                    </Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>

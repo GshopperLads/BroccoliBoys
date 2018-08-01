@@ -13,19 +13,16 @@ class SingleUser extends Component {
   }
 
   async componentDidMount() {
-    console.log('component Did Mount triggered')
     await this.props.me()
     this.setState({user: this.props.user})
     await this.props.fetchOrders()
   }
 
   render() {
-    console.log('render method triggered')
     const user = this.state.user
     const userOrders = this.props.orders.filter(
       order => order.userId === user.id
     )
-    console.log(userOrders)
     return (
       <div className="user-info">
         {

@@ -1,22 +1,20 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { createReview } from '../store'
-
-// import thunk creator after making
+import {createReview} from '../store'
 
 class NewReview extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       rating: 5,
-      content: ""
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
+      content: ''
+    }
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentWillMount() {
-    $(function () {
+    $(function() {
       $('#newrating').barrating({
         theme: 'fontawesome-stars-o'
         //readonly: true,
@@ -25,31 +23,29 @@ class NewReview extends Component {
     })
   }
   componentDidMount() {
-    $(function () {
+    $(function() {
       $('#newrating').barrating({
         theme: 'fontawesome-stars-o'
-        //readonly: true,
-        // showSelectedRating:false
       })
     })
   }
 
   async handleSubmit(evt) {
-    evt.preventDefault();
+    evt.preventDefault()
     const content = evt.target.content.value
     const rating = evt.target.rating.value
     const userId = this.props.userId
     const productId = this.props.match.params.id
     const newReview = {
-      rating, content, productId, userId
+      rating,
+      content,
+      productId,
+      userId
     }
     await this.props.createReview(newReview)
   }
 
-
   render() {
-
-    // const handleSubmit = this.props.handleSubmit
     const isLoggedIn = this.props.isLoggedIn
     return (
       <React.Fragment>
@@ -65,7 +61,12 @@ class NewReview extends Component {
                 <label htmlFor="rating" className="review-input-text">
                   Rating
                 </label>
-                <select id="newrating" name="rating" defaultValue="5" onChange={this.handleChange}>
+                <select
+                  id="newrating"
+                  name="rating"
+                  defaultValue="5"
+                  onChange={this.handleChange}
+                >
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -89,12 +90,12 @@ class NewReview extends Component {
             </form>
           </div>
         ) : (
-            <div className="login-alarm-wrapper">
-              <div className="login-alarm-msg">
-                Please login to write a revivew!
+          <div className="login-alarm-wrapper">
+            <div className="login-alarm-msg">
+              Please login to write a revivew!
             </div>
-            </div>
-          )}
+          </div>
+        )}
       </React.Fragment>
     )
   }
@@ -106,23 +107,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  createReview: (newReview) => dispatch(createReview(newReview))
-  // handleSubmit(evt) {
-  //   evt.preventDefault()
-  //   // const formName = evt.target.name
-  //   // const  = evt.target.email.value
-  //   // const
-  //   const content = evt.target.content.value
-  //   const rating = evt.target.rating.value
-  //   // const productId =
-  //   // const userID =
-
-
-  //   // const newReview = {
-  //   //   rating, content, productId, userId
-  //   // }
-  //   // dispatch(createReview(, password, formName))
-  // }
+  createReview: newReview => dispatch(createReview(newReview))
 })
 
 export default connect(mapState, mapDispatch)(NewReview)

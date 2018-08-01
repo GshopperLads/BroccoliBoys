@@ -25,12 +25,9 @@ class AdminCustomer extends Component {
     const users = this.props.users
     const orders = this.props.orders
     const totalPurchase = orders.map(order => ({
-      total: order.quantity*order.product.price,
+      total: order.quantity * order.product.price,
       user: order.userId
     }))
-
-    // orders.sort(dynamicSort('price'))
-    // r.reverse()
 
     console.log('dashboard: ', orders)
     return (
@@ -72,17 +69,19 @@ class AdminCustomer extends Component {
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                {orders.sort(this.dynamicSort('orders.product.price')).map(order => (
-                  <Table.Row key={order.id}>
-                    <Table.Cell>{order.createdAt.slice(0, 10)}</Table.Cell>
-                    <Table.Cell>
-                      ${order.product.price * order.quantity}
-                    </Table.Cell>
-                    <Table.Cell>{order.product.name}</Table.Cell>
-                    <Table.Cell>{order.quantity}</Table.Cell>
-                    <Table.Cell>{order.userId}</Table.Cell>
-                  </Table.Row>
-                ))}
+                {orders
+                  .sort(this.dynamicSort('orders.product.price'))
+                  .map(order => (
+                    <Table.Row key={order.id}>
+                      <Table.Cell>{order.createdAt.slice(0, 10)}</Table.Cell>
+                      <Table.Cell>
+                        ${order.product.price * order.quantity}
+                      </Table.Cell>
+                      <Table.Cell>{order.product.name}</Table.Cell>
+                      <Table.Cell>{order.quantity}</Table.Cell>
+                      <Table.Cell>{order.userId}</Table.Cell>
+                    </Table.Row>
+                  ))}
               </Table.Body>
             </Table>
           </div>

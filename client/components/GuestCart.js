@@ -3,19 +3,14 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchCart, removeFromCart} from '../store'
 import {Button, Card, Image, Icon, List, Header} from 'semantic-ui-react'
-import {SSL_OP_SSLEAY_080_CLIENT_DH_BUG} from 'constants'
-
-
-
 
 class GuestCart extends React.Component {
   constructor(props) {
     super(props)
     this.state = sessionStorage
-
   }
 
-  componentWillMount(){
+  componentWillMount() {
     console.log('hi')
   }
 
@@ -27,22 +22,23 @@ class GuestCart extends React.Component {
 
     //Get keys from session storage, to find products needed
     let productsToRenderKeys = Object.keys(sessionStorage)
+
     //Check to see what products are included in local storage
-    let productsToRender = [];
-    // console.log('ALL PRODUCTS', products)
-    // console.log()
-    for (let i=0; i<products.length; i++){
-      if(productsToRenderKeys.includes(products[i].id.toString())){
+    let productsToRender = []
+
+    for (let i = 0; i < products.length; i++) {
+      if (productsToRenderKeys.includes(products[i].id.toString())) {
         productsToRender.push(products[i])
       }
     }
 
-    console.log('PRODUCTS RENDER',productsToRender)
+    console.log('PRODUCTS RENDER', productsToRender)
 
     let value = 0
-    productsToRender.forEach(product => (value += product.price*Number(this.state[product.id])))
-    console.log('productsToRender', productsToRender)
-    console.log('VAL', value)
+    productsToRender.forEach(
+      product => (value += product.price * Number(this.state[product.id]))
+    )
+
     return (
       <div>
         <div className="cartContainer">
@@ -77,46 +73,41 @@ class GuestCart extends React.Component {
           </div>
         </div>
         <div className="itemsInCart">
-        <Card.Group>
-          {productsToRender.map(product => (
-            <Card key={product.id}>
-              <Card.Content>
-                <Image
-                  floated="right"
-                  size="mini"
-                  src={product.imageUrl}
-                />
-                <Card.Header>{product.name}</Card.Header>
-                <Card.Meta>${product.price}</Card.Meta>
-                <Card.Description>{product.description}</Card.Description>
-              </Card.Content>
-              <Card.Content extra>
-                <p>
-                  <Icon name="cart" />
-                  {this.state[product.id]} in cart
-                </p>
-                <div className="ui two buttons">
-                  <Button
-                    basic
-                    color="green"
-                    onClick={() => {
-                        let quantity = Number(sessionStorage.getItem([product.id]))+1
+          <Card.Group>
+            {productsToRender.map(product => (
+              <Card key={product.id}>
+                <Card.Content>
+                  <Image floated="right" size="mini" src={product.imageUrl} />
+                  <Card.Header>{product.name}</Card.Header>
+                  <Card.Meta>${product.price}</Card.Meta>
+                  <Card.Description>{product.description}</Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                  <p>
+                    <Icon name="cart" />
+                    {this.state[product.id]} in cart
+                  </p>
+                  <div className="ui two buttons">
+                    <Button
+                      basic
+                      color="green"
+                      onClick={() => {
+                        let quantity =
+                          Number(sessionStorage.getItem([product.id])) + 1
                         console.log('QUANT', quantity)
                         sessionStorage.setItem([product.id], quantity)
                         this.setState({[product.id]: quantity})
-                    }
-
-                    }
-                  >
-                    +
-                  </Button>
-                  <Button
-                    basic
-                    color="red"
-                    onClick={() =>
-                        {
-                        let quantity = Number(sessionStorage.getItem([product.id]))-1
-                        if(quantity <= 0){
+                      }}
+                    >
+                      +
+                    </Button>
+                    <Button
+                      basic
+                      color="red"
+                      onClick={() => {
+                        let quantity =
+                          Number(sessionStorage.getItem([product.id])) - 1
+                        if (quantity <= 0) {
                           sessionStorage.removeItem([product.id])
                           this.setState({sessionStorage})
                         } else {
@@ -124,17 +115,16 @@ class GuestCart extends React.Component {
                           sessionStorage.setItem([product.id], quantity)
                           this.setState({[product.id]: quantity})
                         }
-                        }
-                    }
-                  >
-                    -
-                  </Button>
-                </div>
-              </Card.Content>
-            </Card>
-          ))}
-        </Card.Group>
-      </div>
+                      }}
+                    >
+                      -
+                    </Button>
+                  </div>
+                </Card.Content>
+              </Card>
+            ))}
+          </Card.Group>
+        </div>
       </div>
     )
   }

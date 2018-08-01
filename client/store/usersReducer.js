@@ -1,5 +1,4 @@
 import axios from 'axios'
-import history from '../history'
 
 const GET_USERS = 'GET_USERS'
 
@@ -8,10 +7,10 @@ const getUsers = users => ({
   users
 })
 
-export const fetchUsers = (users) => {
+export const fetchUsers = users => {
   return async dispatch => {
     try {
-      const res = await axios.put('/api/users', {"security": true})
+      const res = await axios.put('/api/users', {security: true})
       const users = res.data
       dispatch(getUsers(users))
       return users
@@ -20,7 +19,6 @@ export const fetchUsers = (users) => {
     }
   }
 }
-
 
 export const usersReducer = (state = [], action) => {
   switch (action.type) {

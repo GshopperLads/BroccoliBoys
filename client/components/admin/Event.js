@@ -18,16 +18,35 @@ class AdminEvent extends Component {
           <div className="admin-event-section">
             <h2 className="admin-title">Event Management</h2>
             <div>
-            <h3>Send Emails to Customers</h3>
-
-            <input type="submit" value="Send To All Customers"  className="admin-event-btn" />
-            <input type="submit" value="Send To Best Customers"  className="admin-event-btn" />
-            <input type="submit" value="Send Promotion Notification"  className="admin-event-btn" />
+              <h3>Send Emails to Customers</h3>
+              <input
+                type="submit"
+                value="Send To All Customers"
+                className="admin-event-btn"
+              />
+              <input
+                type="submit"
+                value="Send To Best Customers"
+                className="admin-event-btn"
+              />
+              <input
+                type="submit"
+                value="Send Promotion Notification"
+                className="admin-event-btn"
+              />
             </div>
             <div>
-            <h3>Special Event</h3>
-            <input type="submit" value="Discount Least Selling Products"  className="admin-event-btn" />
-            <input type="submit" value="On Sale" className="admin-event-btn" />
+              <h3>Special Event</h3>
+              <input
+                type="submit"
+                value="Discount Least Selling Products"
+                className="admin-event-btn"
+              />
+              <input
+                type="submit"
+                value="On Sale"
+                className="admin-event-btn"
+              />
             </div>
           </div>
         </div>

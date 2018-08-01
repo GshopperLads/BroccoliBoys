@@ -14,27 +14,14 @@ const sgMail = require('@sendgrid/mail')
 const {CartItem, Order} = require('./db/models')
 const helmet = require('helmet')
 
-// const csp = require('express-csp-header');
-
 module.exports = app
 
-// This is a global Mocha hook, used for resource cleanup.
-// Otherwise, Mocha v4+ never quits after tests.
 if (process.env.NODE_ENV === 'test') {
   after('close the session store', () => sessionStore.stopExpiringSessions())
 }
 
-/**
- * In your development environment, you can keep all of your
- * app's secret API keys in a file called `secrets.js`, in your project
- * root. This file is included in the .gitignore - it will NOT be tracked
- * or show up on Github. On your production server, you can add these
- * keys as environment variables, so that they can still be read by the
- * Node process on process.env
- */
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
-// passport registration
 passport.serializeUser((user, done) => done(null, user.id))
 
 passport.deserializeUser(async (id, done) => {
@@ -54,38 +41,6 @@ const createApp = () => {
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
   app.use(helmet())
-
-  // const cspMiddleware = csp({
-  //   policies: {
-  //     'default-src': [csp.NONE],
-  //     'script-src': [csp.NONCE],
-  //     'style-src': [csp.NONCE],
-  //     'img-src': [csp.SELF],
-  //     'font-src': [csp.NONCE, 'fonts.gstatic.com'],
-  //     'object-src': [csp.NONE],
-  //     'block-all-mixed-content': true,
-  //     'frame-ancestors': [csp.NONE]
-  //   }
-  // });
-  // app.use(cspMiddleware);
-
-  // app.use(helmet.contentSecurityPolicy({
-  //   directives: {
-  //     defaultSrc: ["'self'"],
-  //     styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
-  //   }
-  // }))
-  // app.use(csp({
-  //   directives: {
-  //     defaultSrc: ["'self'", 'default.com'],
-  //     scriptSrc: ["'self'", "'unsafe-inline'"],
-  //     sandbox: ['allow-forms', 'allow-scripts'],
-  //     reportUri: '/report-violation',
-  //     objectSrc: ["'none'"],
-  //     upgradeInsecureRequests: true,
-  //     workerSrc: false  // This is not set.
-  //   }
-  // }))
 
   // compression middleware
   app.use(compression())
@@ -111,14 +66,10 @@ const createApp = () => {
   app.use(express.static(path.join(__dirname, '..', 'public')))
 
   // client side : generate a token using publishable API key > forward the token to the server > combine token w/ secret API key to charge money via Strip API
-
   const {stripeKey, stripeSKey} = require('../secrets.js')
   // Set your secret key: remember to change this to your live secret key in production
   // See your keys here: https://dashboard.stripe.com/account/apikeys
   var stripe = require('stripe')(stripeSKey)
-
-  // Token is created using Checkout or Elements!
-  // Get the payment token ID submitted by the form:
 
   sgMail.setApiKey(process.env.SENDGRID_API_KEY)
   app.post('/save-stripe-token', (req, res, next) => {
@@ -129,7 +80,7 @@ const createApp = () => {
       }
     })
       .then(response => {
-        console.log("first element", response[0])
+        console.log('first element', response[0])
         response.map(el => {
           console.log(el)
           let actualEl = el.dataValues
@@ -148,7 +99,7 @@ const createApp = () => {
 
     stripe.customers
       .create({
-        email: req.body.email, // need to get data from somewhere
+        email: req.body.email,
         source: req.body.source
       })
       .then(customer =>
@@ -174,12 +125,6 @@ const createApp = () => {
             userId: req.body.customer
           }
         })
-
-        /*
-        productId,
-        userId: req.body.customer
-        quantity:
-        */
         res.send('Thank for purchasing our product!')
       })
       .catch(err => {
@@ -231,10 +176,7 @@ async function bootApp() {
   await createApp()
   await startListening()
 }
-// This evaluates as true when this file is run directly from the command line,
-// i.e. when we say 'node server/index.js' (or 'nodemon server/index.js', or 'nodemon server', etc)
-// It will evaluate false when this module is required by another module - for example,
-// if we wanted to require our app in a test spec
+
 if (require.main === module) {
   bootApp()
 } else {

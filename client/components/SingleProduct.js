@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom'
 import Review from './Review'
 
 class SingleProduct extends Component {
-
   componentDidMount() {
     this.props.fetchProducts()
     this.props.fetchReviews()

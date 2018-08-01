@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
-import { Helmet } from 'react-helmet'
+import React, {Component} from 'react'
+import {Helmet} from 'react-helmet'
 
 class Review extends Component {
   componentDidMount() {
-    $(function () {
+    $(function() {
       $('#rating').barrating({
         theme: 'fontawesome-stars-o'
-        //readonly: true,
-        // showSelectedRating:false
       })
     })
     const reviewLen = this.props.reviews.filter(review => {
@@ -15,11 +13,9 @@ class Review extends Component {
     }).length
     let i = 0
     while (i < reviewLen) {
-      $(function () {
+      $(function() {
         $(`#rating${i}`).barrating({
           theme: 'fontawesome-stars-o'
-          //readonly: true,
-          // showSelectedRating:false
         })
       })
       i++
@@ -27,11 +23,9 @@ class Review extends Component {
   }
 
   componentWillMount() {
-    $(function () {
+    $(function() {
       $('#rating').barrating({
         theme: 'fontawesome-stars-o'
-        //readonly: true,
-        // showSelectedRating:false
       })
     })
     const reviewLen = this.props.reviews.filter(review => {
@@ -39,11 +33,9 @@ class Review extends Component {
     }).length
     let i = 0
     while (i < reviewLen) {
-      $(function () {
+      $(function() {
         $(`#rating${i}`).barrating({
           theme: 'fontawesome-stars-o'
-          //readonly: true,
-          // showSelectedRating:false
         })
       })
       i++
@@ -60,8 +52,6 @@ class Review extends Component {
     })
     let averageRating = totalRating / productReviews.length
 
-    const three = Math.floor(averageRating) === 3
-    const five = Math.floor(averageRating) === 5
     return (
       <React.Fragment>
         <div className="review-title">Customer Reviews</div>

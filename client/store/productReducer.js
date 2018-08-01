@@ -1,21 +1,20 @@
 import axios from 'axios'
-import history from '../history'
 
 /**
  * ACTION TYPES
  */
-export const GET_PRODUCTS = "GET_PRODUCTS"
-export const GET_PRODUCT = "GET_PRODUCT"
+export const GET_PRODUCTS = 'GET_PRODUCTS'
+export const GET_PRODUCT = 'GET_PRODUCT'
 
 /**
  * ACTION CREATORS
  */
-export const getProducts = (products) => ({
+export const getProducts = products => ({
   type: GET_PRODUCTS,
   products
 })
 
-export const getProduct = (product) => ({
+export const getProduct = product => ({
   type: GET_PRODUCT,
   product
 })
@@ -24,9 +23,9 @@ export const getProduct = (product) => ({
  * THUNK CREATORS
  */
 export const fetchProducts = () => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
-      const { data } = await axios.get("/api/products")
+      const {data} = await axios.get('/api/products')
       dispatch(getProducts(data))
     } catch (err) {
       console.error(err)
@@ -34,10 +33,10 @@ export const fetchProducts = () => {
   }
 }
 
-export const fetchProduct = (productId) => {
-  return async (dispatch) => {
+export const fetchProduct = productId => {
+  return async dispatch => {
     try {
-      const { data } = await axios.get(`/api/products/${productId}`)
+      const {data} = await axios.get(`/api/products/${productId}`)
       dispatch(getProduct(data))
     } catch (err) {
       console.error(err)
