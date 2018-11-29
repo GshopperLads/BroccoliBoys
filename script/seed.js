@@ -71,12 +71,6 @@ async function seed() {
       email: 'heit@email.com',
       password: '123',
       address: '1 E 2nd St, New York, NY 10003, USA'
-    }),
-    User.create({
-      name: 'David',
-      email: 'david@email.com',
-      password: '124',
-      address: '5 E 22nd St, New York, NY 10003, USA'
     })
   ])
 
@@ -91,8 +85,7 @@ async function seed() {
     Cart.create({userId: 8}),
     Cart.create({userId: 9}),
     Cart.create({userId: 10}),
-    Cart.create({userId: 11}),
-    Cart.create({userId: 12})
+    Cart.create({userId: 11})
   ])
 
   const products = await Promise.all([
